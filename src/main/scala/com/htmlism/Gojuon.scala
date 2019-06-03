@@ -42,6 +42,22 @@ object Gojuon extends IOApp {
           }
       }
 
+  val kana =
+    (for {
+      v <- vowels
+      c <- consonants
+    } yield (c, v))
+      .map {
+        case (ConsonantY, VowelI) =>
+          Unavailable
+        case (ConsonantY, VowelE) =>
+          Unavailable
+        case (ConsonantW, VowelU) =>
+          Unavailable
+        case (c, v) =>
+          Kana(c, v)
+      }
+
   def run(args: List[String]): IO[ExitCode] =
     IO {
       for (n <- 0 to 100) {
@@ -62,6 +78,10 @@ object Gojuon extends IOApp {
     }.as(ExitCode.Success)
 }
 
+sealed trait KanaAvailability
+case class Kana(consonant: Consonant, vowel: Vowel) extends KanaAvailability
+case object Unavailable extends KanaAvailability
+
 sealed trait Vowel
 case object VowelA extends Vowel
 case object VowelI extends Vowel
@@ -70,6 +90,7 @@ case object VowelE extends Vowel
 case object VowelO extends Vowel
 
 sealed trait Consonant
+case object EmptyConsonant extends Consonant
 case object ConsonantK extends Consonant
 case object ConsonantS extends Consonant
 case object ConsonantT extends Consonant
