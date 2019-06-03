@@ -12,7 +12,9 @@ object Gojuon extends IOApp {
     List(VowelA, VowelI, VowelU, VowelE, VowelO)
 
   val consonants =
-    List(ConsonantK,
+    List(
+      EmptyConsonant,
+      ConsonantK,
       ConsonantS,
       ConsonantT,
       ConsonantN,
@@ -22,30 +24,10 @@ object Gojuon extends IOApp {
       ConsonantR,
       ConsonantW)
 
-  val kanaDescription =
-    vowels
-      .flatMap(v => (v, Small) :: (v, Large) :: Nil) ++
-    consonants
-      .flatMap { c =>
-        vowels
-          .flatMap { v =>
-            (c, v) match {
-              case (ConsonantT, VowelU) =>
-                (c, v, Small) :: (c, v, Unvoiced) :: (c, v, Voiced) :: Nil
-              case (ConsonantN, _) =>
-                (c, v) :: Nil
-              case (ConsonantH, _) =>
-                (c, v, Unvoiced) :: (c, v, Voiced) :: (c, v, Half) :: Nil
-              case _ =>
-                (c, v, Unvoiced) :: (c, v, Voiced) :: Nil
-            }
-          }
-      }
-
   val kana =
     (for {
-      v <- vowels
       c <- consonants
+      v <- vowels
     } yield (c, v))
       .map {
         case (ConsonantY, VowelI) =>
@@ -58,11 +40,32 @@ object Gojuon extends IOApp {
           Kana(c, v)
       }
 
+  val kanaUnicodeDescriptions =
+    kana
+      .collect { case k: Kana => k }
+      .flatMap { k =>
+        k match {
+          case Kana(EmptyConsonant, v) =>
+            smallAndLarge(v)
+          case Kana(c @ ConsonantT, v @ VowelU) =>
+            (c, v, Small) :: (c, v, Unvoiced) :: (c, v, Voiced) :: Nil
+          case Kana(c @ ConsonantN, v) =>
+            (c, v) :: Nil
+          case Kana(c @ ConsonantH, v) =>
+            (c, v, Unvoiced) :: (c, v, Voiced) :: (c, v, Half) :: Nil
+          case Kana(c, v) =>
+            (c, v, Unvoiced) :: (c, v, Voiced) :: Nil
+        }
+      }
+
+  def smallAndLarge(v: Vowel) =
+    (v, Small) :: (v, Large) :: Nil
+
   def run(args: List[String]): IO[ExitCode] =
     IO {
       for (n <- 0 to 100) {
         println {
-          kanaDescription(n) + ": " + (hiraganaCodepoint + n).toChar
+          kanaUnicodeDescriptions(n) + ": " + (hiraganaCodepoint + n).toChar
         }
       }
 
@@ -72,7 +75,7 @@ object Gojuon extends IOApp {
 
       for (n <- 0 to 100) {
         println {
-          kanaDescription(n) + ": " + (katakanaCodepoint + n).toChar
+          kanaUnicodeDescriptions(n) + ": " + (katakanaCodepoint + n).toChar
         }
       }
     }.as(ExitCode.Success)
