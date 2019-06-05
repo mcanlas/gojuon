@@ -51,6 +51,8 @@ object Gojuon extends IOApp {
             (c, v, Small) :: (c, v, Unvoiced) :: (c, v, Voiced) :: Nil
           case Kana(c @ ConsonantY, v) =>
             (c, v, Small) :: (c, v, Large) :: Nil
+          case Kana(c @ ConsonantW, v @ VowelA) =>
+            (c, v, Small) :: (c, v, Large) :: Nil
           case Kana(c @ (ConsonantN | ConsonantM | ConsonantR | ConsonantW), v) =>
             (c, v) :: Nil
           case Kana(c @ ConsonantH, v) =>
