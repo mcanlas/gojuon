@@ -63,7 +63,7 @@ object Gojuon extends IOApp {
 
   def run(args: List[String]): IO[ExitCode] =
     IO {
-      for (n <- 0 to 100) {
+      for (n <- kanaUnicodeDescriptions.indices) {
         println {
           kanaUnicodeDescriptions(n) + ": " + (hiraganaCodepoint + n).toChar
         }
@@ -73,7 +73,7 @@ object Gojuon extends IOApp {
       println
       println
 
-      for (n <- 0 to 100) {
+      for (n <- kanaUnicodeDescriptions.indices) {
         println {
           kanaUnicodeDescriptions(n) + ": " + (katakanaCodepoint + n).toChar
         }
