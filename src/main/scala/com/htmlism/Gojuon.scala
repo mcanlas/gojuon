@@ -2,7 +2,6 @@ package com.htmlism
 
 import cats.effect._
 import cats.implicits._
-import mouse.any._
 
 object Gojuon extends IOApp {
   val hiraganaCodepoint = 0x3041
@@ -30,21 +29,18 @@ object Gojuon extends IOApp {
       v <- vowels
     } yield (c, v)
 
-  val cvAvailability: ((Consonant, Vowel)) => KanaAvailability = {
-    case (ConsonantY, VowelI) =>
-      Unavailable
-    case (ConsonantY, VowelE) =>
-      Unavailable
+  val cvAvailability: ((Consonant, Vowel)) => Option[Kana] = {
+    case (ConsonantY, VowelI | VowelE) =>
+      None
     case (ConsonantW, VowelU) =>
-      Unavailable
+      None
     case (c, v) =>
-      Kana(c, v)
+      Kana(c, v).some
   }
 
   val kanaUnicodeDescriptions =
     kana
-      .map(cvAvailability)
-      .collect { case k: Kana => k }
+      .flatMap(cvAvailability)
       .flatMap {
         case Kana(EmptyConsonant, v) =>
           smallAndLarge(v)
@@ -85,9 +81,7 @@ object Gojuon extends IOApp {
     }.as(ExitCode.Success)
 }
 
-sealed trait KanaAvailability
-case class Kana(consonant: Consonant, vowel: Vowel) extends KanaAvailability
-case object Unavailable extends KanaAvailability
+case class Kana(consonant: Consonant, vowel: Vowel)
 
 sealed trait Vowel
 case object VowelA extends Vowel
@@ -108,11 +102,14 @@ case object ConsonantY extends Consonant
 case object ConsonantR extends Consonant
 case object ConsonantW extends Consonant
 
-sealed trait VowelSize
+sealed trait Variant
+case object Canonical extends Variant
+
+sealed trait VowelSize extends Variant
 case object Small extends VowelSize
 case object Large extends VowelSize
 
-sealed trait Voicing
+sealed trait Voicing extends Variant
 case object Voiced extends Voicing
 case object Half extends Voicing
 case object Unvoiced extends Voicing
