@@ -103,6 +103,10 @@ case object ConsonantR extends Consonant
 case object ConsonantW extends Consonant
 
 sealed trait Variant
+
+/**
+ * Also "large" to contrast with "small". And "unvoiced" in voicing.
+ */
 case object Canonical extends Variant
 
 sealed trait VowelSize extends Variant
