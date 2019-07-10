@@ -30,21 +30,20 @@ object Gojuon extends IOApp {
       v <- vowels
     } yield (c, v)
 
-  def cvAvailability(c: Consonant, v: Vowel): KanaAvailability =
-    (c, v) match {
-      case (ConsonantY, VowelI) =>
-        Unavailable
-      case (ConsonantY, VowelE) =>
-        Unavailable
-      case (ConsonantW, VowelU) =>
-        Unavailable
-      case (c, v) =>
-        Kana(c, v)
-    }
+  val cvAvailability: ((Consonant, Vowel)) => KanaAvailability = {
+    case (ConsonantY, VowelI) =>
+      Unavailable
+    case (ConsonantY, VowelE) =>
+      Unavailable
+    case (ConsonantW, VowelU) =>
+      Unavailable
+    case (c, v) =>
+      Kana(c, v)
+  }
 
   val kanaUnicodeDescriptions =
     kana
-      .map((cvAvailability _).tupled)
+      .map(cvAvailability)
       .collect { case k: Kana => k }
       .flatMap {
         case Kana(EmptyConsonant, v) =>
