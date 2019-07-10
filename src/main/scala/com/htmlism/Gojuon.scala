@@ -46,23 +46,21 @@ object Gojuon extends IOApp {
     kana
       .map((cvAvailability _).tupled)
       .collect { case k: Kana => k }
-      .flatMap { k =>
-        k match {
-          case Kana(EmptyConsonant, v) =>
-            smallAndLarge(v)
-          case Kana(c @ ConsonantT, v @ VowelU) =>
-            (c, v, Small) :: (c, v, Unvoiced) :: (c, v, Voiced) :: Nil
-          case Kana(c @ ConsonantY, v) =>
-            (c, v, Small) :: (c, v, Large) :: Nil
-          case Kana(c @ ConsonantW, v @ VowelA) =>
-            (c, v, Small) :: (c, v, Large) :: Nil
-          case Kana(c @ (ConsonantN | ConsonantM | ConsonantR | ConsonantW), v) =>
-            (c, v) :: Nil
-          case Kana(c @ ConsonantH, v) =>
-            (c, v, Unvoiced) :: (c, v, Voiced) :: (c, v, Half) :: Nil
-          case Kana(c @ (ConsonantK | ConsonantS | ConsonantT | ConsonantN), v) =>
-            (c, v, Unvoiced) :: (c, v, Voiced) :: Nil
-        }
+      .flatMap {
+        case Kana(EmptyConsonant, v) =>
+          smallAndLarge(v)
+        case Kana(c @ ConsonantT, v @ VowelU) =>
+          (c, v, Small) :: (c, v, Unvoiced) :: (c, v, Voiced) :: Nil
+        case Kana(c @ ConsonantY, v) =>
+          (c, v, Small) :: (c, v, Large) :: Nil
+        case Kana(c @ ConsonantW, v @ VowelA) =>
+          (c, v, Small) :: (c, v, Large) :: Nil
+        case Kana(c @ (ConsonantN | ConsonantM | ConsonantR | ConsonantW), v) =>
+          (c, v) :: Nil
+        case Kana(c @ ConsonantH, v) =>
+          (c, v, Unvoiced) :: (c, v, Voiced) :: (c, v, Half) :: Nil
+        case Kana(c @ (ConsonantK | ConsonantS | ConsonantT | ConsonantN), v) =>
+          (c, v, Unvoiced) :: (c, v, Voiced) :: Nil
       }
 
   def smallAndLarge(v: Vowel) =
