@@ -52,7 +52,7 @@ object Gojuon extends IOApp {
         case Kana(c @ ConsonantW, v @ VowelA) =>
           (c, v, Small) :: (c, v, Large) :: Nil
         case Kana(c @ (ConsonantN | ConsonantM | ConsonantR | ConsonantW), v) =>
-          (c, v) :: Nil
+          (c, v, Large) :: Nil
         case Kana(c @ ConsonantH, v) =>
           (c, v, Unvoiced) :: (c, v, Voiced) :: (c, v, Half) :: Nil
         case Kana(c @ (ConsonantK | ConsonantS | ConsonantT), v) =>
@@ -60,7 +60,7 @@ object Gojuon extends IOApp {
       }
 
   def smallAndLarge(v: Vowel) =
-    (v, Small) :: (v, Large) :: Nil
+    (EmptyConsonant, v, Small) :: (EmptyConsonant, v, Large) :: Nil
 
   def run(args: List[String]): IO[ExitCode] =
     IO {
