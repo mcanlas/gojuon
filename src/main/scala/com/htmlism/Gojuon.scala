@@ -46,21 +46,21 @@ object Gojuon extends IOApp {
         case Kana(EmptyConsonant, v) =>
           smallAndCanonical(v)
         case Kana(c @ ConsonantT, v @ VowelU) =>
-          (c, v, Small) :: (c, v, Canonical) :: (c, v, Voiced) :: Nil
+          KanaVariants(c, v, Small) :: KanaVariants(c, v, Canonical) :: KanaVariants(c, v, Voiced) :: Nil
         case Kana(c @ ConsonantY, v) =>
-          (c, v, Small) :: (c, v, Canonical) :: Nil
+          KanaVariants(c, v, Small) :: KanaVariants(c, v, Canonical) :: Nil
         case Kana(c @ ConsonantW, v @ VowelA) =>
-          (c, v, Small) :: (c, v, Canonical) :: Nil
+          KanaVariants(c, v, Small) :: KanaVariants(c, v, Canonical) :: Nil
         case Kana(c @ (ConsonantN | ConsonantM | ConsonantR | ConsonantW), v) =>
-          (c, v, Canonical) :: Nil
+          KanaVariants(c, v, Canonical) :: Nil
         case Kana(c @ ConsonantH, v) =>
-          (c, v, Canonical) :: (c, v, Voiced) :: (c, v, Half) :: Nil
+          KanaVariants(c, v, Canonical) :: KanaVariants(c, v, Voiced) :: KanaVariants(c, v, Half) :: Nil
         case Kana(c @ (ConsonantK | ConsonantS | ConsonantT), v) =>
-          (c, v, Canonical) :: (c, v, Voiced) :: Nil
+          KanaVariants(c, v, Canonical) :: KanaVariants(c, v, Voiced) :: Nil
       }
 
   def smallAndCanonical(v: Vowel) =
-    (EmptyConsonant, v, Small) :: (EmptyConsonant, v, Canonical) :: Nil
+    KanaVariants(EmptyConsonant, v, Small) :: KanaVariants(EmptyConsonant, v, Canonical) :: Nil
 
   def run(args: List[String]): IO[ExitCode] =
     IO {
@@ -122,4 +122,9 @@ sealed trait KanaScript
 case object Hiragana extends KanaScript
 case object Katakana extends KanaScript
 
-case class KanaVariants(script: KanaScript, variants: NonEmptyList[Variant])
+case class KanaVariants(consonant: Consonant, vowel: Vowel, variants: NonEmptyList[Variant])
+
+object KanaVariants {
+  def apply(consonant: Consonant, vowel: Vowel, variant: Variant): KanaVariants =
+    KanaVariants(consonant, vowel, NonEmptyList.of(variant))
+}
