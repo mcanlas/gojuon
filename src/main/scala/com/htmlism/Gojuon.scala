@@ -1,5 +1,6 @@
 package com.htmlism
 
+import cats.data.NonEmptyList
 import cats.effect._
 import cats.implicits._
 
@@ -119,3 +120,9 @@ sealed trait Voicing extends Variant
 case object Voiced extends Voicing
 case object Half extends Voicing
 case object Unvoiced extends Voicing
+
+sealed trait KanaScript
+case object Hiragana extends KanaScript
+case object Katakana extends KanaScript
+
+case class KanaVariants(script: KanaScript, variants: NonEmptyList[Variant])
