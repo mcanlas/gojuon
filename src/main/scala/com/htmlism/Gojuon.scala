@@ -44,23 +44,23 @@ object Gojuon extends IOApp {
       .flatMap(cvAvailability)
       .flatMap {
         case Kana(EmptyConsonant, v) =>
-          smallAndLarge(v)
+          smallAndCanonical(v)
         case Kana(c @ ConsonantT, v @ VowelU) =>
-          (c, v, Small) :: (c, v, Unvoiced) :: (c, v, Voiced) :: Nil
+          (c, v, Small) :: (c, v, Canonical) :: (c, v, Voiced) :: Nil
         case Kana(c @ ConsonantY, v) =>
-          (c, v, Small) :: (c, v, Large) :: Nil
+          (c, v, Small) :: (c, v, Canonical) :: Nil
         case Kana(c @ ConsonantW, v @ VowelA) =>
-          (c, v, Small) :: (c, v, Large) :: Nil
+          (c, v, Small) :: (c, v, Canonical) :: Nil
         case Kana(c @ (ConsonantN | ConsonantM | ConsonantR | ConsonantW), v) =>
-          (c, v, Large) :: Nil
+          (c, v, Canonical) :: Nil
         case Kana(c @ ConsonantH, v) =>
-          (c, v, Unvoiced) :: (c, v, Voiced) :: (c, v, Half) :: Nil
+          (c, v, Canonical) :: (c, v, Voiced) :: (c, v, Half) :: Nil
         case Kana(c @ (ConsonantK | ConsonantS | ConsonantT), v) =>
-          (c, v, Unvoiced) :: (c, v, Voiced) :: Nil
+          (c, v, Canonical) :: (c, v, Voiced) :: Nil
       }
 
-  def smallAndLarge(v: Vowel) =
-    (EmptyConsonant, v, Small) :: (EmptyConsonant, v, Large) :: Nil
+  def smallAndCanonical(v: Vowel) =
+    (EmptyConsonant, v, Small) :: (EmptyConsonant, v, Canonical) :: Nil
 
   def run(args: List[String]): IO[ExitCode] =
     IO {
@@ -108,18 +108,15 @@ case object ConsonantW extends Consonant
 sealed trait Variant
 
 /**
- * Also "large" to contrast with "small". And "unvoiced" in voicing.
+ * Also "Canonical" to contrast with "small". And "unvoiced" in voicing.
  */
 case object Canonical extends Variant
 
-sealed trait VowelSize extends Variant
-case object Small extends VowelSize
-case object Large extends VowelSize
+case object Small extends Variant
 
 sealed trait Voicing extends Variant
 case object Voiced extends Voicing
 case object Half extends Voicing
-case object Unvoiced extends Voicing
 
 sealed trait KanaScript
 case object Hiragana extends KanaScript
