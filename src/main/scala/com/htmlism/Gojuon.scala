@@ -24,13 +24,13 @@ object Gojuon extends IOApp {
       ConsonantR,
       ConsonantW)
 
-  val kana =
+  val cvCombinations =
     for {
       c <- consonants
       v <- vowels
     } yield (c, v)
 
-  val cvAvailability: ((Consonant, Vowel)) => Option[Kana] = {
+  val availableKana: ((Consonant, Vowel)) => Option[Kana] = {
     case (ConsonantY, VowelI | VowelE) =>
       None
     case (ConsonantW, VowelU) =>
@@ -40,8 +40,8 @@ object Gojuon extends IOApp {
   }
 
   val kanaUnicodeDescriptions =
-    kana
-      .flatMap(cvAvailability)
+    cvCombinations
+      .flatMap(availableKana)
       .flatMap {
         case Kana(EmptyConsonant, v) =>
           smallAndCanonical(v)
