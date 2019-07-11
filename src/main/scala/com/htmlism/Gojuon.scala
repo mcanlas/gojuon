@@ -63,6 +63,8 @@ object Gojuon extends IOApp {
 
   def run(args: List[String]): IO[ExitCode] =
     IO {
+      println(s"number of kana variants is ${kanaUnicodeDescriptions.size}")
+
       for (n <- kanaUnicodeDescriptions.indices) {
         println {
           kanaUnicodeDescriptions(n) + ": " + (hiraganaCodepoint + n).toChar
