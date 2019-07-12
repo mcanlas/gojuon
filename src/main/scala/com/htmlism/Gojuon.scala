@@ -59,6 +59,26 @@ object Gojuon extends IOApp {
           KanaVariants(c, v, Canonical) :: KanaVariants(c, v, Voiced) :: Nil
       }
 
+  private[this] val kanaUnicodeDescriptions2 =
+    cvCombinations
+      .flatMap(availableKana)
+      .flatMap {
+        case Kana(EmptyConsonant, v) =>
+          smallAndCanonical(v)
+        case Kana(c @ ConsonantT, v @ VowelU) =>
+          KanaVariants(c, v, Small) :: KanaVariants(c, v, Canonical) :: KanaVariants(c, v, Voiced) :: Nil
+        case Kana(c @ ConsonantY, v) =>
+          KanaVariants(c, v, Small) :: KanaVariants(c, v, Canonical) :: Nil
+        case Kana(c @ ConsonantW, v @ VowelA) =>
+          KanaVariants(c, v, Small) :: KanaVariants(c, v, Canonical) :: Nil
+        case Kana(c @ (ConsonantN | ConsonantM | ConsonantR | ConsonantW), v) =>
+          KanaVariants(c, v, Canonical) :: Nil
+        case Kana(c @ ConsonantH, v) =>
+          KanaVariants(c, v, Canonical) :: KanaVariants(c, v, Voiced) :: KanaVariants(c, v, Half) :: Nil
+        case Kana(c @ (ConsonantK | ConsonantS | ConsonantT), v) =>
+          KanaVariants(c, v, Canonical) :: KanaVariants(c, v, Voiced) :: Nil
+      }
+
   def smallAndCanonical(v: Vowel) =
     KanaVariants(EmptyConsonant, v, Small) :: KanaVariants(EmptyConsonant, v, Canonical) :: Nil
 
@@ -122,7 +142,13 @@ sealed trait KanaScript
 case object Hiragana extends KanaScript
 case object Katakana extends KanaScript
 
-case class KanaVariants(consonant: Consonant, vowel: Vowel, variants: NonEmptyList[Variant])
+case class KanaVariants(consonant: Consonant, vowel: Vowel, variants: NonEmptyList[Variant]) {
+  def prepend(v: Variant): KanaVariants =
+    this.copy(variants = variants.prepend(v))
+
+  def append(v: Variant): KanaVariants =
+    this.copy(variants = variants.append(v))
+}
 
 object KanaVariants {
   def apply(consonant: Consonant, vowel: Vowel, variant: Variant): KanaVariants =
