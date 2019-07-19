@@ -36,7 +36,7 @@ object Gojuon extends IOApp {
     case (ConsonantW, VowelU) =>
       None
     case (c, v) =>
-      Kana(c, v).some
+      KanaCv(c, v).some
   }
 
   private def prepend(v: Variant)(pred: PartialFunction[Kana, Unit])(kv: KanaVariants) =
@@ -55,12 +55,12 @@ object Gojuon extends IOApp {
     cvCombinations
       .flatMap(availableKana)
       .map(KanaVariants.canonical)
-      .map(prepend(Small) { case Kana(EmptyConsonant | ConsonantY, _) => })
-      .map(prepend(Small) { case Kana(ConsonantT, VowelU) => })
-      .map(prepend(Small) { case Kana(ConsonantW, VowelA) => })
-      .map(append(Voiced) { case Kana(ConsonantH | ConsonantK | ConsonantS | ConsonantT, _) => })
-      .map(append(Half) { case Kana(ConsonantH, _) => })
-      .flatMap(kv => kv.variants.map(v => kv.kana -> v).toList)
+      .map(prepend(Small) { case KanaCv(EmptyConsonant | ConsonantY, _) => })
+      .map(prepend(Small) { case KanaCv(ConsonantT, VowelU) => })
+      .map(prepend(Small) { case KanaCv(ConsonantW, VowelA) => })
+      .map(append(Voiced) { case KanaCv(ConsonantH | ConsonantK | ConsonantS | ConsonantT, _) => })
+      .map(append(Half) { case KanaCv(ConsonantH, _) => })
+      .flatMap(kv => kv.variants.map(v => kv.kana -> v).toList) :+ ConsonantN
 
   def run(args: List[String]): IO[ExitCode] =
     IO {
@@ -85,7 +85,9 @@ object Gojuon extends IOApp {
     }.as(ExitCode.Success)
 }
 
-case class Kana(consonant: Consonant, vowel: Vowel)
+sealed trait Kana
+
+case class KanaCv(consonant: Consonant, vowel: Vowel) extends Kana
 
 sealed trait Vowel
 case object VowelA extends Vowel
@@ -99,7 +101,7 @@ case object EmptyConsonant extends Consonant
 case object ConsonantK extends Consonant
 case object ConsonantS extends Consonant
 case object ConsonantT extends Consonant
-case object ConsonantN extends Consonant
+case object ConsonantN extends Consonant with Kana
 case object ConsonantH extends Consonant
 case object ConsonantM extends Consonant
 case object ConsonantY extends Consonant
