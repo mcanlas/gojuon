@@ -101,6 +101,10 @@ object Gojuon extends IOApp {
           kanaUnicodeDescriptions(n) + ": " + (katakanaCodepoint + n).toChar
         }
       }
+
+      println(s"number of kana  variants is ${kanaUnicodeDescriptions.size}")
+      println(s"number of kana2 variants is ${kanaUnicodeDescriptions2.size}")
+
     }.as(ExitCode.Success)
 }
 
