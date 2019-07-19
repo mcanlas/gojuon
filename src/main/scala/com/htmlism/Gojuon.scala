@@ -39,48 +39,28 @@ object Gojuon extends IOApp {
       Kana(c, v).some
   }
 
-  val kanaUnicodeDescriptions =
+  private def prepend(pred: PartialFunction[Kana, Variant])(kv: KanaVariants) =
+    if (pred.isDefinedAt(kv.kana))
+      kv.prepend(pred(kv.kana))
+    else
+      kv
+
+  private def append(pred: PartialFunction[Kana, Variant])(kv: KanaVariants) =
+    if (pred.isDefinedAt(kv.kana))
+      kv.append(pred(kv.kana))
+    else
+      kv
+
+  private[this] val kanaUnicodeDescriptions =
     cvCombinations
       .flatMap(availableKana)
-      .flatMap {
-        case Kana(EmptyConsonant, v) =>
-          smallAndCanonical(v)
-        case Kana(c @ ConsonantT, v @ VowelU) =>
-          KanaVariants(c, v, Small) :: KanaVariants(c, v, Canonical) :: KanaVariants(c, v, Voiced) :: Nil
-        case Kana(c @ ConsonantY, v) =>
-          KanaVariants(c, v, Small) :: KanaVariants(c, v, Canonical) :: Nil
-        case Kana(c @ ConsonantW, v @ VowelA) =>
-          KanaVariants(c, v, Small) :: KanaVariants(c, v, Canonical) :: Nil
-        case Kana(c @ (ConsonantN | ConsonantM | ConsonantR | ConsonantW), v) =>
-          KanaVariants(c, v, Canonical) :: Nil
-        case Kana(c @ ConsonantH, v) =>
-          KanaVariants(c, v, Canonical) :: KanaVariants(c, v, Voiced) :: KanaVariants(c, v, Half) :: Nil
-        case Kana(c @ (ConsonantK | ConsonantS | ConsonantT), v) =>
-          KanaVariants(c, v, Canonical) :: KanaVariants(c, v, Voiced) :: Nil
-      }
-
-  private[this] val kanaUnicodeDescriptions2 =
-    cvCombinations
-      .flatMap(availableKana)
-      .flatMap {
-        case Kana(EmptyConsonant, v) =>
-          smallAndCanonical(v)
-        case Kana(c @ ConsonantT, v @ VowelU) =>
-          KanaVariants(c, v, Small) :: KanaVariants(c, v, Canonical) :: KanaVariants(c, v, Voiced) :: Nil
-        case Kana(c @ ConsonantY, v) =>
-          KanaVariants(c, v, Small) :: KanaVariants(c, v, Canonical) :: Nil
-        case Kana(c @ ConsonantW, v @ VowelA) =>
-          KanaVariants(c, v, Small) :: KanaVariants(c, v, Canonical) :: Nil
-        case Kana(c @ (ConsonantN | ConsonantM | ConsonantR | ConsonantW), v) =>
-          KanaVariants(c, v, Canonical) :: Nil
-        case Kana(c @ ConsonantH, v) =>
-          KanaVariants(c, v, Canonical) :: KanaVariants(c, v, Voiced) :: KanaVariants(c, v, Half) :: Nil
-        case Kana(c @ (ConsonantK | ConsonantS | ConsonantT), v) =>
-          KanaVariants(c, v, Canonical) :: KanaVariants(c, v, Voiced) :: Nil
-      }
-
-  def smallAndCanonical(v: Vowel) =
-    KanaVariants(EmptyConsonant, v, Small) :: KanaVariants(EmptyConsonant, v, Canonical) :: Nil
+      .map(KanaVariants.canonical)
+      .map(prepend { case Kana(EmptyConsonant | ConsonantY, _) => Small })
+      .map(prepend { case Kana(ConsonantT, VowelU) => Small })
+      .map(prepend { case Kana(ConsonantW, VowelA) => Small })
+      .map(append { case Kana(ConsonantH | ConsonantK | ConsonantS | ConsonantT, _) => Voiced })
+      .map(append { case Kana(ConsonantH, _) => Half })
+      .flatMap(kv => kv.variants.map(v => kv.kana -> v).toList)
 
   def run(args: List[String]): IO[ExitCode] =
     IO {
@@ -101,9 +81,6 @@ object Gojuon extends IOApp {
           kanaUnicodeDescriptions(n) + ": " + (katakanaCodepoint + n).toChar
         }
       }
-
-      println(s"number of kana  variants is ${kanaUnicodeDescriptions.size}")
-      println(s"number of kana2 variants is ${kanaUnicodeDescriptions2.size}")
 
     }.as(ExitCode.Success)
 }
@@ -146,7 +123,7 @@ sealed trait KanaScript
 case object Hiragana extends KanaScript
 case object Katakana extends KanaScript
 
-case class KanaVariants(consonant: Consonant, vowel: Vowel, variants: NonEmptyList[Variant]) {
+case class KanaVariants(kana: Kana, variants: NonEmptyList[Variant]) {
   def prepend(v: Variant): KanaVariants =
     this.copy(variants = variants.prepend(v))
 
@@ -155,6 +132,7 @@ case class KanaVariants(consonant: Consonant, vowel: Vowel, variants: NonEmptyLi
 }
 
 object KanaVariants {
-  def apply(consonant: Consonant, vowel: Vowel, variant: Variant): KanaVariants =
-    KanaVariants(consonant, vowel, NonEmptyList.of(variant))
+  def canonical(kana: Kana): KanaVariants =
+    KanaVariants(kana, NonEmptyList.of(Canonical))
 }
+
