@@ -39,15 +39,15 @@ object Gojuon extends IOApp {
       Kana(c, v).some
   }
 
-  private def prepend(pred: PartialFunction[Kana, Variant])(kv: KanaVariants) =
+  private def prepend(v: Variant)(pred: PartialFunction[Kana, Unit])(kv: KanaVariants) =
     if (pred.isDefinedAt(kv.kana))
-      kv.prepend(pred(kv.kana))
+      kv.prepend(v)
     else
       kv
 
-  private def append(pred: PartialFunction[Kana, Variant])(kv: KanaVariants) =
+  private def append(v: Variant)(pred: PartialFunction[Kana, Unit])(kv: KanaVariants) =
     if (pred.isDefinedAt(kv.kana))
-      kv.append(pred(kv.kana))
+      kv.append(v)
     else
       kv
 
@@ -55,11 +55,11 @@ object Gojuon extends IOApp {
     cvCombinations
       .flatMap(availableKana)
       .map(KanaVariants.canonical)
-      .map(prepend { case Kana(EmptyConsonant | ConsonantY, _) => Small })
-      .map(prepend { case Kana(ConsonantT, VowelU) => Small })
-      .map(prepend { case Kana(ConsonantW, VowelA) => Small })
-      .map(append { case Kana(ConsonantH | ConsonantK | ConsonantS | ConsonantT, _) => Voiced })
-      .map(append { case Kana(ConsonantH, _) => Half })
+      .map(prepend(Small) { case Kana(EmptyConsonant | ConsonantY, _) => })
+      .map(prepend(Small) { case Kana(ConsonantT, VowelU) => })
+      .map(prepend(Small) { case Kana(ConsonantW, VowelA) => })
+      .map(append(Voiced) { case Kana(ConsonantH | ConsonantK | ConsonantS | ConsonantT, _) => })
+      .map(append(Half) { case Kana(ConsonantH, _) => })
       .flatMap(kv => kv.variants.map(v => kv.kana -> v).toList)
 
   def run(args: List[String]): IO[ExitCode] =
