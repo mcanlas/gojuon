@@ -48,7 +48,7 @@ object Kana {
     else
       kv
 
-  lazy val kanaUnicodeDescriptions: List[(Kana, Variant)] =
+  val kanaVariants: List[KanaVariants] =
     Kana
       .allKana
       .map(k => KanaVariants(k, hasSmall = false, hasVoiced = false, hasHalf = false))
@@ -58,6 +58,9 @@ object Kana {
       .map(addVariant(_.copy(hasSmall  = true)) { case KanaCv(ConsonantW, VowelA) => })
       .map(addVariant(_.copy(hasVoiced = true)) { case KanaCv(ConsonantH | ConsonantK | ConsonantS | ConsonantT, _) => })
       .map(addVariant(_.copy(hasHalf   = true)) { case KanaCv(ConsonantH, _) => })
+
+  lazy val kanaUnicodeDescriptions: List[(Kana, Variant)] =
+    kanaVariants
       .flatMap { kv =>
         val small =
           if (kv.hasSmall)
@@ -82,6 +85,31 @@ object Kana {
 
         small ::: canonical ::: voiced ::: half
       }
+
+  @scala.annotation.tailrec
+  def buildUnicodeKana(
+    base: Int,
+    variants: List[KanaVariants],
+    acc: List[UnicodeKana]): List[UnicodeKana] =
+    variants match {
+      case head :: tail =>
+        val toCanon =
+          if (head.hasSmall)
+            1
+          else
+            0
+
+        val uses =
+          (if (head.hasSmall)  1 else 0) +
+          (if (head.hasHalf)   1 else 0) +
+          (if (head.hasVoiced) 1 else 0)
+
+        val x = UnicodeKana(head.kana, base + toCanon)
+
+        buildUnicodeKana(base + uses + 1, tail, acc :+ x)
+      case Nil =>
+        acc
+    }
 }
 
 sealed trait Kana

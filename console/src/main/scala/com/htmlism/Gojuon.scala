@@ -24,5 +24,8 @@ object Gojuon extends IOApp {
         }
       }
 
+    Kana.buildUnicodeKana(Kana.hiraganaCodepoint, Kana.kanaVariants, Nil)
+      .foreach(u => println(u.codePoint.toChar + " " + u.toString))
+
     }.as(ExitCode.Success)
 }
