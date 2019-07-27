@@ -1,6 +1,47 @@
 package com.htmlism
 
 import cats.data.NonEmptyList
+import cats.implicits._
+
+object Kana {
+  val hiraganaCodepoint = 0x3041
+  val katakanaCodepoint = 0x30A1
+
+  val vowels: List[Vowel] =
+    List(VowelA, VowelI, VowelU, VowelE, VowelO)
+
+  val consonants: List[Consonant] =
+    List(
+      EmptyConsonant,
+      ConsonantK,
+      ConsonantS,
+      ConsonantT,
+      ConsonantN,
+      ConsonantH,
+      ConsonantM,
+      ConsonantY,
+      ConsonantR,
+      ConsonantW)
+
+  private val cvCombinations =
+    for {
+      c <- consonants
+      v <- vowels
+    } yield (c, v)
+
+  private val availableKana: ((Consonant, Vowel)) => Option[Kana] = {
+    case (ConsonantY, VowelI | VowelE) =>
+      None
+    case (ConsonantW, VowelU) =>
+      None
+    case (c, v) =>
+      KanaCv(c, v).some
+  }
+
+  val allKana: List[Kana] =
+    cvCombinations
+      .flatMap(availableKana)
+}
 
 sealed trait Kana
 

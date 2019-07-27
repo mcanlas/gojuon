@@ -4,40 +4,6 @@ import cats.effect._
 import cats.implicits._
 
 object Gojuon extends IOApp {
-  val hiraganaCodepoint = 0x3041
-  val katakanaCodepoint = 0x30A1
-
-  val vowels =
-    List(VowelA, VowelI, VowelU, VowelE, VowelO)
-
-  val consonants =
-    List(
-      EmptyConsonant,
-      ConsonantK,
-      ConsonantS,
-      ConsonantT,
-      ConsonantN,
-      ConsonantH,
-      ConsonantM,
-      ConsonantY,
-      ConsonantR,
-      ConsonantW)
-
-  val cvCombinations =
-    for {
-      c <- consonants
-      v <- vowels
-    } yield (c, v)
-
-  val availableKana: ((Consonant, Vowel)) => Option[Kana] = {
-    case (ConsonantY, VowelI | VowelE) =>
-      None
-    case (ConsonantW, VowelU) =>
-      None
-    case (c, v) =>
-      KanaCv(c, v).some
-  }
-
   private def prepend(v: Variant)(pred: PartialFunction[Kana, Unit])(kv: KanaVariants) =
     if (pred.isDefinedAt(kv.kana))
       kv.prepend(v)
@@ -51,8 +17,8 @@ object Gojuon extends IOApp {
       kv
 
   private[this] val kanaUnicodeDescriptions =
-    cvCombinations
-      .flatMap(availableKana)
+    Kana
+      .allKana
       .map(KanaVariants.canonical)
       .map(prepend(Small) { case KanaCv(EmptyConsonant | ConsonantY, _) => })
       .map(prepend(Small) { case KanaCv(ConsonantT, VowelU) => })
@@ -67,7 +33,7 @@ object Gojuon extends IOApp {
 
       for (n <- kanaUnicodeDescriptions.indices) {
         println {
-          kanaUnicodeDescriptions(n) + ": " + (hiraganaCodepoint + n).toChar
+          kanaUnicodeDescriptions(n) + ": " + (Kana.hiraganaCodepoint + n).toChar
         }
       }
 
@@ -77,7 +43,7 @@ object Gojuon extends IOApp {
 
       for (n <- kanaUnicodeDescriptions.indices) {
         println {
-          kanaUnicodeDescriptions(n) + ": " + (katakanaCodepoint + n).toChar
+          kanaUnicodeDescriptions(n) + ": " + (Kana.katakanaCodepoint + n).toChar
         }
       }
 
