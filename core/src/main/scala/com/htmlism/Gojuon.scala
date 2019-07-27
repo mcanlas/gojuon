@@ -1,6 +1,5 @@
 package com.htmlism
 
-import cats.data.NonEmptyList
 import cats.implicits._
 
 object Kana {
