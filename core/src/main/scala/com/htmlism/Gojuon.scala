@@ -40,7 +40,7 @@ object Kana {
 
   val allKana: List[Kana] =
     cvCombinations
-      .flatMap(availableKana)
+      .flatMap(availableKana) :+ ConsonantN
 }
 
 sealed trait Kana
@@ -83,16 +83,6 @@ sealed trait KanaScript
 case object Hiragana extends KanaScript
 case object Katakana extends KanaScript
 
-case class KanaVariants(kana: Kana, variants: NonEmptyList[Variant]) {
-  def prepend(v: Variant): KanaVariants =
-    this.copy(variants = variants.prepend(v))
+case class KanaVariants(kana: Kana, hasSmall: Boolean, hasVoiced: Boolean, hasHalf: Boolean)
 
-  def append(v: Variant): KanaVariants =
-    this.copy(variants = variants.append(v))
-}
-
-object KanaVariants {
-  def canonical(kana: Kana): KanaVariants =
-    KanaVariants(kana, NonEmptyList.of(Canonical))
-}
-
+case class UnicodeKana(kana: Kana, codePoint: Int)
