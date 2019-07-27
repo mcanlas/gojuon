@@ -86,6 +86,12 @@ object Kana {
         small ::: canonical ::: voiced ::: half
       }
 
+  private def howMany[A](x: A)(fs: (A => Boolean)*) =
+    fs
+      .map(_.apply(x))
+      .map(if (_) 1 else 0)
+      .sum
+
   @scala.annotation.tailrec
   def buildUnicodeKana(
     base: Int,
@@ -94,15 +100,10 @@ object Kana {
     variants match {
       case head :: tail =>
         val toCanon =
-          if (head.hasSmall)
-            1
-          else
-            0
+          howMany(head)(_.hasSmall)
 
         val uses =
-          (if (head.hasSmall)  1 else 0) +
-          (if (head.hasHalf)   1 else 0) +
-          (if (head.hasVoiced) 1 else 0)
+          howMany(head)(_.hasSmall, _.hasHalf, _.hasVoiced)
 
         val x = UnicodeKana(head.kana, base + toCanon)
 
