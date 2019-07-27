@@ -59,33 +59,6 @@ object Kana {
       .map(addVariant(_.copy(hasVoiced = true)) { case KanaCv(ConsonantH | ConsonantK | ConsonantS | ConsonantT, _) => })
       .map(addVariant(_.copy(hasHalf   = true)) { case KanaCv(ConsonantH, _) => })
 
-  lazy val kanaUnicodeDescriptions: List[(Kana, Variant)] =
-    kanaVariants
-      .flatMap { kv =>
-        val small =
-          if (kv.hasSmall)
-            List(kv.kana -> Small)
-          else
-            Nil
-
-        val voiced =
-          if (kv.hasVoiced)
-            List(kv.kana -> Voiced)
-          else
-            Nil
-
-        val half =
-          if (kv.hasHalf)
-            List(kv.kana -> Half)
-          else
-            Nil
-
-        val canonical =
-          List(kv.kana -> Canonical)
-
-        small ::: canonical ::: voiced ::: half
-      }
-
   private def howMany[A](x: A)(fs: (A => Boolean)*) =
     fs
       .map(_.apply(x))
