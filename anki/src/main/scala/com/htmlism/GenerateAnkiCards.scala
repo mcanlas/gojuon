@@ -10,6 +10,13 @@ object GenerateAnkiCards extends GenerateAnkiCards[IO] with IOApp {
 
     AnkiCard(script + "-" + romaji, uk.codePoint.toChar.toString, romaji)
   }
+
+  def toDeck(script: UnicodeKanaScript) =
+    Deck {
+      Kana
+        .buildUnicodeKana(script.codePoint)
+        .map(toCard(script.name))
+    }
 }
 
 class GenerateAnkiCards[F[_]](implicit F: Sync[F]) {
@@ -26,16 +33,9 @@ class GenerateAnkiCards[F[_]](implicit F: Sync[F]) {
 
   private def writeScript(script: UnicodeKanaScript)(out: FilePrinterAlg[F]) =
     script |>
-      toDeck |>
+      GenerateAnkiCards.toDeck |>
       Serialization.deckToString |>
       out.print
-
-  private def toDeck(script: UnicodeKanaScript) =
-    Deck {
-      Kana
-        .buildUnicodeKana(script.codePoint)
-        .map(GenerateAnkiCards.toCard(script.name))
-    }
 
   private def getBaseDir(args: List[String]) =
     args match {
