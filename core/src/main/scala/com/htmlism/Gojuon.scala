@@ -3,13 +3,13 @@ package com.htmlism
 import cats.implicits._
 
 object Kana {
+  val hiraganaCodepoint = 0x3041
+  val katakanaCodepoint = 0x30A1
+
   val scripts: List[(String, Int)] =
     List(
       "hiragana" -> hiraganaCodepoint,
       "katakana" -> katakanaCodepoint)
-
-  val hiraganaCodepoint = 0x3041
-  val katakanaCodepoint = 0x30A1
 
   val vowels: List[Vowel] =
     List(VowelA, VowelI, VowelU, VowelE, VowelO)

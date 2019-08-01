@@ -18,6 +18,7 @@ lazy val console =
 lazy val anki =
   project
     .settings(commonSettings: _*)
+    .settings(libraryDependencies += "org.typelevel" %% "mouse" % "0.22")
     .settings(libraryDependencies += "org.typelevel" %% "cats-effect" % "2.0.0-M4")
     .dependsOn(core)
 
