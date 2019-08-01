@@ -3,11 +3,11 @@ package com.htmlism
 object Romaji {
   val vowels: Map[Vowel, String] =
     Map(
-      VowelA => "a",
-      VowelE => "e",
-      VowelI => "i",
-      VowelO => "o",
-      VowelU => "u",
+      VowelA -> "a",
+      VowelE -> "e",
+      VowelI -> "i",
+      VowelO -> "o",
+      VowelU -> "u",
     )
 
   val consonants: Map[Consonant, String] =
