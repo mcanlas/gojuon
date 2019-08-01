@@ -31,4 +31,12 @@ object Romaji {
       ConsonantH -> "b")
 
   val halfVoicedH: String = "p"
+
+  def toRomaji(kana: Kana): String =
+    kana match {
+      case KanaCv(c, v) =>
+        consonants(c) + vowels(v)
+      case ConsonantN =>
+        consonants(ConsonantN)
+    }
 }
