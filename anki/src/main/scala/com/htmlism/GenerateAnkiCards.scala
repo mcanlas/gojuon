@@ -19,22 +19,22 @@ class GenerateAnkiCards[F[_]](implicit F: Sync[F]) {
       _ <- Kana.scripts.traverse(useScriptWriter(baseDir))
     } yield ExitCode.Success
 
-  private def useScriptWriter(base: String)(script: (String, Int)) =
+  private def useScriptWriter(base: String)(script: UnicodeKanaScript) =
     FilePrinterAlg
-      .resource[F](base + "/" + script._1 + ".tsv")
+      .resource[F](base + "/" + script.name + ".tsv")
       .use(writeScript(script))
 
-  private def writeScript(script: (String, Int))(out: FilePrinterAlg[F]) =
+  private def writeScript(script: UnicodeKanaScript)(out: FilePrinterAlg[F]) =
     script |>
-      (toDeck _).tupled |>
+      toDeck |>
       Serialization.deckToString |>
       out.print
 
-  private def toDeck(script: String, codePoint: Int) =
+  private def toDeck(script: UnicodeKanaScript) =
     Deck {
       Kana
-        .buildUnicodeKana(codePoint)
-        .map(GenerateAnkiCards.toCard(script))
+        .buildUnicodeKana(script.codePoint)
+        .map(GenerateAnkiCards.toCard(script.name))
     }
 
   private def getBaseDir(args: List[String]) =

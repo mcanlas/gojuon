@@ -2,14 +2,13 @@ package com.htmlism
 
 import cats.implicits._
 
-object Kana {
-  val hiraganaCodepoint = 0x3041
-  val katakanaCodepoint = 0x30A1
+case class UnicodeKanaScript(name: String, codePoint: Int)
 
-  val scripts: List[(String, Int)] =
+object Kana {
+  val scripts: List[UnicodeKanaScript] =
     List(
-      "hiragana" -> hiraganaCodepoint,
-      "katakana" -> katakanaCodepoint)
+      UnicodeKanaScript("hiragana", 0x3041),
+      UnicodeKanaScript("katakana", 0x30A1))
 
   val vowels: List[Vowel] =
     List(VowelA, VowelI, VowelU, VowelE, VowelO)
