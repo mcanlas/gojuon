@@ -3,6 +3,11 @@ package com.htmlism
 import cats.implicits._
 
 object Kana {
+  val scripts: List[(String, Int)] =
+    List(
+      "hiragana" -> hiraganaCodepoint,
+      "katakana" -> katakanaCodepoint)
+
   val hiraganaCodepoint = 0x3041
   val katakanaCodepoint = 0x30A1
 
@@ -64,8 +69,11 @@ object Kana {
       .map(if (_) 1 else 0)
       .sum
 
+  def buildUnicodeKana(base: Int): List[UnicodeKana] =
+    buildUnicodeKana(base, kanaVariants, Nil)
+
   @scala.annotation.tailrec
-  def buildUnicodeKana(
+  private def buildUnicodeKana(
     base: Int,
     variants: List[KanaVaried],
     acc: List[UnicodeKana]): List[UnicodeKana] =

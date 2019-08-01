@@ -36,7 +36,7 @@ class GenerateAnkiCards[F[_]](implicit F: Sync[F]) {
   private lazy val deck =
     Deck {
       Kana
-        .buildUnicodeKana(Kana.hiraganaCodepoint, Kana.kanaVariants, Nil)
+        .buildUnicodeKana(Kana.hiraganaCodepoint)
         .map(GenerateAnkiCards.toCard)
     }
 }
