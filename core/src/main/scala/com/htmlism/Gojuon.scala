@@ -41,16 +41,16 @@ object Kana {
     cvCombinations
       .flatMap(availableKana) :+ ConsonantN
 
-  private def addVariant(f: KanaVariants => KanaVariants)(pred: PartialFunction[Kana, Unit])(kv: KanaVariants) =
+  private def addVariant(f: KanaVaried => KanaVaried)(pred: PartialFunction[Kana, Unit])(kv: KanaVaried) =
     if (pred.isDefinedAt(kv.kana))
       f(kv)
     else
       kv
 
-  val kanaVariants: List[KanaVariants] =
+  val kanaVariants: List[KanaVaried] =
     Kana
       .allKana
-      .map(k => KanaVariants(k, hasSmall = false, hasVoiced = false, hasHalf = false))
+      .map(k => KanaVaried(k, hasSmall = false, hasVoiced = false, hasHalf = false))
       .map(addVariant(_.copy(hasSmall  = true)) { case KanaCv(EmptyConsonant | ConsonantY, _) => })
       .map(addVariant(_.copy(hasSmall  = true)) { case KanaCv(EmptyConsonant | ConsonantY, _) => })
       .map(addVariant(_.copy(hasSmall  = true)) { case KanaCv(ConsonantT, VowelU) => })
@@ -67,7 +67,7 @@ object Kana {
   @scala.annotation.tailrec
   def buildUnicodeKana(
     base: Int,
-    variants: List[KanaVariants],
+    variants: List[KanaVaried],
     acc: List[UnicodeKana]): List[UnicodeKana] =
     variants match {
       case head :: tail =>
@@ -125,6 +125,6 @@ sealed trait KanaScript
 case object Hiragana extends KanaScript
 case object Katakana extends KanaScript
 
-case class KanaVariants(kana: Kana, hasSmall: Boolean, hasVoiced: Boolean, hasHalf: Boolean)
+case class KanaVaried(kana: Kana, hasSmall: Boolean, hasVoiced: Boolean, hasHalf: Boolean)
 
 case class UnicodeKana(kana: Kana, codePoint: Int)
