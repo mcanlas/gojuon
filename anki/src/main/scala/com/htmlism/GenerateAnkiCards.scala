@@ -12,7 +12,7 @@ object GenerateAnkiCards extends GenerateAnkiCards[IO] with IOApp {
 
     val front = s"""<div id="japanese-heroic-character">${uk.codePoint.toChar.toString}</div>"""
 
-    val back = s"""<div id="japanese-rojami-answer">$romaji</div>"""
+    val back = s"""<div id="japanese-romaji-answer">$romaji</div>"""
 
     AnkiCard(cardId, front, back)
   }
