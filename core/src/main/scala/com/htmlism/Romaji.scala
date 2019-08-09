@@ -34,6 +34,14 @@ object Romaji {
 
   def toRomaji(kana: Kana): String =
     kana match {
+      case KanaCv(ConsonantS, VowelI) =>
+        "shi"
+      case KanaCv(ConsonantT, VowelI) =>
+        "chi"
+      case KanaCv(ConsonantT, VowelU) =>
+        "tsu"
+      case KanaCv(ConsonantH, VowelU) =>
+        "fu"
       case KanaCv(c, v) =>
         consonants(c) + vowels(v)
       case ConsonantN =>
