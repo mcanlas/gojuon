@@ -5,10 +5,14 @@ import cats.implicits._
 case class UnicodeKanaScript(name: String, codePoint: Int)
 
 object Kana {
+  val hiragana: UnicodeKanaScript =
+    UnicodeKanaScript("hiragana", 0x3041)
+
+  val katakana: UnicodeKanaScript =
+    UnicodeKanaScript("katakana", 0x30A1)
+
   val scripts: List[UnicodeKanaScript] =
-    List(
-      UnicodeKanaScript("hiragana", 0x3041),
-      UnicodeKanaScript("katakana", 0x30A1))
+    List(hiragana, katakana)
 
   val vowels: List[Vowel] =
     List(VowelA, VowelI, VowelU, VowelE, VowelO)
