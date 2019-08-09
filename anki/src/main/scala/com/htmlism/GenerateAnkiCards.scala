@@ -14,7 +14,7 @@ object GenerateAnkiCards extends GenerateAnkiCards[IO] with IOApp {
 
     val back = s"""<div id="japanese-romaji-answer">$romaji</div>"""
 
-    AnkiCard(cardId, front, back)
+    AnkiCard(cardId, front, back, List(script))
   }
 
   def toDeck(script: UnicodeKanaScript) =
