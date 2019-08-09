@@ -17,12 +17,10 @@ object GenerateAnkiCards extends GenerateAnkiCards[IO] with IOApp {
     AnkiCard(cardId, front, back, List(script))
   }
 
-  def toDeck(script: UnicodeKanaScript) =
-    Deck {
-      Kana
-        .buildUnicodeKana(script.codePoint)
-        .map(toCard(script.name))
-    }
+  def toCards(script: UnicodeKanaScript): List[AnkiCard] =
+    Kana
+      .buildUnicodeKana(script.codePoint)
+      .map(toCard(script.name))
 }
 
 class GenerateAnkiCards[F[_]](implicit F: Sync[F]) {
@@ -39,7 +37,8 @@ class GenerateAnkiCards[F[_]](implicit F: Sync[F]) {
 
   private def writeScript(script: UnicodeKanaScript)(out: FilePrinterAlg[F]) =
     script |>
-      GenerateAnkiCards.toDeck |>
+      GenerateAnkiCards.toCards |>
+      Deck.apply |>
       Serialization.deckToString |>
       out.print
 
