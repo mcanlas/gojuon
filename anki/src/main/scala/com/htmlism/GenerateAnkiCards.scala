@@ -40,8 +40,22 @@ class GenerateAnkiCards[F[_]](implicit F: Sync[F]) {
       Deck.apply |>
       Serialization.deckToString
 
-  private def generatePairCards =
-    Nil
+  private def generatePairCards = {
+    val hiragana = Kana.buildUnicodeKana(Kana.hiragana.codePoint)
+    val katakana = Kana.buildUnicodeKana(Kana.katakana.codePoint)
+
+    for (n <- hiragana.indices.toList) yield {
+      val romaji = Romaji.toRomaji(hiragana(n).kana)
+
+      val cardId = List("hiragana", "katakana", romaji).mkString("-")
+
+      val front = s"""<div id="japanese-heroic-character">${hiragana(n).codePoint.toChar.toString} ${katakana(n).codePoint.toChar.toString}</div>"""
+
+      val back = s"""<div id="japanese-romaji-answer">$romaji</div>"""
+
+      AnkiCard(cardId, front, back, List("pair"))
+    }
+  }
 
   private def generateKanaCards(script: UnicodeKanaScript) =
     script |>
