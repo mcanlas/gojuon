@@ -49,7 +49,7 @@ class GenerateAnkiCards[F[_]](implicit F: Sync[F]) {
 
       val cardId = List("hiragana", "katakana", romaji).mkString("-")
 
-      val front = s"""<div id="japanese-heroic-character">${hiragana(n).codePoint.toChar.toString} ${katakana(n).codePoint.toChar.toString}</div>"""
+      val front = s"""<div id="japanese-kana-pair">${hiragana(n).codePoint.toChar.toString} ${katakana(n).codePoint.toChar.toString}</div>"""
 
       val back = s"""<div id="japanese-romaji-answer">$romaji</div>"""
 
