@@ -10,7 +10,7 @@ object GenerateAnkiCards extends GenerateAnkiCards[IO] with IOApp {
 
     val cardId = script + "-" + romaji
 
-    val front = s"""<div id="japanese-heroic-character">${uk.codePoint.toChar.toString}</div>"""
+    val front = s"""<div id="japanese-heroic-character"><span class="$script">${uk.codePoint.toChar.toString}</span></div>"""
 
     val back = s"""<div id="japanese-romaji-answer">$romaji</div>"""
 
@@ -49,7 +49,7 @@ class GenerateAnkiCards[F[_]](implicit F: Sync[F]) {
 
       val cardId = List("hiragana", "katakana", romaji).mkString("-")
 
-      val front = s"""<div id="japanese-kana-pair">${hiragana(n).codePoint.toChar.toString} ${katakana(n).codePoint.toChar.toString}</div>"""
+      val front = s"""<div id="japanese-kana-pair"><span class="hiragana">${hiragana(n).codePoint.toChar.toString}</span> <span class="katakana">${katakana(n).codePoint.toChar.toString}</span></div>"""
 
       val back = s"""<div id="japanese-romaji-answer">$romaji</div>"""
 
