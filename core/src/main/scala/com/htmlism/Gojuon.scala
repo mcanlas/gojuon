@@ -118,19 +118,6 @@ case object ConsonantY extends Consonant
 case object ConsonantR extends Consonant
 case object ConsonantW extends Consonant
 
-sealed trait Variant
-
-/**
- * Also "Canonical" to contrast with "small". And "unvoiced" in voicing.
- */
-case object Canonical extends Variant
-
-case object Small extends Variant
-
-sealed trait Voicing extends Variant
-case object Voiced extends Voicing
-case object Half extends Voicing
-
 sealed trait KanaScript
 case object Hiragana extends KanaScript
 case object Katakana extends KanaScript
