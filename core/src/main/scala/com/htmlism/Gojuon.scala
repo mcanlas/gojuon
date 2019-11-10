@@ -72,27 +72,25 @@ object Kana {
       .sum
 
   def buildUnicodeKana(base: Int): List[UnicodeKana] =
-    buildUnicodeKana(base, kanaVariants, Nil)
+    kanaVariants.foldLeft {
+      base -> List[UnicodeKana]()
+    } {
+      buildUnicodeKanaFold
+    }._2
 
-  @scala.annotation.tailrec
-  private def buildUnicodeKana(
-    base: Int,
-    variants: List[KanaVaried],
-    acc: List[UnicodeKana]): List[UnicodeKana] =
-    variants match {
-      case head :: tail =>
-        val toCanon =
-          howMany(head)(_.hasSmall)
+  private def buildUnicodeKanaFold(accPair: (Int, List[UnicodeKana]), e: KanaVaried) = {
+    val (base, acc) = accPair
 
-        val uses =
-          howMany(head)(_.hasSmall, _.hasHalf, _.hasVoiced)
+    val toCanon =
+      howMany(e)(_.hasSmall)
 
-        val x = UnicodeKana(head.kana, base + toCanon)
+    val uses =
+      howMany(e)(_.hasSmall, _.hasHalf, _.hasVoiced)
 
-        buildUnicodeKana(base + uses + 1, tail, acc :+ x)
-      case Nil =>
-        acc
-    }
+    val x = UnicodeKana(e.kana, base + toCanon)
+
+    (base + uses + 1) -> (acc :+ x)
+  }
 }
 
 sealed trait Kana
