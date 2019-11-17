@@ -87,7 +87,7 @@ object Kana {
     val uses =
       howMany(e)(_.hasSmall, _.hasHalf, _.hasVoiced)
 
-    val x = UnicodeKana(e.kana, base + toCanon)
+    val x = UnicodeKana(e, base + toCanon)
 
     (base + uses + 1) -> (acc :+ x)
   }
@@ -122,4 +122,4 @@ case object Katakana extends KanaScript
 
 case class KanaVaried(kana: Kana, hasSmall: Boolean, hasVoiced: Boolean, hasHalf: Boolean)
 
-case class UnicodeKana(kana: Kana, codePoint: Int)
+case class UnicodeKana(kanaVaried: KanaVaried, codePoint: Int)
