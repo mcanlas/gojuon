@@ -32,22 +32,45 @@ object Romaji {
 
   val halfVoicedH: String = "p"
 
-  def toRomaji(kana: Kana): String =
-    toKanaId(kana)
+  def toRomaji(variant: KanaVariant): String =
+    variant match {
+      case VoicedKanaVariant(KanaCv(ConsonantS, VowelI)) =>
+        "ji"
 
-  def toKanaId(kana: Kana): String =
-    kana match {
-      case KanaCv(ConsonantS, VowelI) =>
-        "shi"
-      case KanaCv(ConsonantT, VowelI) =>
-        "chi"
-      case KanaCv(ConsonantT, VowelU) =>
-        "tsu"
-      case KanaCv(ConsonantH, VowelU) =>
-        "fu"
-      case KanaCv(c, v) =>
-        consonants(c) + vowels(v)
-      case ConsonantN =>
-        consonants(ConsonantN)
+      case VoicedKanaVariant(KanaCv(ConsonantT, VowelI)) =>
+        "ji"
+
+      case VoicedKanaVariant(KanaCv(ConsonantT, VowelU)) =>
+        "zu"
+
+      case _ =>
+        toKanaId(variant)
+    }
+
+  def toKanaId(variant: KanaVariant): String =
+    variant match {
+      case HalfVoicedKanaVariant(KanaCv(ConsonantH, v)) =>
+        halfVoicedH + vowels(v)
+
+      case VoicedKanaVariant(KanaCv(c, v)) =>
+        voicedConsonants(c) + vowels(v)
+
+      case UnvoicedKanaVariant(kana) =>
+        kana match {
+          case KanaCv(ConsonantS, VowelI) =>
+            "shi"
+          case KanaCv(ConsonantT, VowelI) =>
+            "chi"
+          case KanaCv(ConsonantT, VowelU) =>
+            "tsu"
+          case KanaCv(ConsonantH, VowelU) =>
+            "fu"
+          case KanaCv(c, v) =>
+            consonants(c) + vowels(v)
+          case ConsonantN =>
+            consonants(ConsonantN)
+        }
+      case _ =>
+        throw new UnsupportedOperationException("kana variation does not exist")
     }
 }

@@ -6,9 +6,9 @@ import mouse.any._
 
 object GenerateAnkiCards extends GenerateAnkiCards[IO] with IOApp {
   def toCard(script: String)(uk: UnicodeKana): AnkiCard = {
-    val romaji = Romaji.toRomaji(uk.variant.kana)
+    val romaji = Romaji.toRomaji(uk.variant)
 
-    val cardId = script + "-" + Romaji.toKanaId(uk.variant.kana)
+    val cardId = script + "-" + Romaji.toKanaId(uk.variant)
 
     val front = s"""<div id="japanese-heroic-character"><span class="$script">${uk.codePoint.toChar.toString}</span></div>"""
 
@@ -45,7 +45,7 @@ class GenerateAnkiCards[F[_]](implicit F: Sync[F]) {
     val katakana = Kana.buildUnicodeKana(Kana.katakana.codePoint)
 
     for (n <- hiragana.indices.toList) yield {
-      val romaji = Romaji.toRomaji(hiragana(n).variant.kana)
+      val romaji = Romaji.toRomaji(hiragana(n).variant)
 
       val cardId = List("hiragana", "katakana", romaji).mkString("-")
 
