@@ -1,0 +1,18 @@
+- l: 行く
+  j: いく
+  e: to go
+- k: 帰る
+  j: かえる
+  e: to go back
+- k: 聞く
+  j: きく
+  e: to listen
+- k: 飲む
+  j: のむ
+  e: to drink
+- k: 話す
+  j: はなす
+  e: to speak
+- k: 読む
+  j: よむ
+  e: to read

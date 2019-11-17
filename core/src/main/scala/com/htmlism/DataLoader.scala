@@ -9,7 +9,13 @@ object DataLoader extends App {
     Decoder.forProduct3("j", "k", "e")(JapaneseEntry.apply)
 
   private val yamlFiles =
-    List("particles", "phrases")
+    List(
+      "nouns",
+      "verbs-irregular",
+      "verbs-ru",
+      "verbs-u",
+      "particles",
+      "phrases")
       .map(s => "/" + s  + ".yaml")
 
   private def parseResourceFile[F[_]](s: String)(implicit F: Sync[F]) =
@@ -17,12 +23,15 @@ object DataLoader extends App {
       .fromAutoCloseable(F.delay(getClass.getResourceAsStream(s)))
       .map(new java.io.InputStreamReader(_))
       .use(reader => F.delay(io.circe.yaml.parser.parse(reader)))
-      .flatMap(_.fold(F.raiseError[Json], F.pure))
+      .flatMap(_.fold(logAndRaise[F, Json](s"parsing json of $s"), F.pure))
 
   private def parseEntries[F[_]](s: String)(implicit F: Sync[F]) =
     parseResourceFile[F](s)
       .map(_.as[List[JapaneseEntry]])
-      .flatMap(_.fold(F.raiseError[List[JapaneseEntry]], F.pure))
+      .flatMap(_.fold(logAndRaise[F, List[JapaneseEntry]](s"parsing classes of $s"), F.pure))
+
+  private def logAndRaise[F[_], A](msg: String)(err: Throwable)(implicit F: Sync[F]) =
+    F.delay(println(msg + ": " + err)) *> F.raiseError[A](err)
 
   yamlFiles
     .traverse(parseEntries[IO])

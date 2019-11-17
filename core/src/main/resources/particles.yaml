@@ -4,3 +4,9 @@
   e: question
 - j: は
   e: subject
+- j: る
+  e: lemma suffix
+- j: ます
+  e: present affirmative suffix
+- j: ません
+  e: present negative suffix
