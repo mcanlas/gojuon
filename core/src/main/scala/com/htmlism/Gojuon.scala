@@ -123,3 +123,22 @@ case object Katakana extends KanaScript
 case class KanaVaried(kana: Kana, hasSmall: Boolean, hasVoiced: Boolean, hasHalf: Boolean)
 
 case class UnicodeKana(kanaVaried: KanaVaried, codePoint: Int)
+
+sealed trait UnicodeKanaVariant
+
+final case class UnvoicedKanaVariant(kana: Kana, codePoint: Int) extends UnicodeKanaVariant
+final case class VoicedKanaVariant(kana: Kana, codePoint: Int) extends UnicodeKanaVariant
+final case class HalfVoicedKanaVariant(kana: Kana, codePoint: Int) extends UnicodeKanaVariant
+
+object UnicodeKanaVariant {
+  def listVoicings(uni: UnicodeKana): List[UnicodeKanaVariant] =
+    UnvoicedKanaVariant(uni.kanaVaried.kana, uni.codePoint) ::
+      (if (uni.kanaVaried.hasVoiced)
+        List(VoicedKanaVariant(uni.kanaVaried.kana, uni.codePoint + 1))
+      else
+        Nil) :::
+      (if (uni.kanaVaried.hasHalf)
+        List(HalfVoicedKanaVariant(uni.kanaVaried.kana, uni.codePoint + 2))
+      else
+        Nil)
+}
