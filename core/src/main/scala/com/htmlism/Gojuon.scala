@@ -93,9 +93,9 @@ object Kana {
     val xs =
       KanaVariant.listVoicings(e)
         .zipWithIndex
-        .map { case (kv, n) => UnicodeKana(kv, n + base + 1) }
+        .map { case (kv, n) => UnicodeKana(kv, n + base + skipTinyVersion) }
 
-    (base + uses + skipTinyVersion) -> (acc ::: xs)
+    (base + uses + 1) -> (acc ::: xs)
   }
 }
 

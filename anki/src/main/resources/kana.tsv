@@ -4,30 +4,55 @@ hiragana-u	<div id="japanese-heroic-character"><span class="hiragana">う</span>
 hiragana-e	<div id="japanese-heroic-character"><span class="hiragana">え</span></div>	<div id="japanese-romaji-answer">e</div>	hiragana
 hiragana-o	<div id="japanese-heroic-character"><span class="hiragana">お</span></div>	<div id="japanese-romaji-answer">o</div>	hiragana
 hiragana-ka	<div id="japanese-heroic-character"><span class="hiragana">か</span></div>	<div id="japanese-romaji-answer">ka</div>	hiragana
+hiragana-ka	<div id="japanese-heroic-character"><span class="hiragana">が</span></div>	<div id="japanese-romaji-answer">ka</div>	hiragana
 hiragana-ki	<div id="japanese-heroic-character"><span class="hiragana">き</span></div>	<div id="japanese-romaji-answer">ki</div>	hiragana
+hiragana-ki	<div id="japanese-heroic-character"><span class="hiragana">ぎ</span></div>	<div id="japanese-romaji-answer">ki</div>	hiragana
 hiragana-ku	<div id="japanese-heroic-character"><span class="hiragana">く</span></div>	<div id="japanese-romaji-answer">ku</div>	hiragana
+hiragana-ku	<div id="japanese-heroic-character"><span class="hiragana">ぐ</span></div>	<div id="japanese-romaji-answer">ku</div>	hiragana
 hiragana-ke	<div id="japanese-heroic-character"><span class="hiragana">け</span></div>	<div id="japanese-romaji-answer">ke</div>	hiragana
+hiragana-ke	<div id="japanese-heroic-character"><span class="hiragana">げ</span></div>	<div id="japanese-romaji-answer">ke</div>	hiragana
 hiragana-ko	<div id="japanese-heroic-character"><span class="hiragana">こ</span></div>	<div id="japanese-romaji-answer">ko</div>	hiragana
+hiragana-ko	<div id="japanese-heroic-character"><span class="hiragana">ご</span></div>	<div id="japanese-romaji-answer">ko</div>	hiragana
 hiragana-sa	<div id="japanese-heroic-character"><span class="hiragana">さ</span></div>	<div id="japanese-romaji-answer">sa</div>	hiragana
+hiragana-sa	<div id="japanese-heroic-character"><span class="hiragana">ざ</span></div>	<div id="japanese-romaji-answer">sa</div>	hiragana
 hiragana-shi	<div id="japanese-heroic-character"><span class="hiragana">し</span></div>	<div id="japanese-romaji-answer">shi</div>	hiragana
+hiragana-shi	<div id="japanese-heroic-character"><span class="hiragana">じ</span></div>	<div id="japanese-romaji-answer">shi</div>	hiragana
 hiragana-su	<div id="japanese-heroic-character"><span class="hiragana">す</span></div>	<div id="japanese-romaji-answer">su</div>	hiragana
+hiragana-su	<div id="japanese-heroic-character"><span class="hiragana">ず</span></div>	<div id="japanese-romaji-answer">su</div>	hiragana
 hiragana-se	<div id="japanese-heroic-character"><span class="hiragana">せ</span></div>	<div id="japanese-romaji-answer">se</div>	hiragana
+hiragana-se	<div id="japanese-heroic-character"><span class="hiragana">ぜ</span></div>	<div id="japanese-romaji-answer">se</div>	hiragana
 hiragana-so	<div id="japanese-heroic-character"><span class="hiragana">そ</span></div>	<div id="japanese-romaji-answer">so</div>	hiragana
+hiragana-so	<div id="japanese-heroic-character"><span class="hiragana">ぞ</span></div>	<div id="japanese-romaji-answer">so</div>	hiragana
 hiragana-ta	<div id="japanese-heroic-character"><span class="hiragana">た</span></div>	<div id="japanese-romaji-answer">ta</div>	hiragana
+hiragana-ta	<div id="japanese-heroic-character"><span class="hiragana">だ</span></div>	<div id="japanese-romaji-answer">ta</div>	hiragana
 hiragana-chi	<div id="japanese-heroic-character"><span class="hiragana">ち</span></div>	<div id="japanese-romaji-answer">chi</div>	hiragana
+hiragana-chi	<div id="japanese-heroic-character"><span class="hiragana">ぢ</span></div>	<div id="japanese-romaji-answer">chi</div>	hiragana
 hiragana-tsu	<div id="japanese-heroic-character"><span class="hiragana">つ</span></div>	<div id="japanese-romaji-answer">tsu</div>	hiragana
+hiragana-tsu	<div id="japanese-heroic-character"><span class="hiragana">づ</span></div>	<div id="japanese-romaji-answer">tsu</div>	hiragana
 hiragana-te	<div id="japanese-heroic-character"><span class="hiragana">て</span></div>	<div id="japanese-romaji-answer">te</div>	hiragana
+hiragana-te	<div id="japanese-heroic-character"><span class="hiragana">で</span></div>	<div id="japanese-romaji-answer">te</div>	hiragana
 hiragana-to	<div id="japanese-heroic-character"><span class="hiragana">と</span></div>	<div id="japanese-romaji-answer">to</div>	hiragana
+hiragana-to	<div id="japanese-heroic-character"><span class="hiragana">ど</span></div>	<div id="japanese-romaji-answer">to</div>	hiragana
 hiragana-na	<div id="japanese-heroic-character"><span class="hiragana">な</span></div>	<div id="japanese-romaji-answer">na</div>	hiragana
 hiragana-ni	<div id="japanese-heroic-character"><span class="hiragana">に</span></div>	<div id="japanese-romaji-answer">ni</div>	hiragana
 hiragana-nu	<div id="japanese-heroic-character"><span class="hiragana">ぬ</span></div>	<div id="japanese-romaji-answer">nu</div>	hiragana
 hiragana-ne	<div id="japanese-heroic-character"><span class="hiragana">ね</span></div>	<div id="japanese-romaji-answer">ne</div>	hiragana
 hiragana-no	<div id="japanese-heroic-character"><span class="hiragana">の</span></div>	<div id="japanese-romaji-answer">no</div>	hiragana
 hiragana-ha	<div id="japanese-heroic-character"><span class="hiragana">は</span></div>	<div id="japanese-romaji-answer">ha</div>	hiragana
+hiragana-ha	<div id="japanese-heroic-character"><span class="hiragana">ば</span></div>	<div id="japanese-romaji-answer">ha</div>	hiragana
+hiragana-ha	<div id="japanese-heroic-character"><span class="hiragana">ぱ</span></div>	<div id="japanese-romaji-answer">ha</div>	hiragana
 hiragana-hi	<div id="japanese-heroic-character"><span class="hiragana">ひ</span></div>	<div id="japanese-romaji-answer">hi</div>	hiragana
+hiragana-hi	<div id="japanese-heroic-character"><span class="hiragana">び</span></div>	<div id="japanese-romaji-answer">hi</div>	hiragana
+hiragana-hi	<div id="japanese-heroic-character"><span class="hiragana">ぴ</span></div>	<div id="japanese-romaji-answer">hi</div>	hiragana
 hiragana-fu	<div id="japanese-heroic-character"><span class="hiragana">ふ</span></div>	<div id="japanese-romaji-answer">fu</div>	hiragana
+hiragana-fu	<div id="japanese-heroic-character"><span class="hiragana">ぶ</span></div>	<div id="japanese-romaji-answer">fu</div>	hiragana
+hiragana-fu	<div id="japanese-heroic-character"><span class="hiragana">ぷ</span></div>	<div id="japanese-romaji-answer">fu</div>	hiragana
 hiragana-he	<div id="japanese-heroic-character"><span class="hiragana">へ</span></div>	<div id="japanese-romaji-answer">he</div>	hiragana
+hiragana-he	<div id="japanese-heroic-character"><span class="hiragana">べ</span></div>	<div id="japanese-romaji-answer">he</div>	hiragana
+hiragana-he	<div id="japanese-heroic-character"><span class="hiragana">ぺ</span></div>	<div id="japanese-romaji-answer">he</div>	hiragana
 hiragana-ho	<div id="japanese-heroic-character"><span class="hiragana">ほ</span></div>	<div id="japanese-romaji-answer">ho</div>	hiragana
+hiragana-ho	<div id="japanese-heroic-character"><span class="hiragana">ぼ</span></div>	<div id="japanese-romaji-answer">ho</div>	hiragana
+hiragana-ho	<div id="japanese-heroic-character"><span class="hiragana">ぽ</span></div>	<div id="japanese-romaji-answer">ho</div>	hiragana
 hiragana-ma	<div id="japanese-heroic-character"><span class="hiragana">ま</span></div>	<div id="japanese-romaji-answer">ma</div>	hiragana
 hiragana-mi	<div id="japanese-heroic-character"><span class="hiragana">み</span></div>	<div id="japanese-romaji-answer">mi</div>	hiragana
 hiragana-mu	<div id="japanese-heroic-character"><span class="hiragana">む</span></div>	<div id="japanese-romaji-answer">mu</div>	hiragana
@@ -52,30 +77,55 @@ katakana-u	<div id="japanese-heroic-character"><span class="katakana">ウ</span>
 katakana-e	<div id="japanese-heroic-character"><span class="katakana">エ</span></div>	<div id="japanese-romaji-answer">e</div>	katakana
 katakana-o	<div id="japanese-heroic-character"><span class="katakana">オ</span></div>	<div id="japanese-romaji-answer">o</div>	katakana
 katakana-ka	<div id="japanese-heroic-character"><span class="katakana">カ</span></div>	<div id="japanese-romaji-answer">ka</div>	katakana
+katakana-ka	<div id="japanese-heroic-character"><span class="katakana">ガ</span></div>	<div id="japanese-romaji-answer">ka</div>	katakana
 katakana-ki	<div id="japanese-heroic-character"><span class="katakana">キ</span></div>	<div id="japanese-romaji-answer">ki</div>	katakana
+katakana-ki	<div id="japanese-heroic-character"><span class="katakana">ギ</span></div>	<div id="japanese-romaji-answer">ki</div>	katakana
 katakana-ku	<div id="japanese-heroic-character"><span class="katakana">ク</span></div>	<div id="japanese-romaji-answer">ku</div>	katakana
+katakana-ku	<div id="japanese-heroic-character"><span class="katakana">グ</span></div>	<div id="japanese-romaji-answer">ku</div>	katakana
 katakana-ke	<div id="japanese-heroic-character"><span class="katakana">ケ</span></div>	<div id="japanese-romaji-answer">ke</div>	katakana
+katakana-ke	<div id="japanese-heroic-character"><span class="katakana">ゲ</span></div>	<div id="japanese-romaji-answer">ke</div>	katakana
 katakana-ko	<div id="japanese-heroic-character"><span class="katakana">コ</span></div>	<div id="japanese-romaji-answer">ko</div>	katakana
+katakana-ko	<div id="japanese-heroic-character"><span class="katakana">ゴ</span></div>	<div id="japanese-romaji-answer">ko</div>	katakana
 katakana-sa	<div id="japanese-heroic-character"><span class="katakana">サ</span></div>	<div id="japanese-romaji-answer">sa</div>	katakana
+katakana-sa	<div id="japanese-heroic-character"><span class="katakana">ザ</span></div>	<div id="japanese-romaji-answer">sa</div>	katakana
 katakana-shi	<div id="japanese-heroic-character"><span class="katakana">シ</span></div>	<div id="japanese-romaji-answer">shi</div>	katakana
+katakana-shi	<div id="japanese-heroic-character"><span class="katakana">ジ</span></div>	<div id="japanese-romaji-answer">shi</div>	katakana
 katakana-su	<div id="japanese-heroic-character"><span class="katakana">ス</span></div>	<div id="japanese-romaji-answer">su</div>	katakana
+katakana-su	<div id="japanese-heroic-character"><span class="katakana">ズ</span></div>	<div id="japanese-romaji-answer">su</div>	katakana
 katakana-se	<div id="japanese-heroic-character"><span class="katakana">セ</span></div>	<div id="japanese-romaji-answer">se</div>	katakana
+katakana-se	<div id="japanese-heroic-character"><span class="katakana">ゼ</span></div>	<div id="japanese-romaji-answer">se</div>	katakana
 katakana-so	<div id="japanese-heroic-character"><span class="katakana">ソ</span></div>	<div id="japanese-romaji-answer">so</div>	katakana
+katakana-so	<div id="japanese-heroic-character"><span class="katakana">ゾ</span></div>	<div id="japanese-romaji-answer">so</div>	katakana
 katakana-ta	<div id="japanese-heroic-character"><span class="katakana">タ</span></div>	<div id="japanese-romaji-answer">ta</div>	katakana
+katakana-ta	<div id="japanese-heroic-character"><span class="katakana">ダ</span></div>	<div id="japanese-romaji-answer">ta</div>	katakana
 katakana-chi	<div id="japanese-heroic-character"><span class="katakana">チ</span></div>	<div id="japanese-romaji-answer">chi</div>	katakana
+katakana-chi	<div id="japanese-heroic-character"><span class="katakana">ヂ</span></div>	<div id="japanese-romaji-answer">chi</div>	katakana
 katakana-tsu	<div id="japanese-heroic-character"><span class="katakana">ツ</span></div>	<div id="japanese-romaji-answer">tsu</div>	katakana
+katakana-tsu	<div id="japanese-heroic-character"><span class="katakana">ヅ</span></div>	<div id="japanese-romaji-answer">tsu</div>	katakana
 katakana-te	<div id="japanese-heroic-character"><span class="katakana">テ</span></div>	<div id="japanese-romaji-answer">te</div>	katakana
+katakana-te	<div id="japanese-heroic-character"><span class="katakana">デ</span></div>	<div id="japanese-romaji-answer">te</div>	katakana
 katakana-to	<div id="japanese-heroic-character"><span class="katakana">ト</span></div>	<div id="japanese-romaji-answer">to</div>	katakana
+katakana-to	<div id="japanese-heroic-character"><span class="katakana">ド</span></div>	<div id="japanese-romaji-answer">to</div>	katakana
 katakana-na	<div id="japanese-heroic-character"><span class="katakana">ナ</span></div>	<div id="japanese-romaji-answer">na</div>	katakana
 katakana-ni	<div id="japanese-heroic-character"><span class="katakana">ニ</span></div>	<div id="japanese-romaji-answer">ni</div>	katakana
 katakana-nu	<div id="japanese-heroic-character"><span class="katakana">ヌ</span></div>	<div id="japanese-romaji-answer">nu</div>	katakana
 katakana-ne	<div id="japanese-heroic-character"><span class="katakana">ネ</span></div>	<div id="japanese-romaji-answer">ne</div>	katakana
 katakana-no	<div id="japanese-heroic-character"><span class="katakana">ノ</span></div>	<div id="japanese-romaji-answer">no</div>	katakana
 katakana-ha	<div id="japanese-heroic-character"><span class="katakana">ハ</span></div>	<div id="japanese-romaji-answer">ha</div>	katakana
+katakana-ha	<div id="japanese-heroic-character"><span class="katakana">バ</span></div>	<div id="japanese-romaji-answer">ha</div>	katakana
+katakana-ha	<div id="japanese-heroic-character"><span class="katakana">パ</span></div>	<div id="japanese-romaji-answer">ha</div>	katakana
 katakana-hi	<div id="japanese-heroic-character"><span class="katakana">ヒ</span></div>	<div id="japanese-romaji-answer">hi</div>	katakana
+katakana-hi	<div id="japanese-heroic-character"><span class="katakana">ビ</span></div>	<div id="japanese-romaji-answer">hi</div>	katakana
+katakana-hi	<div id="japanese-heroic-character"><span class="katakana">ピ</span></div>	<div id="japanese-romaji-answer">hi</div>	katakana
 katakana-fu	<div id="japanese-heroic-character"><span class="katakana">フ</span></div>	<div id="japanese-romaji-answer">fu</div>	katakana
+katakana-fu	<div id="japanese-heroic-character"><span class="katakana">ブ</span></div>	<div id="japanese-romaji-answer">fu</div>	katakana
+katakana-fu	<div id="japanese-heroic-character"><span class="katakana">プ</span></div>	<div id="japanese-romaji-answer">fu</div>	katakana
 katakana-he	<div id="japanese-heroic-character"><span class="katakana">ヘ</span></div>	<div id="japanese-romaji-answer">he</div>	katakana
+katakana-he	<div id="japanese-heroic-character"><span class="katakana">ベ</span></div>	<div id="japanese-romaji-answer">he</div>	katakana
+katakana-he	<div id="japanese-heroic-character"><span class="katakana">ペ</span></div>	<div id="japanese-romaji-answer">he</div>	katakana
 katakana-ho	<div id="japanese-heroic-character"><span class="katakana">ホ</span></div>	<div id="japanese-romaji-answer">ho</div>	katakana
+katakana-ho	<div id="japanese-heroic-character"><span class="katakana">ボ</span></div>	<div id="japanese-romaji-answer">ho</div>	katakana
+katakana-ho	<div id="japanese-heroic-character"><span class="katakana">ポ</span></div>	<div id="japanese-romaji-answer">ho</div>	katakana
 katakana-ma	<div id="japanese-heroic-character"><span class="katakana">マ</span></div>	<div id="japanese-romaji-answer">ma</div>	katakana
 katakana-mi	<div id="japanese-heroic-character"><span class="katakana">ミ</span></div>	<div id="japanese-romaji-answer">mi</div>	katakana
 katakana-mu	<div id="japanese-heroic-character"><span class="katakana">ム</span></div>	<div id="japanese-romaji-answer">mu</div>	katakana
@@ -100,30 +150,55 @@ hiragana-katakana-u	<div id="japanese-kana-pair"><span class="hiragana">う</spa
 hiragana-katakana-e	<div id="japanese-kana-pair"><span class="hiragana">え</span> <span class="katakana">エ</span></div>	<div id="japanese-romaji-answer">e</div>	pair
 hiragana-katakana-o	<div id="japanese-kana-pair"><span class="hiragana">お</span> <span class="katakana">オ</span></div>	<div id="japanese-romaji-answer">o</div>	pair
 hiragana-katakana-ka	<div id="japanese-kana-pair"><span class="hiragana">か</span> <span class="katakana">カ</span></div>	<div id="japanese-romaji-answer">ka</div>	pair
+hiragana-katakana-ka	<div id="japanese-kana-pair"><span class="hiragana">が</span> <span class="katakana">ガ</span></div>	<div id="japanese-romaji-answer">ka</div>	pair
 hiragana-katakana-ki	<div id="japanese-kana-pair"><span class="hiragana">き</span> <span class="katakana">キ</span></div>	<div id="japanese-romaji-answer">ki</div>	pair
+hiragana-katakana-ki	<div id="japanese-kana-pair"><span class="hiragana">ぎ</span> <span class="katakana">ギ</span></div>	<div id="japanese-romaji-answer">ki</div>	pair
 hiragana-katakana-ku	<div id="japanese-kana-pair"><span class="hiragana">く</span> <span class="katakana">ク</span></div>	<div id="japanese-romaji-answer">ku</div>	pair
+hiragana-katakana-ku	<div id="japanese-kana-pair"><span class="hiragana">ぐ</span> <span class="katakana">グ</span></div>	<div id="japanese-romaji-answer">ku</div>	pair
 hiragana-katakana-ke	<div id="japanese-kana-pair"><span class="hiragana">け</span> <span class="katakana">ケ</span></div>	<div id="japanese-romaji-answer">ke</div>	pair
+hiragana-katakana-ke	<div id="japanese-kana-pair"><span class="hiragana">げ</span> <span class="katakana">ゲ</span></div>	<div id="japanese-romaji-answer">ke</div>	pair
 hiragana-katakana-ko	<div id="japanese-kana-pair"><span class="hiragana">こ</span> <span class="katakana">コ</span></div>	<div id="japanese-romaji-answer">ko</div>	pair
+hiragana-katakana-ko	<div id="japanese-kana-pair"><span class="hiragana">ご</span> <span class="katakana">ゴ</span></div>	<div id="japanese-romaji-answer">ko</div>	pair
 hiragana-katakana-sa	<div id="japanese-kana-pair"><span class="hiragana">さ</span> <span class="katakana">サ</span></div>	<div id="japanese-romaji-answer">sa</div>	pair
+hiragana-katakana-sa	<div id="japanese-kana-pair"><span class="hiragana">ざ</span> <span class="katakana">ザ</span></div>	<div id="japanese-romaji-answer">sa</div>	pair
 hiragana-katakana-shi	<div id="japanese-kana-pair"><span class="hiragana">し</span> <span class="katakana">シ</span></div>	<div id="japanese-romaji-answer">shi</div>	pair
+hiragana-katakana-shi	<div id="japanese-kana-pair"><span class="hiragana">じ</span> <span class="katakana">ジ</span></div>	<div id="japanese-romaji-answer">shi</div>	pair
 hiragana-katakana-su	<div id="japanese-kana-pair"><span class="hiragana">す</span> <span class="katakana">ス</span></div>	<div id="japanese-romaji-answer">su</div>	pair
+hiragana-katakana-su	<div id="japanese-kana-pair"><span class="hiragana">ず</span> <span class="katakana">ズ</span></div>	<div id="japanese-romaji-answer">su</div>	pair
 hiragana-katakana-se	<div id="japanese-kana-pair"><span class="hiragana">せ</span> <span class="katakana">セ</span></div>	<div id="japanese-romaji-answer">se</div>	pair
+hiragana-katakana-se	<div id="japanese-kana-pair"><span class="hiragana">ぜ</span> <span class="katakana">ゼ</span></div>	<div id="japanese-romaji-answer">se</div>	pair
 hiragana-katakana-so	<div id="japanese-kana-pair"><span class="hiragana">そ</span> <span class="katakana">ソ</span></div>	<div id="japanese-romaji-answer">so</div>	pair
+hiragana-katakana-so	<div id="japanese-kana-pair"><span class="hiragana">ぞ</span> <span class="katakana">ゾ</span></div>	<div id="japanese-romaji-answer">so</div>	pair
 hiragana-katakana-ta	<div id="japanese-kana-pair"><span class="hiragana">た</span> <span class="katakana">タ</span></div>	<div id="japanese-romaji-answer">ta</div>	pair
+hiragana-katakana-ta	<div id="japanese-kana-pair"><span class="hiragana">だ</span> <span class="katakana">ダ</span></div>	<div id="japanese-romaji-answer">ta</div>	pair
 hiragana-katakana-chi	<div id="japanese-kana-pair"><span class="hiragana">ち</span> <span class="katakana">チ</span></div>	<div id="japanese-romaji-answer">chi</div>	pair
+hiragana-katakana-chi	<div id="japanese-kana-pair"><span class="hiragana">ぢ</span> <span class="katakana">ヂ</span></div>	<div id="japanese-romaji-answer">chi</div>	pair
 hiragana-katakana-tsu	<div id="japanese-kana-pair"><span class="hiragana">つ</span> <span class="katakana">ツ</span></div>	<div id="japanese-romaji-answer">tsu</div>	pair
+hiragana-katakana-tsu	<div id="japanese-kana-pair"><span class="hiragana">づ</span> <span class="katakana">ヅ</span></div>	<div id="japanese-romaji-answer">tsu</div>	pair
 hiragana-katakana-te	<div id="japanese-kana-pair"><span class="hiragana">て</span> <span class="katakana">テ</span></div>	<div id="japanese-romaji-answer">te</div>	pair
+hiragana-katakana-te	<div id="japanese-kana-pair"><span class="hiragana">で</span> <span class="katakana">デ</span></div>	<div id="japanese-romaji-answer">te</div>	pair
 hiragana-katakana-to	<div id="japanese-kana-pair"><span class="hiragana">と</span> <span class="katakana">ト</span></div>	<div id="japanese-romaji-answer">to</div>	pair
+hiragana-katakana-to	<div id="japanese-kana-pair"><span class="hiragana">ど</span> <span class="katakana">ド</span></div>	<div id="japanese-romaji-answer">to</div>	pair
 hiragana-katakana-na	<div id="japanese-kana-pair"><span class="hiragana">な</span> <span class="katakana">ナ</span></div>	<div id="japanese-romaji-answer">na</div>	pair
 hiragana-katakana-ni	<div id="japanese-kana-pair"><span class="hiragana">に</span> <span class="katakana">ニ</span></div>	<div id="japanese-romaji-answer">ni</div>	pair
 hiragana-katakana-nu	<div id="japanese-kana-pair"><span class="hiragana">ぬ</span> <span class="katakana">ヌ</span></div>	<div id="japanese-romaji-answer">nu</div>	pair
 hiragana-katakana-ne	<div id="japanese-kana-pair"><span class="hiragana">ね</span> <span class="katakana">ネ</span></div>	<div id="japanese-romaji-answer">ne</div>	pair
 hiragana-katakana-no	<div id="japanese-kana-pair"><span class="hiragana">の</span> <span class="katakana">ノ</span></div>	<div id="japanese-romaji-answer">no</div>	pair
 hiragana-katakana-ha	<div id="japanese-kana-pair"><span class="hiragana">は</span> <span class="katakana">ハ</span></div>	<div id="japanese-romaji-answer">ha</div>	pair
+hiragana-katakana-ha	<div id="japanese-kana-pair"><span class="hiragana">ば</span> <span class="katakana">バ</span></div>	<div id="japanese-romaji-answer">ha</div>	pair
+hiragana-katakana-ha	<div id="japanese-kana-pair"><span class="hiragana">ぱ</span> <span class="katakana">パ</span></div>	<div id="japanese-romaji-answer">ha</div>	pair
 hiragana-katakana-hi	<div id="japanese-kana-pair"><span class="hiragana">ひ</span> <span class="katakana">ヒ</span></div>	<div id="japanese-romaji-answer">hi</div>	pair
+hiragana-katakana-hi	<div id="japanese-kana-pair"><span class="hiragana">び</span> <span class="katakana">ビ</span></div>	<div id="japanese-romaji-answer">hi</div>	pair
+hiragana-katakana-hi	<div id="japanese-kana-pair"><span class="hiragana">ぴ</span> <span class="katakana">ピ</span></div>	<div id="japanese-romaji-answer">hi</div>	pair
 hiragana-katakana-fu	<div id="japanese-kana-pair"><span class="hiragana">ふ</span> <span class="katakana">フ</span></div>	<div id="japanese-romaji-answer">fu</div>	pair
+hiragana-katakana-fu	<div id="japanese-kana-pair"><span class="hiragana">ぶ</span> <span class="katakana">ブ</span></div>	<div id="japanese-romaji-answer">fu</div>	pair
+hiragana-katakana-fu	<div id="japanese-kana-pair"><span class="hiragana">ぷ</span> <span class="katakana">プ</span></div>	<div id="japanese-romaji-answer">fu</div>	pair
 hiragana-katakana-he	<div id="japanese-kana-pair"><span class="hiragana">へ</span> <span class="katakana">ヘ</span></div>	<div id="japanese-romaji-answer">he</div>	pair
+hiragana-katakana-he	<div id="japanese-kana-pair"><span class="hiragana">べ</span> <span class="katakana">ベ</span></div>	<div id="japanese-romaji-answer">he</div>	pair
+hiragana-katakana-he	<div id="japanese-kana-pair"><span class="hiragana">ぺ</span> <span class="katakana">ペ</span></div>	<div id="japanese-romaji-answer">he</div>	pair
 hiragana-katakana-ho	<div id="japanese-kana-pair"><span class="hiragana">ほ</span> <span class="katakana">ホ</span></div>	<div id="japanese-romaji-answer">ho</div>	pair
+hiragana-katakana-ho	<div id="japanese-kana-pair"><span class="hiragana">ぼ</span> <span class="katakana">ボ</span></div>	<div id="japanese-romaji-answer">ho</div>	pair
+hiragana-katakana-ho	<div id="japanese-kana-pair"><span class="hiragana">ぽ</span> <span class="katakana">ポ</span></div>	<div id="japanese-romaji-answer">ho</div>	pair
 hiragana-katakana-ma	<div id="japanese-kana-pair"><span class="hiragana">ま</span> <span class="katakana">マ</span></div>	<div id="japanese-romaji-answer">ma</div>	pair
 hiragana-katakana-mi	<div id="japanese-kana-pair"><span class="hiragana">み</span> <span class="katakana">ミ</span></div>	<div id="japanese-romaji-answer">mi</div>	pair
 hiragana-katakana-mu	<div id="japanese-kana-pair"><span class="hiragana">む</span> <span class="katakana">ム</span></div>	<div id="japanese-romaji-answer">mu</div>	pair
