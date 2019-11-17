@@ -49,16 +49,16 @@ object Kana {
     cvCombinations
       .flatMap(availableKana) :+ ConsonantN
 
-  private def addVariant(f: KanaVaried => KanaVaried)(pred: PartialFunction[Kana, Unit])(kv: KanaVaried) =
+  private def addVariant(f: KanaUnicodeBundle => KanaUnicodeBundle)(pred: PartialFunction[Kana, Unit])(kv: KanaUnicodeBundle) =
     if (pred.isDefinedAt(kv.kana))
       f(kv)
     else
       kv
 
-  val kanaVariants: List[KanaVaried] =
+  val kanaVariants: List[KanaUnicodeBundle] =
     Kana
       .allKana
-      .map(k => KanaVaried(k, hasSmall = false, hasVoiced = false, hasHalf = false))
+      .map(k => KanaUnicodeBundle(k, hasSmall = false, hasVoiced = false, hasHalf = false))
       .map(addVariant(_.copy(hasSmall  = true)) { case KanaCv(EmptyConsonant | ConsonantY, _) => })
       .map(addVariant(_.copy(hasSmall  = true)) { case KanaCv(ConsonantT, VowelU) => })
       .map(addVariant(_.copy(hasSmall  = true)) { case KanaCv(ConsonantW, VowelA) => })
@@ -71,6 +71,9 @@ object Kana {
       .map(if (_) 1 else 0)
       .sum
 
+  /**
+   * Includes full and half voicings. Does not include bigrams with small characters.
+   */
   def buildUnicodeKana(base: Int): List[UnicodeKana] =
     kanaVariants.foldLeft {
       base -> List[UnicodeKana]()
@@ -78,18 +81,21 @@ object Kana {
       buildUnicodeKanaFold
     }._2
 
-  private def buildUnicodeKanaFold(accPair: (Int, List[UnicodeKana]), e: KanaVaried) = {
+  private def buildUnicodeKanaFold(accPair: (Int, List[UnicodeKana]), e: KanaUnicodeBundle) = {
     val (base, acc) = accPair
 
-    val toCanon =
+    val skipTinyVersion =
       howMany(e)(_.hasSmall)
 
     val uses =
       howMany(e)(_.hasSmall, _.hasHalf, _.hasVoiced)
 
-    val x = UnicodeKana(e, base + toCanon)
+    val xs =
+      KanaVariant.listVoicings(e)
+        .zipWithIndex
+        .map { case (kv, n) => UnicodeKana(kv, n + base + 1) }
 
-    (base + uses + 1) -> (acc :+ x)
+    (base + uses + skipTinyVersion) -> (acc ::: xs)
   }
 }
 
@@ -120,25 +126,27 @@ sealed trait KanaScript
 case object Hiragana extends KanaScript
 case object Katakana extends KanaScript
 
-case class KanaVaried(kana: Kana, hasSmall: Boolean, hasVoiced: Boolean, hasHalf: Boolean)
+case class KanaUnicodeBundle(kana: Kana, hasSmall: Boolean, hasVoiced: Boolean, hasHalf: Boolean)
 
-case class UnicodeKana(kanaVaried: KanaVaried, codePoint: Int)
+case class UnicodeKana(variant: KanaVariant, codePoint: Int)
 
-sealed trait UnicodeKanaVariant
+sealed trait KanaVariant {
+  def kana: Kana
+}
 
-final case class UnvoicedKanaVariant(kana: Kana, codePoint: Int) extends UnicodeKanaVariant
-final case class VoicedKanaVariant(kana: Kana, codePoint: Int) extends UnicodeKanaVariant
-final case class HalfVoicedKanaVariant(kana: Kana, codePoint: Int) extends UnicodeKanaVariant
+final case class UnvoicedKanaVariant(kana: Kana) extends KanaVariant
+final case class VoicedKanaVariant(kana: Kana) extends KanaVariant
+final case class HalfVoicedKanaVariant(kana: Kana) extends KanaVariant
 
-object UnicodeKanaVariant {
-  def listVoicings(uni: UnicodeKana): List[UnicodeKanaVariant] =
-    UnvoicedKanaVariant(uni.kanaVaried.kana, uni.codePoint) ::
-      (if (uni.kanaVaried.hasVoiced)
-        List(VoicedKanaVariant(uni.kanaVaried.kana, uni.codePoint + 1))
+object KanaVariant {
+  def listVoicings(kv: KanaUnicodeBundle): List[KanaVariant] =
+    UnvoicedKanaVariant(kv.kana) ::
+      (if (kv.hasVoiced)
+        List(VoicedKanaVariant(kv.kana))
       else
         Nil) :::
-      (if (uni.kanaVaried.hasHalf)
-        List(HalfVoicedKanaVariant(uni.kanaVaried.kana, uni.codePoint + 2))
+      (if (kv.hasHalf)
+        List(HalfVoicedKanaVariant(kv.kana))
       else
         Nil)
 }
