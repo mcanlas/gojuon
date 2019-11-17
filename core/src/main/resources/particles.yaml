@@ -1,12 +1,14 @@
 - j: の
-  e: modifier
+  e: modifier particle
 - j: か
-  e: question
+  e: question particle
 - j: は
-  e: subject
+  e: subject particle
 - j: る
   e: lemma suffix
 - j: ます
   e: present affirmative suffix
 - j: ません
   e: present negative suffix
+- j: と
+  e: conjunction particle
