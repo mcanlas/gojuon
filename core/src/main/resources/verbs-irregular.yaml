@@ -1,8 +1,11 @@
 - j: くる
   k: 来る
   e: to come
+  stemj: き
+  stemk: 来
 - j: する
   e: to do
+  stemj: し
 - j: べんきようする
   k: 勉強する
   e: to study
