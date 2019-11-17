@@ -47,7 +47,7 @@ class GenerateAnkiCards[F[_]](implicit F: Sync[F]) {
     for (n <- hiragana.indices.toList) yield {
       val romaji = Romaji.toRomaji(hiragana(n).variant)
 
-      val cardId = List("hiragana", "katakana", romaji).mkString("-")
+      val cardId = List("hiragana", "katakana", Romaji.toKanaId(hiragana(n).variant)).mkString("-")
 
       val front = s"""<div id="japanese-kana-pair"><span class="hiragana">${hiragana(n).codePoint.toChar.toString}</span> <span class="katakana">${katakana(n).codePoint.toChar.toString}</span></div>"""
 

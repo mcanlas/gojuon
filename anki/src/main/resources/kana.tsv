@@ -162,7 +162,7 @@ hiragana-katakana-go	<div id="japanese-kana-pair"><span class="hiragana">ご</sp
 hiragana-katakana-sa	<div id="japanese-kana-pair"><span class="hiragana">さ</span> <span class="katakana">サ</span></div>	<div id="japanese-romaji-answer">sa</div>	pair
 hiragana-katakana-za	<div id="japanese-kana-pair"><span class="hiragana">ざ</span> <span class="katakana">ザ</span></div>	<div id="japanese-romaji-answer">za</div>	pair
 hiragana-katakana-shi	<div id="japanese-kana-pair"><span class="hiragana">し</span> <span class="katakana">シ</span></div>	<div id="japanese-romaji-answer">shi</div>	pair
-hiragana-katakana-ji	<div id="japanese-kana-pair"><span class="hiragana">じ</span> <span class="katakana">ジ</span></div>	<div id="japanese-romaji-answer">ji</div>	pair
+hiragana-katakana-zi	<div id="japanese-kana-pair"><span class="hiragana">じ</span> <span class="katakana">ジ</span></div>	<div id="japanese-romaji-answer">ji</div>	pair
 hiragana-katakana-su	<div id="japanese-kana-pair"><span class="hiragana">す</span> <span class="katakana">ス</span></div>	<div id="japanese-romaji-answer">su</div>	pair
 hiragana-katakana-zu	<div id="japanese-kana-pair"><span class="hiragana">ず</span> <span class="katakana">ズ</span></div>	<div id="japanese-romaji-answer">zu</div>	pair
 hiragana-katakana-se	<div id="japanese-kana-pair"><span class="hiragana">せ</span> <span class="katakana">セ</span></div>	<div id="japanese-romaji-answer">se</div>	pair
@@ -172,9 +172,9 @@ hiragana-katakana-zo	<div id="japanese-kana-pair"><span class="hiragana">ぞ</sp
 hiragana-katakana-ta	<div id="japanese-kana-pair"><span class="hiragana">た</span> <span class="katakana">タ</span></div>	<div id="japanese-romaji-answer">ta</div>	pair
 hiragana-katakana-da	<div id="japanese-kana-pair"><span class="hiragana">だ</span> <span class="katakana">ダ</span></div>	<div id="japanese-romaji-answer">da</div>	pair
 hiragana-katakana-chi	<div id="japanese-kana-pair"><span class="hiragana">ち</span> <span class="katakana">チ</span></div>	<div id="japanese-romaji-answer">chi</div>	pair
-hiragana-katakana-ji	<div id="japanese-kana-pair"><span class="hiragana">ぢ</span> <span class="katakana">ヂ</span></div>	<div id="japanese-romaji-answer">ji</div>	pair
+hiragana-katakana-di	<div id="japanese-kana-pair"><span class="hiragana">ぢ</span> <span class="katakana">ヂ</span></div>	<div id="japanese-romaji-answer">ji</div>	pair
 hiragana-katakana-tsu	<div id="japanese-kana-pair"><span class="hiragana">つ</span> <span class="katakana">ツ</span></div>	<div id="japanese-romaji-answer">tsu</div>	pair
-hiragana-katakana-zu	<div id="japanese-kana-pair"><span class="hiragana">づ</span> <span class="katakana">ヅ</span></div>	<div id="japanese-romaji-answer">zu</div>	pair
+hiragana-katakana-du	<div id="japanese-kana-pair"><span class="hiragana">づ</span> <span class="katakana">ヅ</span></div>	<div id="japanese-romaji-answer">zu</div>	pair
 hiragana-katakana-te	<div id="japanese-kana-pair"><span class="hiragana">て</span> <span class="katakana">テ</span></div>	<div id="japanese-romaji-answer">te</div>	pair
 hiragana-katakana-de	<div id="japanese-kana-pair"><span class="hiragana">で</span> <span class="katakana">デ</span></div>	<div id="japanese-romaji-answer">de</div>	pair
 hiragana-katakana-to	<div id="japanese-kana-pair"><span class="hiragana">と</span> <span class="katakana">ト</span></div>	<div id="japanese-romaji-answer">to</div>	pair
