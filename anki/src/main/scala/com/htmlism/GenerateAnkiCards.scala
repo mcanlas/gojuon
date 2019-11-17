@@ -8,7 +8,7 @@ object GenerateAnkiCards extends GenerateAnkiCards[IO] with IOApp {
   def toCard(script: String)(uk: UnicodeKana): AnkiCard = {
     val romaji = Romaji.toRomaji(uk.kanaVaried.kana)
 
-    val cardId = script + "-" + romaji
+    val cardId = script + "-" + Romaji.toKanaId(uk.kanaVaried.kana)
 
     val front = s"""<div id="japanese-heroic-character"><span class="$script">${uk.codePoint.toChar.toString}</span></div>"""
 

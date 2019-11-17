@@ -33,6 +33,9 @@ object Romaji {
   val halfVoicedH: String = "p"
 
   def toRomaji(kana: Kana): String =
+    toKanaId(kana)
+
+  def toKanaId(kana: Kana): String =
     kana match {
       case KanaCv(ConsonantS, VowelI) =>
         "shi"
