@@ -10,6 +10,8 @@ object DataLoader extends App {
 
   private val yamlFiles =
     List(
+      "names-naruto",
+      "names-nintendo",
       "nouns",
       "verbs-irregular",
       "verbs-ru",
@@ -37,6 +39,16 @@ object DataLoader extends App {
     .traverse(parseEntries[IO])
     .map { xxs =>
       xxs.foreach(xs => xs.foreach(println))
+    }
+    .unsafeRunSync()
+
+  yamlFiles
+    .traverse(parseEntries[IO])
+    .map(_.flatten)
+    .map { xs =>
+      xs.foreach { e =>
+        println(JapaneseSequence.parse(e.japanese))
+      }
     }
     .unsafeRunSync()
 }

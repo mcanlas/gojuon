@@ -16,7 +16,7 @@ case object MixedSequenceNotSupported extends JapaneseParsingError
 case class CharacterNotKana(c: Char) extends JapaneseParsingError
 
 object JapaneseSequence {
-  def detectScript(s: String): Either[JapaneseParsingError, JapaneseSequence] =
+  def parse(s: String): Either[JapaneseParsingError, JapaneseSequence] =
     for {
       nes <- nonEmpty(s)
       xs <- nes.toList.traverse(detectScriptOne)
@@ -37,8 +37,8 @@ object JapaneseSequence {
   private def toScript(xs: List[KanaScript]) =
     if (xs.forall(k => k == Hiragana))
       Hiragana.asRight
-    else if (xs.forall(k => k == Hiragana))
-      Hiragana.asRight
+    else if (xs.forall(k => k == Katakana))
+      Katakana.asRight
     else
       MixedSequenceNotSupported.asLeft
 
