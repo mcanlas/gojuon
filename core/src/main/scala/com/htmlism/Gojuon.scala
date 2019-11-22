@@ -81,6 +81,22 @@ object Kana {
       buildUnicodeKanaFold
     }._2
 
+  val unicodeHiragana: List[UnicodeKana] =
+    Kana.buildUnicodeKana(Kana.hiragana.codePoint)
+
+  val unicodeKatakana: List[UnicodeKana] =
+    Kana.buildUnicodeKana(Kana.katakana.codePoint)
+
+  val unicodeHiraganaByCodePoint: Map[Int, KanaVariant] =
+    unicodeHiragana
+      .map(k => k.codePoint -> k.variant)
+      .toMap
+
+  val unicodeKatakanaByCodePoint: Map[Int, KanaVariant] =
+    unicodeKatakana
+      .map(k => k.codePoint -> k.variant)
+      .toMap
+
   private def buildUnicodeKanaFold(accPair: (Int, List[UnicodeKana]), e: KanaUnicodeBundle) = {
     val (base, acc) = accPair
 
