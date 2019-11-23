@@ -2,7 +2,9 @@ package com.htmlism
 
 import cats.implicits._
 
-sealed trait JapaneseSequence
+sealed trait JapaneseSequence {
+  def s: String
+}
 
 case class HiraganaSequence(s: String) extends JapaneseSequence
 

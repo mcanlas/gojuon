@@ -61,4 +61,31 @@ object DataLoader extends App {
   /**
    * Categorize words by kana
    */
+  val wordCollectionsByCodePoint: Map[Int, List[JapaneseSequence]] =
+    (Kana.unicodeHiraganaByCodePoint ++ Kana.unicodeKatakanaByCodePoint)
+      .fmap(_ => List[JapaneseSequence]())
+
+  yamlFiles
+    .traverse(parseEntries[IO])
+    .map(_.flatten)
+    .map { xs =>
+      xs
+        .flatMap(e => JapaneseSequence.parse(e.japanese).toOption)
+        .foldLeft(wordCollectionsByCodePoint)(organizeByKana)
+    }
+    .map { reg =>
+      for (h <- (Kana.unicodeHiragana ++ Kana.unicodeKatakana)) {
+        println(h.codePoint.toChar)
+        println("  " + reg(h.codePoint).toString)
+      }
+    }
+    .unsafeRunSync()
+
+  def organizeByKana(acc: Map[Int, List[JapaneseSequence]], e: JapaneseSequence) =
+    e.s.toList.foldLeft(acc) { (acc, k) =>
+      if (k.toInt == JapaneseSequence.longVowelSymbolCodePoint)
+        acc
+      else
+        acc.updated(k.toInt, e :: acc(k.toInt) )
+    }
 }
