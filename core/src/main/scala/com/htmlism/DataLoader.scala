@@ -35,6 +35,9 @@ object DataLoader extends App {
   private def logAndRaise[F[_], A](msg: String)(err: Throwable)(implicit F: Sync[F]) =
     F.delay(println(msg + ": " + err)) *> F.raiseError[A](err)
 
+  /**
+   * Demonstrate basic loading and parsing of YAML structures
+   */
   yamlFiles
     .traverse(parseEntries[IO])
     .map { xxs =>
@@ -42,6 +45,9 @@ object DataLoader extends App {
     }
     .unsafeRunSync()
 
+  /**
+   * Consume YAML structures and parse out Japanese sequences
+   */
   yamlFiles
     .traverse(parseEntries[IO])
     .map(_.flatten)
@@ -51,4 +57,8 @@ object DataLoader extends App {
       }
     }
     .unsafeRunSync()
+
+  /**
+   * Categorize words by kana
+   */
 }
