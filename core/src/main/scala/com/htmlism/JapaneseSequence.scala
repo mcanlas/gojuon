@@ -1,7 +1,5 @@
 package com.htmlism
 
-import cats._
-import cats.effect._
 import cats.implicits._
 
 sealed trait JapaneseSequence

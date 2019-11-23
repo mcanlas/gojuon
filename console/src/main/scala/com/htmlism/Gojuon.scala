@@ -12,7 +12,7 @@ object Gojuon extends IOApp {
         IO {
           Kana
             .buildUnicodeKana(cp)
-            .foreach(u => println(u.codePoint.toChar + " " + u.toString))
+            .foreach(u => println(u.codePoint.toChar.toString + " " + u.toString))
         }
       }.as(ExitCode.Success)
 }
