@@ -16,6 +16,8 @@ case object MixedSequenceNotSupported extends JapaneseParsingError
 case class CharacterNotKana(c: Char) extends JapaneseParsingError
 
 object JapaneseSequence {
+  val longVowelSymbolCodePoint = 12540
+
   def parse(s: String): Either[JapaneseParsingError, JapaneseSequence] =
     for {
       nes <- nonEmpty(s)
@@ -29,7 +31,7 @@ object JapaneseSequence {
   private def detectScriptOne(c: Char): Either[CharacterNotKana, KanaScript] =
     if (Kana.unicodeHiraganaByCodePoint.contains(c.toInt))
       Hiragana.asRight
-    else if (Kana.unicodeKatakanaByCodePoint.contains(c.toInt))
+    else if (Kana.unicodeKatakanaByCodePoint.contains(c.toInt) || c.toInt == longVowelSymbolCodePoint)
       Katakana.asRight
     else
       CharacterNotKana(c).asLeft
