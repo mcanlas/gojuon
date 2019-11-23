@@ -45,3 +45,6 @@
 - j: むし
   e: insect
   tag: [animal]
+- j: さる
+  e: monkey
+  tag: [animal]
