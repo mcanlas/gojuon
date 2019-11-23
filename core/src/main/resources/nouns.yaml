@@ -29,13 +29,19 @@
   tag: drink
 - j: ねこ
   e: cat
-  tag: animal
+  tag: [animal, pet]
 - j: たこ
   e: octopus
   tag: [animal, food]
 - j: いぬ
   e: dog
-  tag: animal
+  tag: [animal, pet]
 - j: えび
   e: shrimp
   tag: [animal, food]
+- j: けむし
+  e: caterpillar (hairy insect)
+  tag: [animal]
+- j: むし
+  e: insect
+  tag: [animal]
