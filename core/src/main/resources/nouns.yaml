@@ -27,3 +27,15 @@
 - j: コーヒー
   e: coffee
   tag: drink
+- j: ねこ
+  e: cat
+  tag: animal
+- j: たこ
+  e: octopus
+  tag: [animal, food]
+- j: いぬ
+  e: dog
+  tag: animal
+- j: えび
+  e: shrimp
+  tag: [animal, food]
