@@ -2,3 +2,9 @@
   e: good morning
 - j: おはようございます
   e: good morning (polite)
+- j: こんにちは
+  e: good afternoon
+- j: こんばんは
+  e: good evening
+- j: さようなら
+  e: good bye
