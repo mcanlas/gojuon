@@ -4,14 +4,18 @@ import cats.effect._
 import cats.implicits._
 import io.circe._
 
-object DataLoader extends App {
-  private implicit val japaneseSequenceDecoder: Decoder[JapaneseSequence] =
+object DecoderImplicits {
+  implicit val japaneseSequenceDecoder: Decoder[JapaneseSequence] =
     Decoder
       .decodeString
       .emap(s => JapaneseSequence.parse(s).leftMap(_.toString))
 
-  private implicit val entryDecoder: Decoder[JapaneseEntry] =
+  implicit val entryDecoder: Decoder[JapaneseEntry] =
     Decoder.forProduct3("j", "k", "e")(JapaneseEntry.apply)
+}
+
+object DataLoader extends App {
+  import DecoderImplicits._
 
   private val yamlFiles =
     List(
@@ -37,7 +41,7 @@ object DataLoader extends App {
       .use(reader => F.delay(io.circe.yaml.parser.parse(reader)))
       .flatMap(_.fold(logAndRaise[F, Json](s"parsing json of $s"), F.pure))
 
-  private def parseEntries[F[_]](s: String)(implicit F: Sync[F]) =
+  def parseEntries[F[_]](s: String)(implicit F: Sync[F]): F[List[JapaneseEntry]] =
     parseResourceFile[F](s)
       .map(_.as[List[JapaneseEntry]])
       .flatMap(_.fold(logAndRaise[F, List[JapaneseEntry]](s"parsing classes of $s"), F.pure))
