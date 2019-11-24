@@ -70,11 +70,15 @@ object DataLoader extends App {
         .foldLeft(wordCollectionsByCodePoint)(organizeByKana)
     }
     .map { reg =>
-      for (h <- (Kana.unicodeHiragana ++ Kana.unicodeKatakana)) {
-        println(h.codePoint.toChar.toString + " " + h.variant.toString)
+      for (k <- (Kana.unicodeHiragana ++ Kana.unicodeKatakana)) {
+        println(k.codePoint.toChar.toString + " " + k.variant.toString)
 
-        for (e <- reg(h.codePoint)) {
+        for (e <- reg(k.codePoint)) {
           println("   - " + e)
+        }
+
+        for (s <- leftPad(k.codePoint, reg(k.codePoint).map(_.japanese.s))) {
+          println("  - " + s)
         }
       }
     }
@@ -86,5 +90,19 @@ object DataLoader extends App {
         acc.updated(k.toInt, e :: acc(k.toInt) )
       else
         acc
+    }
+
+  def leftPad(kana: Int, xs: List[String]) =
+    if (xs.isEmpty)
+      Nil
+    else {
+      val maxIndex = xs.map(_.toList.map(_.toInt).indexOf(kana)).max
+
+      xs.map { s =>
+        val idx = s.toList.map(_.toInt).indexOf(kana)
+        val pad = "\u3000" * (maxIndex - idx)
+
+        pad + s
+      }
     }
 }
