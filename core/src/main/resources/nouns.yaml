@@ -51,3 +51,18 @@
 - j: あくま
   k: 悪魔
   e: devil
+- j: クリスマス
+  e: Christmas
+  tag: holiday
+- j: ハロウィン
+  e: Halloween
+  tag: holiday
+- j: バースデー
+  e: birthday
+  tag: holiday
+- j: イースター
+  e: Easter
+  tag: holiday
+- j: サンクスギビング
+  e: Thanksgiving
+  tag: holiday

@@ -20,7 +20,8 @@ object DataLoader extends App {
       "verbs-ru",
       "verbs-u",
       "particles",
-      "phrases")
+      "phrases",
+      "places")
       .map(s => "/" + s  + ".yaml")
 
   private def parseResourceFile[F[_]](s: String)(implicit F: Sync[F]) =
