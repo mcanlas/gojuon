@@ -1,0 +1,24 @@
+- j: ゼロ
+  e: zero
+- j: いち
+  e: one
+- j: に
+  e: two
+- j: さん
+  e: three
+- j: よん
+  e: four
+- j: ご
+  e: five
+- j: ろく
+  e: six
+- j: なな
+  e: seven
+- j: はち
+  e: eight
+- j: きゅう
+  e: nine
+- j: じゅう
+  e: ten
+- j: ひゃく
+  e: one hundred

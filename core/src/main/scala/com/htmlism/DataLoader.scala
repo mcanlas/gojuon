@@ -10,9 +10,12 @@ object DataLoader extends App {
 
   private val yamlFiles =
     List(
+      "colors",
+      "names-american",
       "names-naruto",
       "names-nintendo",
       "nouns",
+      "numbers",
       "verbs-irregular",
       "verbs-ru",
       "verbs-u",
