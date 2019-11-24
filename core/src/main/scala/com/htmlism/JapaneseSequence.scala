@@ -16,6 +16,7 @@ case object MixedSequenceNotSupported extends JapaneseParsingError
 case class CharacterNotKana(c: Char) extends JapaneseParsingError
 
 object JapaneseSequence {
+  val katakanaMidDot = 12539
   val longVowelSymbolCodePoint = 12540
 
   def parse(s: String): Either[JapaneseParsingError, JapaneseSequence] =
@@ -45,6 +46,7 @@ object JapaneseSequence {
   // small vowels
   private def isKatakana(n: Int) =
     Kana.unicodeKatakanaByCodePoint.contains(n) ||
+      n == katakanaMidDot ||
       n == longVowelSymbolCodePoint ||
       n == 12483 || // tsu for doubling consontants
       Set(12515, 12517, 12519)(n) || // ya yu yo
