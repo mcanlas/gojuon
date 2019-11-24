@@ -29,12 +29,26 @@ object JapaneseSequence {
     Either.cond(s.nonEmpty, s, SequenceMustBeNonEmpty)
 
   private def detectScriptOne(c: Char): Either[CharacterNotKana, KanaScript] =
-    if (Kana.unicodeHiraganaByCodePoint.contains(c.toInt))
+    if (isHiragana(c.toInt))
       Hiragana.asRight
-    else if (Kana.unicodeKatakanaByCodePoint.contains(c.toInt) || c.toInt == longVowelSymbolCodePoint)
+    else if (isKatakana(c.toInt))
       Katakana.asRight
     else
       CharacterNotKana(c).asLeft
+
+  // small ya yu yo
+  private def isHiragana(n: Int) =
+    Kana.unicodeHiraganaByCodePoint.contains(n) ||
+      n == 12387 || // tsu for doubling consontants
+      Set(12419, 12421, 12423)(n)
+
+  // small vowels
+  private def isKatakana(n: Int) =
+    Kana.unicodeKatakanaByCodePoint.contains(n) ||
+      n == longVowelSymbolCodePoint ||
+      n == 12483 || // tsu for doubling consontants
+      Set(12515, 12517, 12519)(n) || // ya yu yo
+      Set(12449, 12451, 12453, 12455, 12457)(n) // small vowels
 
   private def toScript(xs: List[KanaScript]) =
     if (xs.forall(k => k == Hiragana))

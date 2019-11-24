@@ -90,9 +90,9 @@ object DataLoader extends App {
 
   def organizeByKana(acc: Map[Int, List[JapaneseSequence]], e: JapaneseSequence) =
     e.s.toList.toSet.foldLeft(acc) { (acc, k) =>
-      if (k.toInt == JapaneseSequence.longVowelSymbolCodePoint)
-        acc
-      else
+      if (acc.contains(k.toInt))
         acc.updated(k.toInt, e :: acc(k.toInt) )
+      else
+        acc
     }
 }
