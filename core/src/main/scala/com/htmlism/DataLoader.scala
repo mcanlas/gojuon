@@ -75,8 +75,11 @@ object DataLoader extends App {
     }
     .map { reg =>
       for (h <- (Kana.unicodeHiragana ++ Kana.unicodeKatakana)) {
-        println(h.codePoint.toChar)
-        println("  " + reg(h.codePoint).toString)
+        println(h.codePoint.toChar.toString + " " + h.variant.toString)
+
+        for (e <- reg(h.codePoint)) {
+          println("   - " + e)
+        }
       }
     }
     .unsafeRunSync()
