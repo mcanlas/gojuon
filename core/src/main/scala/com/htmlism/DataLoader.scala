@@ -5,6 +5,11 @@ import cats.implicits._
 import io.circe._
 
 object DataLoader extends App {
+  private implicit val japaneseSequenceDecoder: Decoder[JapaneseSequence] =
+    Decoder
+      .decodeString
+      .emap(s => JapaneseSequence.parse(s).leftMap(_.toString))
+
   private implicit val entryDecoder: Decoder[JapaneseEntry] =
     Decoder.forProduct3("j", "k", "e")(JapaneseEntry.apply)
 
@@ -50,31 +55,17 @@ object DataLoader extends App {
     .unsafeRunSync()
 
   /**
-   * Consume YAML structures and parse out Japanese sequences
-   */
-  yamlFiles
-    .traverse(parseEntries[IO])
-    .map(_.flatten)
-    .map { xs =>
-      xs.foreach { e =>
-        println(JapaneseSequence.parse(e.japanese))
-      }
-    }
-    .unsafeRunSync()
-
-  /**
    * Categorize words by kana
    */
-  val wordCollectionsByCodePoint: Map[Int, List[JapaneseSequence]] =
+  val wordCollectionsByCodePoint: Map[Int, List[JapaneseEntry]] =
     (Kana.unicodeHiraganaByCodePoint ++ Kana.unicodeKatakanaByCodePoint)
-      .fmap(_ => List[JapaneseSequence]())
+      .fmap(_ => List[JapaneseEntry]())
 
   yamlFiles
     .traverse(parseEntries[IO])
     .map(_.flatten)
     .map { xs =>
       xs
-        .flatMap(e => JapaneseSequence.parse(e.japanese).toOption)
         .foldLeft(wordCollectionsByCodePoint)(organizeByKana)
     }
     .map { reg =>
@@ -88,8 +79,8 @@ object DataLoader extends App {
     }
     .unsafeRunSync()
 
-  def organizeByKana(acc: Map[Int, List[JapaneseSequence]], e: JapaneseSequence) =
-    e.s.toList.toSet.foldLeft(acc) { (acc, k) =>
+  def organizeByKana(acc: Map[Int, List[JapaneseEntry]], e: JapaneseEntry) =
+    e.japanese.s.toList.toSet.foldLeft(acc) { (acc, k) =>
       if (acc.contains(k.toInt))
         acc.updated(k.toInt, e :: acc(k.toInt) )
       else
