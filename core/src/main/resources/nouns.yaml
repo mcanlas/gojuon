@@ -66,3 +66,66 @@
 - j: サンクスギビング
   e: Thanksgiving
   tag: holiday
+- j: ハンバーガー
+  e: hamburger
+  tag: food
+- j: チーズ
+  e: cheese
+  tag: food
+- j: チョコレート
+  e: chocolate
+  tag: food
+- j: ピザ
+  e: pizza
+  tag: food
+- j: カレー
+  e: curry
+  tag: food
+- j: アイス
+  e: ice
+  tag: food
+- j: クリーム
+  e: cream
+  tag: food
+- j: アイスクリーム
+  e: ice cream
+  tag: food
+- j: フライドポテト
+  e: french fries
+  tag: food
+- j: ケーキ
+  e: cake
+  tag: food
+- j: サンドイッチ
+  e: sandwich
+  tag: food
+- j: からて
+  k: 空手
+  e: karate
+  tag: sport
+- j: テニス
+  e: tennis
+  tag: sport
+- j: バレーボール
+  e: volleyball
+  tag: sport
+- j: タクシー
+  e: taxi
+- j: カラオケ
+  e: karaoke
+- j: カメラ
+  e: camera
+- j: テレビ
+  e: television
+  tag: watchable
+- j: アニメ
+  e: anime
+  tag: watchable
+- j: エスカレーター
+  e: escalator
+- j: バイク
+  e: motorbike
+- j: アイテム
+  e: item (video game)
+- j: ミッション
+  e: mission (video game)
