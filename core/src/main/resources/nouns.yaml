@@ -1,3 +1,9 @@
+- j: すし
+  e: sushi
+  tag: food
+- j: てりやき
+  e: teriyaki
+  tag: food
 - j: ごはん
   e: rice
   tag: food
