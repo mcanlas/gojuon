@@ -51,15 +51,14 @@ object GenerateAnkiCards extends GenerateAnkiCards[IO] with IOApp {
 
 class GenerateAnkiCards[F[_]](implicit F: Sync[F]) {
   def run(args: List[String]): F[ExitCode] =
-    for {
-      baseDir <- getBaseDir(args)
-      _ <- writeKanaDeck(baseDir, Kana.scripts)
-    } yield ExitCode.Success
+    (getBaseDir(args) >>= writeKanaDeck(Kana.scripts))
+      .as(ExitCode.Success)
 
-  private def writeKanaDeck(base: String, scripts: List[UnicodeKanaScript]) =
-    FilePrinterAlg
-      .resource[F](base + "/kana.tsv")
-      .use(_.print(GenerateAnkiCards.generateDeck(scripts)))
+  private def writeKanaDeck(scripts: List[UnicodeKanaScript])(base: String) =
+    (FilePrinterAlg[F]
+      .print(base + "/kana.tsv") _)
+      .compose(GenerateAnkiCards.generateDeck)
+      .apply(scripts)
 
   private def getBaseDir(args: List[String]) =
     args match {
