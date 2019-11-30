@@ -1,24 +1,36 @@
 - j: ゼロ
   e: zero
+  emoji: 0️⃣
 - j: いち
   e: one
+  emoji: 1⃣
 - j: に
   e: two
+  emoji: 2⃣
 - j: さん
   e: three
+  emoji: 3⃣
 - j: よん
   e: four
+  emoji: 4⃣
 - j: ご
   e: five
+  emoji: 5⃣
 - j: ろく
   e: six
+  emoji: 6⃣
 - j: なな
   e: seven
+  emoji: 7⃣
 - j: はち
   e: eight
+  emoji: 8⃣
 - j: きゅう
   e: nine
+  emoji: 9⃣
 - j: じゅう
   e: ten
+  emoji: 🔟
 - j: ひゃく
   e: one hundred
+  emoji: 💯

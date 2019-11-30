@@ -2,32 +2,46 @@
   e: convenience store
 - j: ホテル
   e: hotel
+  emoji: 🏨
 - j: ヨーロッパ
   e: Europe
+  emoji: 🇪🇺
 - j: アメリカ
   e: America
+  emoji: 🇺🇸
 - j: ブラジル
   e: Brazil
+  emoji: 🇧🇷
 - j: リオデジャネイロ
   e: Rio de Janeiro
+  emoji: 🇧🇷
 - j: イタリア
   e: Italy
+  emoji: 🇮🇹
 - j: スペイン
   e: Spain
+  emoji: 🇪🇸
 - j: カナダ
   e: Canada
+  emoji: 🇨🇦
 - j: フランス
   e: France
+  emoji: 🇫🇷
 - j: アース
   e: Earth
+  emoji: 🌎
 - j: かんこく
   k: 韓国
   e: Korea
+  emoji: 🇰🇷
 - j: ちゅうごく
   k: 中国
   e: China
+  emoji: 🇨🇳
 - j: イギリス
   e: England
+  emoji: 🇬🇧
 - j: にほん
   k: 日本
   e: Japan
+  emoji: 🇯🇵
