@@ -5,7 +5,7 @@ import cats.implicits._
 import mouse.any._
 
 object GenerateAnkiCards extends GenerateAnkiCards[IO] with IOApp {
-  private def toCard(script: String)(uk: UnicodeKana): AnkiCard = {
+  private def kanaToCard(script: String)(uk: UnicodeKana): AnkiCard = {
     val romaji = Romaji.toRomaji(uk.variant)
 
     val cardId = script + "-" + Romaji.toKanaId(uk.variant)
@@ -17,13 +17,13 @@ object GenerateAnkiCards extends GenerateAnkiCards[IO] with IOApp {
     AnkiCard(cardId, front, back, List(script))
   }
 
-  private def toCards(script: UnicodeKanaScript): List[AnkiCard] =
+  private def scriptToCards(script: UnicodeKanaScript): List[AnkiCard] =
     Kana
       .buildUnicodeKana(script.codePoint)
-      .map(toCard(script.name))
+      .map(kanaToCard(script.name))
 
   def generateDeck(scripts: List[UnicodeKanaScript]): List[AnkiCard] =
-    scripts.flatMap(GenerateAnkiCards.toCards) ::: generatePairCards
+    scripts.flatMap(GenerateAnkiCards.scriptToCards) ::: generatePairCards
 
   private def generatePairCards = {
     val hiragana = Kana.buildUnicodeKana(Kana.hiragana.codePoint)
