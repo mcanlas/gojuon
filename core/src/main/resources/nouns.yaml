@@ -72,9 +72,11 @@
 - j: クリスマス
   e: Christmas
   tag: holiday
+  emoji: 🎄
 - j: ハロウィン
   e: Halloween
   tag: holiday
+  emoji: 🎃
 - j: バースデー
   e: birthday
   tag: holiday
@@ -84,33 +86,41 @@
 - j: サンクスギビング
   e: Thanksgiving
   tag: holiday
+  emoji: 🦃
 - j: ハンバーガー
   e: hamburger
   tag: food
+  emoji: 🍔
 - j: チーズ
   e: cheese
   tag: food
+  emoji: 🧀
 - j: チョコレート
   e: chocolate
   tag: food
+  emoji: 🍫
 - j: ピザ
   e: pizza
   tag: food
+  emoji: 🍕
 - j: カレー
   e: curry
   tag: food
 - j: アイス
   e: ice
   tag: food
+  emoji: ❄️
 - j: クリーム
   e: cream
   tag: food
 - j: アイスクリーム
   e: ice cream
   tag: food
+  emoji: 🍦
 - j: フライドポテト
   e: french fries
   tag: food
+  emoji: 🍟
 - j: ケーキ
   e: cake
   tag: food

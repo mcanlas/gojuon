@@ -4,8 +4,10 @@
   e: Luigi
 - j: ヨッシー
   e: Yoshi
+  emoji: 🦖
 - j: ピーチ
   e: Peach
+  emoji: 🍑
 - j: カメック
   e: Kamek
 - j: クッパ
@@ -23,18 +25,22 @@
   emoji: 🦊
 - j: ピカチュウ
   e: Pikachu
+  emoji: ⚡️
 - j: ネス
   e: Nesu
 - j: キャプテン・ファルコン
   e: Captain Falcon
+  emoji: 🏎
 - j: ゼルダ
   e: Zelda
 - j: アイスクライマー
   e: Ice Climbers
+  emoji: ❄️
 - j: ピット
   e: Pit
 - j: ドクターマリオ
   e: Dr. Mario
+  emoji: 👨‍⚕️
 - j: ワリオ
   e: Wario
 - j: ソニック
@@ -43,3 +49,4 @@
   e: Mega Man
 - j: ダックハント
   e: Duck Hunt
+  emoji: 🦆
