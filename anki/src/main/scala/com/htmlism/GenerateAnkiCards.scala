@@ -5,7 +5,7 @@ import cats.implicits._
 import mouse.any._
 
 object GenerateAnkiCards extends GenerateAnkiCards[IO] with IOApp {
-  def toCard(script: String)(uk: UnicodeKana): AnkiCard = {
+  private def toCard(script: String)(uk: UnicodeKana): AnkiCard = {
     val romaji = Romaji.toRomaji(uk.variant)
 
     val cardId = script + "-" + Romaji.toKanaId(uk.variant)
@@ -17,25 +17,12 @@ object GenerateAnkiCards extends GenerateAnkiCards[IO] with IOApp {
     AnkiCard(cardId, front, back, List(script))
   }
 
-  def toCards(script: UnicodeKanaScript): List[AnkiCard] =
+  private def toCards(script: UnicodeKanaScript): List[AnkiCard] =
     Kana
       .buildUnicodeKana(script.codePoint)
       .map(toCard(script.name))
-}
 
-class GenerateAnkiCards[F[_]](implicit F: Sync[F]) {
-  def run(args: List[String]): F[ExitCode] =
-    for {
-      baseDir <- getBaseDir(args)
-      _ <- writeKanaDeck(baseDir, Kana.scripts)
-    } yield ExitCode.Success
-
-  private def writeKanaDeck(base: String, scripts: List[UnicodeKanaScript]) =
-    FilePrinterAlg
-      .resource[F](base + "/kana.tsv")
-      .use(_.print(generateDeck(scripts)))
-
-  private def generateDeck(scripts: List[UnicodeKanaScript]) =
+  def generateDeck(scripts: List[UnicodeKanaScript]): String =
     (scripts.map(generateKanaCards) :+ generatePairCards).reduce(_ ++ _) |>
       Deck.apply |>
       Serialization.deckToString
@@ -60,6 +47,19 @@ class GenerateAnkiCards[F[_]](implicit F: Sync[F]) {
   private def generateKanaCards(script: UnicodeKanaScript) =
     script |>
       GenerateAnkiCards.toCards
+}
+
+class GenerateAnkiCards[F[_]](implicit F: Sync[F]) {
+  def run(args: List[String]): F[ExitCode] =
+    for {
+      baseDir <- getBaseDir(args)
+      _ <- writeKanaDeck(baseDir, Kana.scripts)
+    } yield ExitCode.Success
+
+  private def writeKanaDeck(base: String, scripts: List[UnicodeKanaScript]) =
+    FilePrinterAlg
+      .resource[F](base + "/kana.tsv")
+      .use(_.print(GenerateAnkiCards.generateDeck(scripts)))
 
   private def getBaseDir(args: List[String]) =
     args match {
