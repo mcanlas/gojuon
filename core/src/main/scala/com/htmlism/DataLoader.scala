@@ -66,13 +66,13 @@ object DataLoader {
     (Kana.unicodeHiraganaByCodePoint ++ Kana.unicodeKatakanaByCodePoint)
       .fmap(_ => List[JapaneseEntry]())
 
-  yamlFiles
-    .traverse(parseEntries[IO])
-    .map(_.flatten)
-    .map { xs =>
-      xs
-        .foldLeft(wordCollectionsByCodePoint)(organizeByKana)
-    }
+  val wordRegistryByCodePoint =
+    yamlFiles
+      .traverse(parseEntries[IO])
+      .map(_.flatten)
+      .map(_.foldLeft(wordCollectionsByCodePoint)(organizeByKana))
+
+  wordRegistryByCodePoint
     .map { reg =>
       for (k <- (Kana.unicodeHiragana ++ Kana.unicodeKatakana)) {
         println(k.codePoint.toChar.toString + " " + k.variant.toString)

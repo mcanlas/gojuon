@@ -6,6 +6,7 @@ import cats.implicits._
 object StringPrinter extends IOApp {
   def run(args: List[String]): IO[ExitCode] =
     DataLoader
-      .demonstrateParsing
+      .wordRegistryByCodePoint
+      .flatMap(s => IO.delay(println(s)))
       .as(ExitCode.Success)
 }
