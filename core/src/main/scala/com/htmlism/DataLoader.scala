@@ -52,9 +52,9 @@ object DataLoader {
   /**
    * Demonstrate basic loading and parsing of YAML structures
    */
-  val demonstrateParsing =
+  def demonstrateParsing[F[_] : Sync] =
     yamlFiles
-      .traverse(parseEntries[IO])
+      .traverse(parseEntries[F])
       .map { xxs =>
         xxs.foreach(xs => xs.foreach(println))
       }
@@ -66,13 +66,13 @@ object DataLoader {
     (Kana.unicodeHiraganaByCodePoint ++ Kana.unicodeKatakanaByCodePoint)
       .fmap(_ => List[JapaneseEntry]())
 
-  val wordRegistryByCodePoint =
+  def wordRegistryByCodePoint[F[_] : Sync] =
     yamlFiles
-      .traverse(parseEntries[IO])
+      .traverse(parseEntries[F])
       .map(_.flatten)
       .map(_.foldLeft(wordCollectionsByCodePoint)(organizeByKana))
 
-  wordRegistryByCodePoint
+  wordRegistryByCodePoint[IO]
     .map { reg =>
       for (k <- (Kana.unicodeHiragana ++ Kana.unicodeKatakana)) {
         println(k.codePoint.toChar.toString + " " + k.variant.toString)
