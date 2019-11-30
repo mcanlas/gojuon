@@ -22,10 +22,8 @@ object GenerateAnkiCards extends GenerateAnkiCards[IO] with IOApp {
       .buildUnicodeKana(script.codePoint)
       .map(toCard(script.name))
 
-  def generateDeck(scripts: List[UnicodeKanaScript]): String =
-    (scripts.map(generateKanaCards) :+ generatePairCards).reduce(_ ++ _) |>
-      Deck.apply |>
-      Serialization.deckToString
+  def generateDeck(scripts: List[UnicodeKanaScript]): List[AnkiCard] =
+    (scripts.map(generateKanaCards) :+ generatePairCards).reduce(_ ++ _)
 
   private def generatePairCards = {
     val hiragana = Kana.buildUnicodeKana(Kana.hiragana.codePoint)
@@ -51,12 +49,16 @@ object GenerateAnkiCards extends GenerateAnkiCards[IO] with IOApp {
 
 class GenerateAnkiCards[F[_]](implicit F: Sync[F]) {
   def run(args: List[String]): F[ExitCode] =
-    (getBaseDir(args) >>= writeKanaDeck(Kana.scripts))
-      .as(ExitCode.Success)
+    for {
+      base <- getBaseDir(args)
+      _ <- writeKanaDeck(Kana.scripts)(base)
+    } yield ExitCode.Success
 
   private def writeKanaDeck(scripts: List[UnicodeKanaScript])(base: String) =
     (FilePrinterAlg[F]
       .print(base + "/kana.tsv") _)
+      .compose(Serialization.deckToString)
+      .compose(Deck.apply)
       .compose(GenerateAnkiCards.generateDeck)
       .apply(scripts)
 
