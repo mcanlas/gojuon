@@ -23,7 +23,7 @@ object GenerateAnkiCards extends GenerateAnkiCards[IO] with IOApp {
       .map(toCard(script.name))
 
   def generateDeck(scripts: List[UnicodeKanaScript]): List[AnkiCard] =
-    (scripts.map(generateKanaCards) :+ generatePairCards).reduce(_ ++ _)
+    (scripts.map(GenerateAnkiCards.toCards) :+ generatePairCards).reduce(_ ++ _)
 
   private def generatePairCards = {
     val hiragana = Kana.buildUnicodeKana(Kana.hiragana.codePoint)
@@ -41,10 +41,6 @@ object GenerateAnkiCards extends GenerateAnkiCards[IO] with IOApp {
       AnkiCard(cardId, front, back, List("pair"))
     }
   }
-
-  private def generateKanaCards(script: UnicodeKanaScript) =
-    script |>
-      GenerateAnkiCards.toCards
 }
 
 class GenerateAnkiCards[F[_]](implicit F: Sync[F]) {
