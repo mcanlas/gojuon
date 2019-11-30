@@ -1,12 +1,14 @@
 - j: すし
   e: sushi
   tag: food
+  emoji: 🍣
 - j: てりやき
   e: teriyaki
   tag: food
 - j: ごはん
   e: rice
   tag: food
+  emoji: 🍚
 - k: 朝ご飯
   j: あさごはん
   e: breakfast
@@ -23,37 +25,47 @@
   j: みず
   e: water
   tag: drink
+  emoji: 💧
 - k: お酒
   j: おさけ
   e: sake/alcohol
   tag: drink
+  emoji: 🍶
 - j: ビール
   e: beer
   tag: drink
+  emoji: 🍺
 - j: コーヒー
   e: coffee
   tag: drink
+  emoji: ☕️
 - j: ねこ
   e: cat
   tag: [animal, pet]
+  emoji: 🐈
 - j: たこ
   e: octopus
   tag: [animal, food]
+  emoji: 🐙
 - j: いぬ
   e: dog
   tag: [animal, pet]
+  emoji: 🐕
 - j: えび
   e: shrimp
   tag: [animal, food]
+  emoji: 🍤
 - j: けむし
   e: caterpillar (hairy insect)
   tag: [animal]
 - j: むし
   e: insect
   tag: [animal]
+  emoji: 🐛
 - j: さる
   e: monkey
   tag: [animal]
+  emoji: 🐒
 - j: あくま
   k: 悪魔
   e: devil
@@ -102,9 +114,11 @@
 - j: ケーキ
   e: cake
   tag: food
+  emoji: 🍰
 - j: サンドイッチ
   e: sandwich
   tag: food
+  emoji: 🥪
 - j: からて
   k: 空手
   e: karate
@@ -112,15 +126,19 @@
 - j: テニス
   e: tennis
   tag: sport
+  emoji: 🎾
 - j: バレーボール
   e: volleyball
   tag: sport
+  emoji: 🏐
 - j: タクシー
   e: taxi
+  emoji: 🚕
 - j: カラオケ
   e: karaoke
 - j: カメラ
   e: camera
+  emoji: 📸
 - j: テレビ
   e: television
   tag: watchable
@@ -151,3 +169,4 @@
   e: jacket
 - j: ズボン
   e: pants (jubon)
+  emoji: 👖
