@@ -4,8 +4,7 @@ import org.scalatest._
 
 class GojuonSuite extends FunSuite with Matchers {
   test("the number of canonical kana should be 48") {
-    Kana.kanaVariants
-      .length shouldBe 48
+    Kana.kanaVariants.length shouldBe 48
   }
 
   test("hiragana ka should have two voicings") {
