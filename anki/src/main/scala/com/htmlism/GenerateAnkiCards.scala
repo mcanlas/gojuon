@@ -51,15 +51,14 @@ class GenerateAnkiCards[F[_]](implicit F: Sync[F]) {
   def run(args: List[String]): F[ExitCode] =
     for {
       base <- getBaseDir(args)
-      _ <- writeDeck(Kana.scripts |> GenerateAnkiCards.generateDeck)(base + "/kana.tsv")
+      _ <- writeDeck(base + "/kana.tsv")(Kana.scripts |> GenerateAnkiCards.generateDeck)
     } yield ExitCode.Success
 
-  private def writeDeck(cards: List[AnkiCard])(dest: String) =
+  private def writeDeck(dest: String) =
     (FilePrinterAlg[F]
       .print(dest) _)
       .compose(Serialization.deckToString)
       .compose(Deck.apply)
-      .apply(cards)
 
   private def getBaseDir(args: List[String]) =
     args match {
