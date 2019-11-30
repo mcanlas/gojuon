@@ -5,7 +5,7 @@ import cats.implicits._
 import mouse.any._
 
 object GenerateAnkiCards extends GenerateAnkiCards[IO] with IOApp {
-  private def kanaToCard(script: String)(uk: UnicodeKana): AnkiCard = {
+  private def kanaToCard(script: String, reg: Map[Int, List[JapaneseEntry]])(uk: UnicodeKana): AnkiCard = {
     val romaji = Romaji.toRomaji(uk.variant)
 
     val cardId = script + "-" + Romaji.toKanaId(uk.variant)
@@ -14,16 +14,21 @@ object GenerateAnkiCards extends GenerateAnkiCards[IO] with IOApp {
 
     val back = s"""<div id="japanese-romaji-answer">$romaji</div>"""
 
-    AnkiCard(cardId, front, back, List(script))
+    val exampleWords =
+      reg(uk.codePoint)
+        .map(_.japanese.s)
+        .mkString("<br>") |> (s => s"""<div>$s</div>""")
+
+    AnkiCard(cardId, front, back + exampleWords, List(script))
   }
 
-  private def scriptToCards(script: UnicodeKanaScript): List[AnkiCard] =
+  private def scriptToCards(reg: Map[Int, List[JapaneseEntry]])(script: UnicodeKanaScript): List[AnkiCard] =
     Kana
       .buildUnicodeKana(script.codePoint)
-      .map(kanaToCard(script.name))
+      .map(kanaToCard(script.name, reg))
 
-  def generateDeck(scripts: List[UnicodeKanaScript]): List[AnkiCard] =
-    scripts.flatMap(GenerateAnkiCards.scriptToCards) ::: generatePairCards
+  def generateDeck(scripts: List[UnicodeKanaScript], reg: Map[Int, List[JapaneseEntry]]): List[AnkiCard] =
+    scripts.flatMap(GenerateAnkiCards.scriptToCards(reg)) ::: generatePairCards
 
   private def generatePairCards = {
     val hiragana = Kana.buildUnicodeKana(Kana.hiragana.codePoint)
@@ -47,7 +52,10 @@ class GenerateAnkiCards[F[_]](implicit F: Sync[F]) {
   def run(args: List[String]): F[ExitCode] =
     for {
       base <- getBaseDir(args)
-      _ <- writeDeck(base + "/kana.tsv")(Kana.scripts |> GenerateAnkiCards.generateDeck)
+
+      reg <- DataLoader.wordRegistryByCodePoint[F]
+
+      _ <- writeDeck(base + "/kana.tsv")(GenerateAnkiCards.generateDeck(Kana.scripts, reg))
     } yield ExitCode.Success
 
   private def writeDeck(dest: String) =
