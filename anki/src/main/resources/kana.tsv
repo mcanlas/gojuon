@@ -80,13 +80,13 @@ katakana-ka	<div id="japanese-heroic-character"><span class="katakana">カ</span
 katakana-ga	<div id="japanese-heroic-character"><span class="katakana">ガ</span></div>	<div id="japanese-romaji-answer">ga</div><div>クロノ・トリガー<br>ハンバーガー 🍔</div>	katakana
 katakana-ki	<div id="japanese-heroic-character"><span class="katakana">キ</span></div>	<div id="japanese-romaji-answer">ki</div><div>ケーキ 🍰<br>キャプテン・ファルコン 🏎<br>ドンキーコング</div>	katakana
 katakana-gi	<div id="japanese-heroic-character"><span class="katakana">ギ</span></div>	<div id="japanese-romaji-answer">gi</div><div>イギリス 🇬🇧<br>サンクスギビング 🦃</div>	katakana
-katakana-ku	<div id="japanese-heroic-character"><span class="katakana">ク</span></div>	<div id="japanese-romaji-answer">ku</div><div>クロノ・トリガー<br>ネクタイ 👔<br>バイク<br>タクシー 🚕<br>アイスクリーム 🍦<br>クリーム<br>サンクスギビング 🦃<br>クリスマス 🎄<br>ダックハント 🦆<br>ロックマン<br>ソニック<br>ドクターマリオ 👨‍⚕️<br>アイスクライマー ❄️<br>フォックス 🦊<br>リンク<br>クッパ<br>カメック<br>サクラ<br>マーク</div>	katakana
+katakana-ku	<div id="japanese-heroic-character"><span class="katakana">ク</span></div>	<div id="japanese-romaji-answer">ku</div><div>クロノ・トリガー<br>ネクタイ 👔<br>バイク<br>タクシー 🚕<br>アイスクリーム 🍦<br>クリーム<br>サンクスギビング 🦃<br>クリスマス 🎄<br>ダックハント 🦆<br>ロックマン<br>ソニック<br>ドクターマリオ 👨‍⚕️<br>アイスクライマー ❄️<br>フォックス 🦊<br>リンク<br>クッパ<br>カメック<br>サクラ 🌸<br>マーク</div>	katakana
 katakana-gu	<div id="japanese-heroic-character"><span class="katakana">グ</span></div>	<div id="japanese-romaji-answer">gu</div><div>グラス<br>サンクスギビング 🦃<br>ドンキーコング</div>	katakana
 katakana-ke	<div id="japanese-heroic-character"><span class="katakana">ケ</span></div>	<div id="japanese-romaji-answer">ke</div><div>ジャケット<br>カラオケ<br>ケーキ 🍰<br>サスケ</div>	katakana
 katakana-ge	<div id="japanese-heroic-character"><span class="katakana">ゲ</span></div>	<div id="japanese-romaji-answer">ge</div><div></div>	katakana
 katakana-ko	<div id="japanese-heroic-character"><span class="katakana">コ</span></div>	<div id="japanese-romaji-answer">ko</div><div>コンビニ<br>チョコレート 🍫<br>コーヒー ☕️<br>キャプテン・ファルコン 🏎<br>ドンキーコング</div>	katakana
 katakana-go	<div id="japanese-heroic-character"><span class="katakana">ゴ</span></div>	<div id="japanese-romaji-answer">go</div><div></div>	katakana
-katakana-sa	<div id="japanese-heroic-character"><span class="katakana">サ</span></div>	<div id="japanese-romaji-answer">sa</div><div>アンサー<br>サラリーマン<br>サンドイッチ 🥪<br>サンクスギビング 🦃<br>サムス<br>サクラ<br>サスケ</div>	katakana
+katakana-sa	<div id="japanese-heroic-character"><span class="katakana">サ</span></div>	<div id="japanese-romaji-answer">sa</div><div>アンサー<br>サラリーマン<br>サンドイッチ 🥪<br>サンクスギビング 🦃<br>サムス<br>サクラ 🌸<br>サスケ</div>	katakana
 katakana-za	<div id="japanese-heroic-character"><span class="katakana">ザ</span></div>	<div id="japanese-romaji-answer">za</div><div>スーパーマリオブラザーズ<br>ピザ 🍕</div>	katakana
 katakana-shi	<div id="japanese-heroic-character"><span class="katakana">シ</span></div>	<div id="japanese-romaji-answer">shi</div><div>ミッション<br>タクシー 🚕<br>ヨッシー 🦖<br>カカシ</div>	katakana
 katakana-zi	<div id="japanese-heroic-character"><span class="katakana">ジ</span></div>	<div id="japanese-romaji-answer">ji</div><div>ファイナルファンタジー<br>リオデジャネイロ 🇧🇷<br>ブラジル 🇧🇷<br>ジャケット<br>ルイージ<br>ジョン</div>	katakana
@@ -134,7 +134,7 @@ katakana-mo	<div id="japanese-heroic-character"><span class="katakana">モ</span
 katakana-ya	<div id="japanese-heroic-character"><span class="katakana">ヤ</span></div>	<div id="japanese-romaji-answer">ya</div><div></div>	katakana
 katakana-yu	<div id="japanese-heroic-character"><span class="katakana">ユ</span></div>	<div id="japanese-romaji-answer">yu</div><div></div>	katakana
 katakana-yo	<div id="japanese-heroic-character"><span class="katakana">ヨ</span></div>	<div id="japanese-romaji-answer">yo</div><div>ヨーロッパ 🇪🇺<br>ヨッシー 🦖</div>	katakana
-katakana-ra	<div id="japanese-heroic-character"><span class="katakana">ラ</span></div>	<div id="japanese-romaji-answer">ra</div><div>スーパーマリオブラザーズ<br>フランス 🇫🇷<br>ブラジル 🇧🇷<br>グラス<br>サラリーマン<br>カメラ 📸<br>カラオケ<br>フライドポテト 🍟<br>アイスクライマー ❄️<br>サクラ</div>	katakana
+katakana-ra	<div id="japanese-heroic-character"><span class="katakana">ラ</span></div>	<div id="japanese-romaji-answer">ra</div><div>スーパーマリオブラザーズ<br>フランス 🇫🇷<br>ブラジル 🇧🇷<br>グラス<br>サラリーマン<br>カメラ 📸<br>カラオケ<br>フライドポテト 🍟<br>アイスクライマー ❄️<br>サクラ 🌸</div>	katakana
 katakana-ri	<div id="japanese-heroic-character"><span class="katakana">リ</span></div>	<div id="japanese-romaji-answer">ri</div><div>クロノ・トリガー<br>スーパーマリオブラザーズ<br>イギリス 🇬🇧<br>イタリア 🇮🇹<br>リオデジャネイロ 🇧🇷<br>アメリカ 🇺🇸<br>サラリーマン<br>アイスクリーム 🍦<br>クリーム<br>クリスマス 🎄<br>ワリオ<br>ドクターマリオ 👨‍⚕️<br>リンク<br>マリオ</div>	katakana
 katakana-ru	<div id="japanese-heroic-character"><span class="katakana">ル</span></div>	<div id="japanese-romaji-answer">ru</div><div>ファイナルファンタジー<br>ブラジル 🇧🇷<br>ホテル 🏨<br>アイドル<br>バレーボール 🏐<br>ビール 🍺<br>ゼルダ<br>キャプテン・ファルコン 🏎<br>ルイージ<br>ナルト 🍥</div>	katakana
 katakana-re	<div id="japanese-heroic-character"><span class="katakana">レ</span></div>	<div id="japanese-romaji-answer">re</div><div>エスカレーター<br>テレビ<br>バレーボール 🏐<br>カレー<br>チョコレート 🍫</div>	katakana
