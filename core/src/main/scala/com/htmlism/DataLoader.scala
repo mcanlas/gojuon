@@ -20,6 +20,7 @@ object DataLoader {
   private val yamlFiles =
     List(
       "colors",
+      "companies",
       "names-american",
       "names-naruto",
       "names-nintendo",
