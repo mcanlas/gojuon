@@ -16,7 +16,9 @@ object GenerateAnkiCards extends GenerateAnkiCards[IO] with IOApp {
 
     val exampleWords =
       reg(uk.codePoint)
-        .map(_.japanese.s)
+        .map { je =>
+          je.japanese.s + je.emoji.getOrElse("")
+        }
         .mkString("<br>") |> (s => s"""<div>$s</div>""")
 
     AnkiCard(cardId, front, back + exampleWords, List(script))

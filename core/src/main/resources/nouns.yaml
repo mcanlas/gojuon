@@ -165,8 +165,13 @@
   e: glass/grass
 - j: ネクタイ
   e: neck tie
+  emoji: 👔
 - j: ジャケット
   e: jacket
 - j: ズボン
   e: pants (jubon)
   emoji: 👖
+- j: きつね
+  k: 狐
+  e: fox
+  emoji: 🦊

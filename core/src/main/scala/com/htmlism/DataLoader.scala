@@ -11,7 +11,7 @@ object DecoderImplicits {
       .emap(s => JapaneseSequence.parse(s).leftMap(_.toString))
 
   implicit val entryDecoder: Decoder[JapaneseEntry] =
-    Decoder.forProduct3("j", "k", "e")(JapaneseEntry.apply)
+    Decoder.forProduct4("j", "k", "e", "emoji")(JapaneseEntry.apply)
 }
 
 object DataLoader {
