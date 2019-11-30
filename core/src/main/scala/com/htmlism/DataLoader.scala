@@ -14,7 +14,7 @@ object DecoderImplicits {
     Decoder.forProduct3("j", "k", "e")(JapaneseEntry.apply)
 }
 
-object DataLoader extends App {
+object DataLoader {
   import DecoderImplicits._
 
   private val yamlFiles =
@@ -52,12 +52,12 @@ object DataLoader extends App {
   /**
    * Demonstrate basic loading and parsing of YAML structures
    */
-  yamlFiles
-    .traverse(parseEntries[IO])
-    .map { xxs =>
-      xxs.foreach(xs => xs.foreach(println))
-    }
-    .unsafeRunSync()
+  val demonstrateParsing =
+    yamlFiles
+      .traverse(parseEntries[IO])
+      .map { xxs =>
+        xxs.foreach(xs => xs.foreach(println))
+      }
 
   /**
    * Categorize words by kana
