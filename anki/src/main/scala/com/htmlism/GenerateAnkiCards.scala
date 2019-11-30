@@ -4,7 +4,9 @@ import cats.effect._
 import cats.implicits._
 import mouse.any._
 
-object GenerateAnkiCards extends GenerateAnkiCards[IO] with IOApp {
+object GenerateAnkiCards extends GenerateAnkiCards[IO] with IOApp
+
+object KanaCards {
   private def kanaToCard(script: String, reg: Map[Int, List[JapaneseEntry]])(uk: UnicodeKana): AnkiCard = {
     val romaji = Romaji.toRomaji(uk.variant)
 
@@ -30,7 +32,7 @@ object GenerateAnkiCards extends GenerateAnkiCards[IO] with IOApp {
       .map(kanaToCard(script.name, reg))
 
   def generateDeck(scripts: List[UnicodeKanaScript], reg: Map[Int, List[JapaneseEntry]]): List[AnkiCard] =
-    scripts.flatMap(GenerateAnkiCards.scriptToCards(reg)) ::: generatePairCards
+    scripts.flatMap(scriptToCards(reg)) ::: generatePairCards
 
   private def generatePairCards = {
     val hiragana = Kana.buildUnicodeKana(Kana.hiragana.codePoint)
@@ -57,7 +59,7 @@ class GenerateAnkiCards[F[_]](implicit F: Sync[F]) {
 
       reg <- DataLoader.wordRegistryByCodePoint[F]
 
-      _ <- writeDeck(base + "/kana.tsv")(GenerateAnkiCards.generateDeck(Kana.scripts, reg))
+      _ <- writeDeck(base + "/kana.tsv")(KanaCards.generateDeck(Kana.scripts, reg))
     } yield ExitCode.Success
 
   private def writeDeck(dest: String) =
