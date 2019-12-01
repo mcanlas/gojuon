@@ -10,8 +10,31 @@ object DecoderImplicits {
       .decodeString
       .emap(s => JapaneseSequence.parse(s).leftMap(_.toString))
 
+  private val defaultTagDecoder =
+    Nil.asRight: Decoder.Result[List[String]]
+
   implicit val entryDecoder: Decoder[JapaneseEntry] =
-    Decoder.forProduct4("j", "k", "e", "emoji")(JapaneseEntry.apply)
+    new Decoder[JapaneseEntry] {
+      final def apply(c: HCursor): Decoder.Result[JapaneseEntry] =
+        for {
+          j <- c.downField("j").as[JapaneseSequence]
+          k <- c.downField("k").as[Option[String]]
+          e <- c.downField("e").as[String]
+          emoji <- c.downField("emoji").as[Option[String]]
+          tags <- c.downField("tag").focus.fold(defaultTagDecoder)(decodeTagMulti)
+        } yield {
+          new JapaneseEntry(j, k, e, emoji, tags)
+        }
+    }
+
+  private def decodeTagMulti(j: Json) =
+    if (j.isString)
+      j.as[String].map(List(_))
+    else if (j.isArray)
+      j.as[List[String]]
+    else
+      DecodingFailure("expected string or array", Nil).asLeft
+
 }
 
 object DataLoader {
