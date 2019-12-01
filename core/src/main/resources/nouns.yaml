@@ -194,3 +194,13 @@
 - j: せんせい
   k: 先生
   e: teacher
+- j: すいか
+  k: 西瓜
+  e: watermelon
+  emoji: 🍉
+  tag: food
+- j: りんご
+  k: 林檎
+  e: apple
+  emoji: 🍎
+  tag: food
