@@ -16,3 +16,15 @@
   e: direct object particle
 - j: で
   e: location particle
+- j: わたし
+  k: 私
+  e: watashi
+  id: watashi
+- j: ぼく
+  k: 僕
+  e: boku
+  id: boku
+- j: おれ
+  k: 俺
+  e: ore
+  id: ore

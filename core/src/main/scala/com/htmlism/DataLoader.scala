@@ -17,13 +17,14 @@ object DecoderImplicits {
     new Decoder[JapaneseEntry] {
       final def apply(c: HCursor): Decoder.Result[JapaneseEntry] =
         for {
+          id <- c.downField("id").as[Option[String]]
           j <- c.downField("j").as[JapaneseSequence]
           k <- c.downField("k").as[Option[String]]
           e <- c.downField("e").as[String]
           emoji <- c.downField("emoji").as[Option[String]]
           tags <- c.downField("tag").focus.fold(defaultTagDecoder)(decodeTagMulti)
         } yield {
-          new JapaneseEntry(j, k, e, emoji, tags)
+          new JapaneseEntry(id, j, k, e, emoji, tags)
         }
     }
 
