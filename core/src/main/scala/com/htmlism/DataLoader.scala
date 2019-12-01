@@ -45,6 +45,7 @@ object DataLoader {
       "colors",
       "companies",
       "names-american",
+      "names-fiction",
       "names-naruto",
       "names-nintendo",
       "nouns",
