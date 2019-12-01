@@ -60,6 +60,10 @@ class GenerateAnkiCards[F[_]](implicit F: Sync[F]) {
       reg <- DataLoader.wordRegistryByCodePoint[F]
 
       _ <- writeDeck(base + "/kana.tsv")(KanaCards.generateDeck(Kana.scripts, reg))
+
+      words <- DataLoader.allWords[F].map(_.flatten)
+
+      _ <- writeDeck(base + "/phrases.tsv")(PhraseDeck.entriesToAnkiCards(words))
     } yield ExitCode.Success
 
   private def writeDeck(dest: String) =
