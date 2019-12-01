@@ -56,11 +56,14 @@ object DataLoader {
       "phrases",
       "places",
       "works")
-      .map(s => "/" + s  + ".yaml")
+
+  val enhancements = Map[String, JapaneseEntry => JapaneseEntry](
+    "phrases" -> (_.withTag("phrase"))
+  )
 
   private def parseResourceFile[F[_]](s: String)(implicit F: Sync[F]) =
     Resource
-      .fromAutoCloseable(F.delay(getClass.getResourceAsStream(s)))
+      .fromAutoCloseable(F.delay(getClass.getResourceAsStream("/" + s  + ".yaml")))
       .map(new java.io.InputStreamReader(_))
       .use(reader => F.delay(io.circe.yaml.parser.parse(reader)))
       .flatMap(_.fold(logAndRaise[F, Json](s"parsing json of $s"), F.pure))
@@ -69,6 +72,7 @@ object DataLoader {
     parseResourceFile[F](s)
       .map(_.as[List[JapaneseEntry]])
       .flatMap(_.fold(logAndRaise[F, List[JapaneseEntry]](s"parsing classes of $s"), F.pure))
+      .map { xs => enhancements.get(s).fold(xs)(f => xs.map(f)) }
 
   private def logAndRaise[F[_], A](msg: String)(err: Throwable)(implicit F: Sync[F]) =
     F.delay(println(msg + ": " + err)) *> F.raiseError[A](err)
