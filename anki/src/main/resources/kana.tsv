@@ -15,7 +15,7 @@ hiragana-ko	<div id="japanese-heroic-character"><span class="hiragana">こ</span
 hiragana-go	<div id="japanese-heroic-character"><span class="hiragana">ご</span></div>	<div id="japanese-romaji-answer">go</div><div>ちゅうごく 🇨🇳<br>おはようございます<br>ご 5⃣<br>りんご 🍎<br>にほんご<br>えいご<br>ひるごはん<br>ばんごはん<br>あさごはん<br>ごはん 🍚<br>ごく<br>ごはん 🍚</div>	hiragana
 hiragana-sa	<div id="japanese-heroic-character"><span class="hiragana">さ</span></div>	<div id="japanese-romaji-answer">sa</div><div>さようなら<br>さん 3⃣<br>さる 🐒<br>おさけ 🍶<br>あさごはん<br>うさぎ 🐰</div>	hiragana
 hiragana-za	<div id="japanese-heroic-character"><span class="hiragana">ざ</span></div>	<div id="japanese-romaji-answer">za</div><div>おはようございます</div>	hiragana
-hiragana-shi	<div id="japanese-heroic-character"><span class="hiragana">し</span></div>	<div id="japanese-romaji-answer">shi</div><div>むし 🐛<br>けむし 🐛<br>すし 🍣<br>しろ</div>	hiragana
+hiragana-shi	<div id="japanese-heroic-character"><span class="hiragana">し</span></div>	<div id="japanese-romaji-answer">shi</div><div>むし 🐛<br>けむし 🐛<br>すし 🍣<br>しろ ⚪️</div>	hiragana
 hiragana-zi	<div id="japanese-heroic-character"><span class="hiragana">じ</span></div>	<div id="japanese-romaji-answer">ji</div><div>じゅう 🔟</div>	hiragana
 hiragana-su	<div id="japanese-heroic-character"><span class="hiragana">す</span></div>	<div id="japanese-romaji-answer">su</div><div>おはようございます<br>ます<br>はなす<br>べんきようする<br>する<br>すいか 🍉<br>すし 🍣</div>	hiragana
 hiragana-zu	<div id="japanese-heroic-character"><span class="hiragana">ず</span></div>	<div id="japanese-romaji-answer">zu</div><div>みず 💧</div>	hiragana
@@ -65,7 +65,7 @@ hiragana-ra	<div id="japanese-heroic-character"><span class="hiragana">ら</span
 hiragana-ri	<div id="japanese-heroic-character"><span class="hiragana">り</span></div>	<div id="japanese-romaji-answer">ri</div><div>りんご 🍎<br>てりやき</div>	hiragana
 hiragana-ru	<div id="japanese-heroic-character"><span class="hiragana">る</span></div>	<div id="japanese-romaji-answer">ru</div><div>る<br>かえる<br>みる<br>ねる<br>たべる<br>おきる<br>べんきようする<br>する<br>くる<br>さる 🐒<br>ひるごはん</div>	hiragana
 hiragana-re	<div id="japanese-heroic-character"><span class="hiragana">れ</span></div>	<div id="japanese-romaji-answer">re</div><div></div>	hiragana
-hiragana-ro	<div id="japanese-heroic-character"><span class="hiragana">ろ</span></div>	<div id="japanese-romaji-answer">ro</div><div>ろく 6⃣<br>しろ</div>	hiragana
+hiragana-ro	<div id="japanese-heroic-character"><span class="hiragana">ろ</span></div>	<div id="japanese-romaji-answer">ro</div><div>ろく 6⃣<br>しろ ⚪️</div>	hiragana
 hiragana-wa	<div id="japanese-heroic-character"><span class="hiragana">わ</span></div>	<div id="japanese-romaji-answer">wa</div><div></div>	hiragana
 hiragana-wi	<div id="japanese-heroic-character"><span class="hiragana">ゐ</span></div>	<div id="japanese-romaji-answer">wi</div><div></div>	hiragana
 hiragana-we	<div id="japanese-heroic-character"><span class="hiragana">ゑ</span></div>	<div id="japanese-romaji-answer">we</div><div></div>	hiragana
