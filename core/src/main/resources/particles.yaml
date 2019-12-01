@@ -1,9 +1,12 @@
 - j: の
   e: modifier particle
+  id: particle-no
 - j: か
   e: question particle
+  id: particle-ka
 - j: は
   e: subject particle
+  id: particle-wa
 - j: る
   e: lemma suffix
 - j: ます
