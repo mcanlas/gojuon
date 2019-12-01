@@ -77,12 +77,15 @@ object DataLoader {
   private def logAndRaise[F[_], A](msg: String)(err: Throwable)(implicit F: Sync[F]) =
     F.delay(println(msg + ": " + err)) *> F.raiseError[A](err)
 
+  def allWords[F[_] : Sync] =
+    yamlFiles
+      .traverse(parseEntries[F])
+
   /**
    * Demonstrate basic loading and parsing of YAML structures
    */
   def demonstrateParsing[F[_] : Sync] =
-    yamlFiles
-      .traverse(parseEntries[F])
+    allWords[F]
       .map { xxs =>
         xxs.foreach(xs => xs.foreach(println))
       }
@@ -95,8 +98,7 @@ object DataLoader {
       .fmap(_ => List[JapaneseEntry]())
 
   def wordRegistryByCodePoint[F[_] : Sync] =
-    yamlFiles
-      .traverse(parseEntries[F])
+    allWords[F]
       .map(_.flatten)
       .map(_.foldLeft(wordCollectionsByCodePoint)(organizeByKana))
 
