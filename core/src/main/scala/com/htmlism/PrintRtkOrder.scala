@@ -3,17 +3,55 @@ package com.htmlism
 import cats.effect._
 
 object PrintRtkOrder extends IOApp {
+  private val justCanonicalFormsHiragana =
+    Kana
+      .unicodeHiragana
+      .filter {
+        case UnicodeKana(UnvoicedKanaVariant(KanaCv(ConsonantW, VowelE | VowelI)), _) =>
+          false
+        case UnicodeKana(UnvoicedKanaVariant(_), _) =>
+          true
+        case _ =>
+          false
+      }
+
+  private val justCanonicalFormsKatakana =
+    Kana
+      .unicodeKatakana
+      .filter {
+        case UnicodeKana(UnvoicedKanaVariant(KanaCv(ConsonantW, VowelE | VowelI)), _) =>
+          false
+        case UnicodeKana(UnvoicedKanaVariant(_), _) =>
+          true
+        case _ =>
+          false
+      }
+
   def run(args: List[String]): IO[ExitCode] =
     for {
       xs <- readFile("htk-hiragana.tsv")
 
       ys <- readFile("htk-katakana.tsv")
 
-      _ <- IO.delay { xs.zip(Kana.allKanaMinusOld).foreach(println) }
+      _ <- IO.delay {
+        xs
+          .zip(justCanonicalFormsHiragana)
+          .sortBy(_._1)
+          .foreach { case (sort, u) =>
+            println(s"${u.codePoint.toChar} $sort")
+          }
+        }
 
       _ <- IO.delay { println; println; println }
 
-      _ <- IO.delay { ys.zip(Kana.allKanaMinusOld).foreach(println) }
+      _ <- IO.delay {
+        ys
+          .zip(justCanonicalFormsKatakana)
+          .sortBy(_._1)
+          .foreach { case (sort, u) =>
+            println(s"${u.codePoint.toChar} $sort")
+          }
+      }
     } yield ExitCode.Success
 
   def readFile(s: String) =
