@@ -49,16 +49,24 @@ object Kana {
     cvCombinations
       .flatMap(availableKana) :+ ConsonantN
 
-  private def addVariant(f: KanaUnicodeBundle => KanaUnicodeBundle)(pred: PartialFunction[Kana, Unit])(kv: KanaUnicodeBundle) =
+  val allKanaMinusOld: List[Kana] =
+    allKana.filter {
+      case KanaCv(ConsonantW, VowelE | VowelI) =>
+        false
+      case _ =>
+        true
+    }
+
+  private def addVariant(f: KanaVariantBundle => KanaVariantBundle)(pred: PartialFunction[Kana, Unit])(kv: KanaVariantBundle) =
     if (pred.isDefinedAt(kv.kana))
       f(kv)
     else
       kv
 
-  val kanaVariants: List[KanaUnicodeBundle] =
+  val kanaVariants: List[KanaVariantBundle] =
     Kana
       .allKana
-      .map(k => KanaUnicodeBundle(k, hasSmall = false, hasVoiced = false, hasHalf = false))
+      .map(k => KanaVariantBundle(k, hasSmall = false, hasVoiced = false, hasHalf = false))
       .map(addVariant(_.copy(hasSmall  = true)) { case KanaCv(EmptyConsonant | ConsonantY, _) => })
       .map(addVariant(_.copy(hasSmall  = true)) { case KanaCv(ConsonantT, VowelU) => })
       .map(addVariant(_.copy(hasSmall  = true)) { case KanaCv(ConsonantW, VowelA) => })
@@ -97,7 +105,7 @@ object Kana {
       .map(k => k.codePoint -> k.variant)
       .toMap
 
-  private def buildUnicodeKanaFold(accPair: (Int, List[UnicodeKana]), e: KanaUnicodeBundle) = {
+  private def buildUnicodeKanaFold(accPair: (Int, List[UnicodeKana]), e: KanaVariantBundle) = {
     val (base, acc) = accPair
 
     val skipTinyVersion =
@@ -142,7 +150,7 @@ sealed trait KanaScript
 case object Hiragana extends KanaScript
 case object Katakana extends KanaScript
 
-case class KanaUnicodeBundle(kana: Kana, hasSmall: Boolean, hasVoiced: Boolean, hasHalf: Boolean)
+case class KanaVariantBundle(kana: Kana, hasSmall: Boolean, hasVoiced: Boolean, hasHalf: Boolean)
 
 case class UnicodeKana(variant: KanaVariant, codePoint: Int)
 
@@ -155,7 +163,7 @@ final case class VoicedKanaVariant(kana: Kana) extends KanaVariant
 final case class HalfVoicedKanaVariant(kana: Kana) extends KanaVariant
 
 object KanaVariant {
-  def listVoicings(kv: KanaUnicodeBundle): List[KanaVariant] =
+  def listVoicings(kv: KanaVariantBundle): List[KanaVariant] =
     UnvoicedKanaVariant(kv.kana) ::
       (if (kv.hasVoiced)
         List(VoicedKanaVariant(kv.kana))
