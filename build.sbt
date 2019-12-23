@@ -13,14 +13,14 @@ lazy val core =
 lazy val console =
   project
     .settings(commonSettings: _*)
-    .settings(libraryDependencies += "org.typelevel" %% "mouse" % "0.23")
+    .settings(libraryDependencies += "org.typelevel" %% "mouse" % "0.24")
     .settings(libraryDependencies += "org.typelevel" %% "cats-effect" % "2.0.0")
     .dependsOn(core)
 
 lazy val anki =
   project
     .settings(commonSettings: _*)
-    .settings(libraryDependencies += "org.typelevel" %% "mouse" % "0.23")
+    .settings(libraryDependencies += "org.typelevel" %% "mouse" % "0.24")
     .settings(libraryDependencies += "org.typelevel" %% "cats-effect" % "2.0.0")
     .settings(libraryDependencies += "org.scalatest" %% "scalatest" % "3.1.0" % Test)
     .dependsOn(core)
