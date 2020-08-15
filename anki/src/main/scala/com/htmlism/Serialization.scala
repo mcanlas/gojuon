@@ -6,8 +6,7 @@ object Serialization {
       .mkString("\t")
 
   def deckToString(deck: Deck): String =
-    deck
-      .cards
+    deck.cards
       .map(cardtoString)
       .map(_ + "\n")
       .mkString

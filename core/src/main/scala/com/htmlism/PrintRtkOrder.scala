@@ -4,8 +4,7 @@ import cats.effect._
 
 object PrintRtkOrder extends IOApp {
   private val justCanonicalFormsHiragana =
-    Kana
-      .unicodeHiragana
+    Kana.unicodeHiragana
       .filter {
         case UnicodeKana(UnvoicedKanaVariant(KanaCv(ConsonantW, VowelE | VowelI)), _) =>
           false
@@ -16,8 +15,7 @@ object PrintRtkOrder extends IOApp {
       }
 
   private val justCanonicalFormsKatakana =
-    Kana
-      .unicodeKatakana
+    Kana.unicodeKatakana
       .filter {
         case UnicodeKana(UnvoicedKanaVariant(KanaCv(ConsonantW, VowelE | VowelI)), _) =>
           false
@@ -37,10 +35,11 @@ object PrintRtkOrder extends IOApp {
         xs
           .zip(justCanonicalFormsHiragana)
           .sortBy(_._1)
-          .foreach { case (sort, u) =>
-            println(s"${u.codePoint.toChar} $sort")
+          .foreach {
+            case (sort, u) =>
+              println(s"${u.codePoint.toChar} $sort")
           }
-        }
+      }
 
       _ <- IO.delay { println; println; println }
 
@@ -48,8 +47,9 @@ object PrintRtkOrder extends IOApp {
         ys
           .zip(justCanonicalFormsKatakana)
           .sortBy(_._1)
-          .foreach { case (sort, u) =>
-            println(s"${u.codePoint.toChar} $sort")
+          .foreach {
+            case (sort, u) =>
+              println(s"${u.codePoint.toChar} $sort")
           }
       }
     } yield ExitCode.Success
@@ -57,9 +57,11 @@ object PrintRtkOrder extends IOApp {
   def readFile(s: String) =
     Resource
       .fromAutoCloseable(IO.delay(getClass.getResourceAsStream("/" + s)))
-      .use(s => IO.delay {
-        scala.io.Source.fromInputStream(s).getLines.toList
-      })
+      .use(s =>
+        IO.delay {
+          scala.io.Source.fromInputStream(s).getLines.toList
+        }
+      )
       .map(_.tail)
       .map(_.flatMap { s =>
         val sixCols = s.split("\t")

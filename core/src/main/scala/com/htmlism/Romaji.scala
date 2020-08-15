@@ -7,7 +7,7 @@ object Romaji {
       VowelE -> "e",
       VowelI -> "i",
       VowelO -> "o",
-      VowelU -> "u",
+      VowelU -> "u"
     )
 
   val consonants: Map[Consonant, String] =
@@ -21,14 +21,11 @@ object Romaji {
       ConsonantM     -> "m",
       ConsonantY     -> "y",
       ConsonantR     -> "r",
-      ConsonantW     -> "w")
+      ConsonantW     -> "w"
+    )
 
   val voicedConsonants: Map[Consonant, String] =
-    Map(
-      ConsonantK -> "g",
-      ConsonantS -> "z",
-      ConsonantT -> "d",
-      ConsonantH -> "b")
+    Map(ConsonantK -> "g", ConsonantS -> "z", ConsonantT -> "d", ConsonantH -> "b")
 
   val halfVoicedH: String = "p"
 

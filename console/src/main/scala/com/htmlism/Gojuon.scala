@@ -5,8 +5,7 @@ import cats.implicits._
 
 object Gojuon extends IOApp {
   def run(args: List[String]): IO[ExitCode] =
-    Kana
-      .scripts
+    Kana.scripts
       .map(_.codePoint)
       .traverse { cp =>
         IO {
@@ -14,5 +13,6 @@ object Gojuon extends IOApp {
             .buildUnicodeKana(cp)
             .foreach(u => println(u.codePoint.toChar.toString + " " + u.toString))
         }
-      }.as(ExitCode.Success)
+      }
+      .as(ExitCode.Success)
 }

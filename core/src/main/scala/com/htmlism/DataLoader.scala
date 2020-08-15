@@ -6,8 +6,7 @@ import io.circe._
 
 object DecoderImplicits {
   implicit val japaneseSequenceDecoder: Decoder[JapaneseSequence] =
-    Decoder
-      .decodeString
+    Decoder.decodeString
       .emap(s => JapaneseSequence.parse(s).leftMap(_.toString))
 
   private val defaultTagDecoder =
@@ -17,12 +16,12 @@ object DecoderImplicits {
     new Decoder[JapaneseEntry] {
       final def apply(c: HCursor): Decoder.Result[JapaneseEntry] =
         for {
-          id <- c.downField("id").as[Option[String]]
-          j <- c.downField("j").as[JapaneseSequence]
-          k <- c.downField("k").as[Option[String]]
-          e <- c.downField("e").as[String]
+          id    <- c.downField("id").as[Option[String]]
+          j     <- c.downField("j").as[JapaneseSequence]
+          k     <- c.downField("k").as[Option[String]]
+          e     <- c.downField("e").as[String]
           emoji <- c.downField("emoji").as[Option[String]]
-          tags <- c.downField("tag").focus.fold(defaultTagDecoder)(decodeTagMulti)
+          tags  <- c.downField("tag").focus.fold(defaultTagDecoder)(decodeTagMulti)
         } yield {
           new JapaneseEntry(id, j, k, e, emoji, tags)
         }
@@ -57,7 +56,8 @@ object DataLoader {
       "particles",
       "phrases",
       "places",
-      "works")
+      "works"
+    )
 
   val enhancements = Map[String, JapaneseEntry => JapaneseEntry](
     "phrases" -> (_.withTag("phrase"))
@@ -65,7 +65,7 @@ object DataLoader {
 
   private def parseResourceFile[F[_]](s: String)(implicit F: Sync[F]) =
     Resource
-      .fromAutoCloseable(F.delay(getClass.getResourceAsStream("/" + s  + ".yaml")))
+      .fromAutoCloseable(F.delay(getClass.getResourceAsStream("/" + s + ".yaml")))
       .map(new java.io.InputStreamReader(_))
       .use(reader => F.delay(io.circe.yaml.parser.parse(reader)))
       .flatMap(_.fold(logAndRaise[F, Json](s"parsing json of $s"), F.pure))
@@ -79,27 +79,27 @@ object DataLoader {
   private def logAndRaise[F[_], A](msg: String)(err: Throwable)(implicit F: Sync[F]) =
     F.delay(println(msg + ": " + err)) *> F.raiseError[A](err)
 
-  def allWords[F[_] : Sync] =
+  def allWords[F[_]: Sync] =
     yamlFiles
       .traverse(parseEntries[F])
 
   /**
-   * Demonstrate basic loading and parsing of YAML structures
-   */
-  def demonstrateParsing[F[_] : Sync] =
+    * Demonstrate basic loading and parsing of YAML structures
+    */
+  def demonstrateParsing[F[_]: Sync] =
     allWords[F]
       .map { xxs =>
         xxs.foreach(xs => xs.foreach(println))
       }
 
   /**
-   * Categorize words by kana
-   */
+    * Categorize words by kana
+    */
   val wordCollectionsByCodePoint: Map[Int, List[JapaneseEntry]] =
     (Kana.unicodeHiraganaByCodePoint ++ Kana.unicodeKatakanaByCodePoint)
       .fmap(_ => List[JapaneseEntry]())
 
-  def wordRegistryByCodePoint[F[_] : Sync] =
+  def wordRegistryByCodePoint[F[_]: Sync] =
     allWords[F]
       .map(_.flatten)
       .map(_.foldLeft(wordCollectionsByCodePoint)(organizeByKana))
@@ -123,7 +123,7 @@ object DataLoader {
   def organizeByKana(acc: Map[Int, List[JapaneseEntry]], e: JapaneseEntry) =
     e.japanese.s.toList.toSet.foldLeft(acc) { (acc, k) =>
       if (acc.contains(k.toInt))
-        acc.updated(k.toInt, e :: acc(k.toInt) )
+        acc.updated(k.toInt, e :: acc(k.toInt))
       else
         acc
     }
