@@ -41,7 +41,7 @@ object PrintRtkOrder extends IOApp {
           }
       }
 
-      _ <- IO.delay { println; println; println }
+      _ <- IO.delay { println(); println(); println() }
 
       _ <- IO.delay {
         ys
@@ -59,7 +59,7 @@ object PrintRtkOrder extends IOApp {
       .fromAutoCloseable(IO.delay(getClass.getResourceAsStream("/" + s)))
       .use(s =>
         IO.delay {
-          scala.io.Source.fromInputStream(s).getLines.toList
+          scala.io.Source.fromInputStream(s).getLines().toList
         }
       )
       .map(_.tail)
