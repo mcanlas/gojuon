@@ -72,8 +72,7 @@ object Kana {
       .map(addVariant(_.copy(hasSmall = true)) { case KanaCv(EmptyConsonant | ConsonantY, _) => })
       .map(addVariant(_.copy(hasSmall = true)) { case KanaCv(ConsonantT, VowelU) => })
       .map(addVariant(_.copy(hasSmall = true)) { case KanaCv(ConsonantW, VowelA) => })
-      .map(addVariant(_.copy(hasVoiced = true)) {
-        case KanaCv(ConsonantH | ConsonantK | ConsonantS | ConsonantT, _) =>
+      .map(addVariant(_.copy(hasVoiced = true)) { case KanaCv(ConsonantH | ConsonantK | ConsonantS | ConsonantT, _) =>
       })
       .map(addVariant(_.copy(hasHalf = true)) { case KanaCv(ConsonantH, _) => })
 

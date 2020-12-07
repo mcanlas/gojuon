@@ -35,9 +35,8 @@ object PrintRtkOrder extends IOApp {
         xs
           .zip(justCanonicalFormsHiragana)
           .sortBy(_._1)
-          .foreach {
-            case (sort, u) =>
-              println(s"${u.codePoint.toChar} $sort")
+          .foreach { case (sort, u) =>
+            println(s"${u.codePoint.toChar} $sort")
           }
       }
 
@@ -47,9 +46,8 @@ object PrintRtkOrder extends IOApp {
         ys
           .zip(justCanonicalFormsKatakana)
           .sortBy(_._1)
-          .foreach {
-            case (sort, u) =>
-              println(s"${u.codePoint.toChar} $sort")
+          .foreach { case (sort, u) =>
+            println(s"${u.codePoint.toChar} $sort")
           }
       }
     } yield ExitCode.Success
