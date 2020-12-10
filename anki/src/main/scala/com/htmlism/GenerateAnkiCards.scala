@@ -57,7 +57,7 @@ object KanaCards {
   }
 }
 
-class GenerateAnkiCards[F[_]](implicit F: Sync[F]) {
+class GenerateAnkiCards[F[_]](implicit F: Async[F]) {
   def run(args: List[String]): F[ExitCode] =
     for {
       base <- getBaseDir(args)

@@ -2,22 +2,23 @@ package com.htmlism
 
 import cats.effect._
 
-object ShowVerbs extends App {
-  DataLoader
-    .parseEntries[IO]("/verbs-ru.yaml")
-    .map { xs =>
-      xs.foreach { x =>
-        println(x)
+object ShowVerbs extends IOApp {
+  def run(args: List[String]): IO[ExitCode] =
+    DataLoader
+      .parseEntries[IO]("/verbs-ru.yaml")
+      .map { xs =>
+        xs.foreach { x =>
+          println(x)
 
-        val stem =
-          ParseVerbs.toStem(x.japanese.s)
+          val stem =
+            ParseVerbs.toStem(x.japanese.s)
 
-        ParseVerbs
-          .toVerbForms(stem)
-          .foreach(println)
+          ParseVerbs
+            .toVerbForms(stem)
+            .foreach(println)
+        }
       }
-    }
-    .unsafeRunSync()
+      .as(ExitCode.Success)
 }
 
 object ParseVerbs {

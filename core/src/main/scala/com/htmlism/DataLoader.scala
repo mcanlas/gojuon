@@ -63,14 +63,14 @@ object DataLoader {
     "phrases" -> (_.withTag("phrase"))
   )
 
-  private def parseResourceFile[F[_]](s: String)(implicit F: Sync[F]) =
+  private def parseResourceFile[F[_]](s: String)(implicit F: Async[F]) =
     Resource
       .fromAutoCloseable(F.delay(getClass.getResourceAsStream("/" + s + ".yaml")))
       .map(new java.io.InputStreamReader(_))
       .use(reader => F.delay(io.circe.yaml.parser.parse(reader)))
       .flatMap(_.fold(logAndRaise[F, Json](s"parsing json of $s"), F.pure))
 
-  def parseEntries[F[_]](s: String)(implicit F: Sync[F]): F[List[JapaneseEntry]] =
+  def parseEntries[F[_]](s: String)(implicit F: Async[F]): F[List[JapaneseEntry]] =
     parseResourceFile[F](s)
       .map(_.as[List[JapaneseEntry]])
       .flatMap(_.fold(logAndRaise[F, List[JapaneseEntry]](s"parsing classes of $s"), F.pure))
@@ -79,14 +79,14 @@ object DataLoader {
   private def logAndRaise[F[_], A](msg: String)(err: Throwable)(implicit F: Sync[F]) =
     F.delay(println(msg + ": " + err)) *> F.raiseError[A](err)
 
-  def allWords[F[_]: Sync] =
+  def allWords[F[_]: Async] =
     yamlFiles
       .traverse(parseEntries[F])
 
   /**
     * Demonstrate basic loading and parsing of YAML structures
     */
-  def demonstrateParsing[F[_]: Sync] =
+  def demonstrateParsing[F[_]: Async] =
     allWords[F]
       .map { xxs =>
         xxs.foreach(xs => xs.foreach(println))
@@ -99,10 +99,12 @@ object DataLoader {
     (Kana.unicodeHiraganaByCodePoint ++ Kana.unicodeKatakanaByCodePoint)
       .fmap(_ => List[JapaneseEntry]())
 
-  def wordRegistryByCodePoint[F[_]: Sync] =
+  def wordRegistryByCodePoint[F[_]: Async] =
     allWords[F]
       .map(_.flatten)
       .map(_.foldLeft(wordCollectionsByCodePoint)(organizeByKana))
+
+  import cats.effect.unsafe.implicits.global
 
   wordRegistryByCodePoint[IO]
     .map { reg =>
