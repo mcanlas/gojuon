@@ -25,6 +25,6 @@ lazy val anki =
     .settings(libraryDependencies += "org.scalatest" %% "scalatest" % "3.2.5" % Test)
     .dependsOn(core)
 
-lazy val commonSettings = List(scalaVersion := "2.13.4")
+lazy val commonSettings = List(scalaVersion := "2.13.5")
 
 scalafmtOnCompile := true
