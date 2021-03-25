@@ -8,7 +8,7 @@ object SettingsPlugin extends AutoPlugin {
   override def projectSettings =
     List(
       // scaladoc enhancements
-      scalacOptions in (Compile, doc) ++= Seq(
+      Compile / doc / scalacOptions ++= Seq(
         "-groups",  // enable support for grouped members
         "-diagrams" // generate type hierarchy diagrams
       )
