@@ -1,8 +1,8 @@
 package com.htmlism
 
+import cats.Id
 import cats.effect._
 import cats.implicits._
-import mouse.any._
 
 object GenerateAnkiCards extends GenerateAnkiCards[IO] with IOApp
 
@@ -18,11 +18,12 @@ object KanaCards {
     val back = s"""<div id="japanese-romaji-answer">$romaji</div>"""
 
     val exampleWords =
-      reg(uk.codePoint)
+      (reg(uk.codePoint)
         .map { je =>
           (je.japanese.s :: je.emoji.toList).mkString(" ")
         }
-        .mkString("<br>") |> (s => s"""<div>$s</div>""")
+        .mkString("<br>"): Id[String])
+        .map(s => s"""<div>$s</div>""")
 
     AnkiCard(cardId, front, back + exampleWords, List(script))
   }
