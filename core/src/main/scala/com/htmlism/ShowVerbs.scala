@@ -2,8 +2,8 @@ package com.htmlism
 
 import cats.effect._
 
-object ShowVerbs extends IOApp {
-  def run(args: List[String]): IO[ExitCode] =
+object ShowVerbs extends IOApp.Simple {
+  def run: IO[Unit] =
     DataLoader
       .parseEntries[IO]("/verbs-ru.yaml")
       .map { xs =>
@@ -18,7 +18,6 @@ object ShowVerbs extends IOApp {
             .foreach(println)
         }
       }
-      .as(ExitCode.Success)
 }
 
 object ParseVerbs {

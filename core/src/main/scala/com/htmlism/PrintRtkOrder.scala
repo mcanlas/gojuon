@@ -2,7 +2,7 @@ package com.htmlism
 
 import cats.effect._
 
-object PrintRtkOrder extends IOApp {
+object PrintRtkOrder extends IOApp.Simple {
   private val justCanonicalFormsHiragana =
     Kana.unicodeHiragana
       .filter {
@@ -25,7 +25,7 @@ object PrintRtkOrder extends IOApp {
           false
       }
 
-  def run(args: List[String]): IO[ExitCode] =
+  def run: IO[Unit] =
     for {
       xs <- readFile("htk-hiragana.tsv")
 
@@ -50,7 +50,7 @@ object PrintRtkOrder extends IOApp {
             println(s"${u.codePoint.toChar} $sort")
           }
       }
-    } yield ExitCode.Success
+    } yield ()
 
   def readFile(s: String) =
     Resource

@@ -3,8 +3,8 @@ package com.htmlism
 import cats.effect._
 import cats.implicits._
 
-object Gojuon extends IOApp {
-  def run(args: List[String]): IO[ExitCode] =
+object Gojuon extends IOApp.Simple {
+  def run: IO[Unit] =
     Kana.scripts
       .map(_.codePoint)
       .traverse { cp =>
@@ -14,5 +14,5 @@ object Gojuon extends IOApp {
             .foreach(u => println(u.codePoint.toChar.toString + " " + u.toString))
         }
       }
-      .as(ExitCode.Success)
+      .void
 }
