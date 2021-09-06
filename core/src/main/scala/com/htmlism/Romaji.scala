@@ -13,15 +13,15 @@ object Romaji {
   val consonants: Map[Consonant, String] =
     Map(
       EmptyConsonant -> "",
-      ConsonantK     -> "k",
-      ConsonantS     -> "s",
-      ConsonantT     -> "t",
-      ConsonantN     -> "n",
-      ConsonantH     -> "h",
-      ConsonantM     -> "m",
-      ConsonantY     -> "y",
-      ConsonantR     -> "r",
-      ConsonantW     -> "w"
+      ConsonantK -> "k",
+      ConsonantS -> "s",
+      ConsonantT -> "t",
+      ConsonantN -> "n",
+      ConsonantH -> "h",
+      ConsonantM -> "m",
+      ConsonantY -> "y",
+      ConsonantR -> "r",
+      ConsonantW -> "w"
     )
 
   val voicedConsonants: Map[Consonant, String] =

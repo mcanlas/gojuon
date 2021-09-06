@@ -140,15 +140,15 @@ case object VowelO extends Vowel
 
 sealed trait Consonant
 case object EmptyConsonant extends Consonant
-case object ConsonantK     extends Consonant
-case object ConsonantS     extends Consonant
-case object ConsonantT     extends Consonant
-case object ConsonantN     extends Consonant with Kana
-case object ConsonantH     extends Consonant
-case object ConsonantM     extends Consonant
-case object ConsonantY     extends Consonant
-case object ConsonantR     extends Consonant
-case object ConsonantW     extends Consonant
+case object ConsonantK extends Consonant
+case object ConsonantS extends Consonant
+case object ConsonantT extends Consonant
+case object ConsonantN extends Consonant with Kana
+case object ConsonantH extends Consonant
+case object ConsonantM extends Consonant
+case object ConsonantY extends Consonant
+case object ConsonantR extends Consonant
+case object ConsonantW extends Consonant
 
 sealed trait KanaScript
 case object Hiragana extends KanaScript
@@ -162,8 +162,8 @@ sealed trait KanaVariant {
   def kana: Kana
 }
 
-final case class UnvoicedKanaVariant(kana: Kana)   extends KanaVariant
-final case class VoicedKanaVariant(kana: Kana)     extends KanaVariant
+final case class UnvoicedKanaVariant(kana: Kana) extends KanaVariant
+final case class VoicedKanaVariant(kana: Kana) extends KanaVariant
 final case class HalfVoicedKanaVariant(kana: Kana) extends KanaVariant
 
 object KanaVariant {
