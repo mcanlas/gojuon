@@ -8,7 +8,7 @@ lazy val core =
     .settings(commonSettings: _*)
     .settings(libraryDependencies += "org.typelevel" %% "cats-effect" % "3.2.9")
     .settings(libraryDependencies += "io.circe" %% "circe-yaml" % "0.14.1")
-    .settings(libraryDependencies += "org.scalatest" %% "scalatest" % "3.2.9" % Test)
+    .settings(libraryDependencies += "org.scalatest" %% "scalatest" % "3.2.10" % Test)
 
 lazy val console =
   project
@@ -20,7 +20,7 @@ lazy val anki =
   project
     .settings(commonSettings: _*)
     .settings(libraryDependencies += "org.typelevel" %% "cats-effect" % "3.2.9")
-    .settings(libraryDependencies += "org.scalatest" %% "scalatest" % "3.2.9" % Test)
+    .settings(libraryDependencies += "org.scalatest" %% "scalatest" % "3.2.10" % Test)
     .dependsOn(core)
 
 lazy val commonSettings = List(scalaVersion := "2.13.6")
