@@ -5,7 +5,8 @@ import cats.implicits._
 
 object Gojuon extends IOApp.Simple {
   def run: IO[Unit] =
-    Kana.scripts
+    Kana
+      .scripts
       .map(_.codePoint)
       .traverse { cp =>
         IO {

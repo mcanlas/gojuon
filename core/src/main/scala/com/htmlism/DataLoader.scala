@@ -6,7 +6,8 @@ import io.circe._
 
 object DecoderImplicits {
   implicit val japaneseSequenceDecoder: Decoder[JapaneseSequence] =
-    Decoder.decodeString
+    Decoder
+      .decodeString
       .emap(s => JapaneseSequence.parse(s).leftMap(_.toString))
 
   private val defaultTagDecoder =

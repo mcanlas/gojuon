@@ -4,7 +4,8 @@ import cats.effect._
 
 object PrintRtkOrder extends IOApp.Simple {
   private val justCanonicalFormsHiragana =
-    Kana.unicodeHiragana
+    Kana
+      .unicodeHiragana
       .filter {
         case UnicodeKana(UnvoicedKanaVariant(KanaCv(ConsonantW, VowelE | VowelI)), _) =>
           false
@@ -15,7 +16,8 @@ object PrintRtkOrder extends IOApp.Simple {
       }
 
   private val justCanonicalFormsKatakana =
-    Kana.unicodeKatakana
+    Kana
+      .unicodeKatakana
       .filter {
         case UnicodeKana(UnvoicedKanaVariant(KanaCv(ConsonantW, VowelE | VowelI)), _) =>
           false

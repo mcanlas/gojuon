@@ -67,7 +67,8 @@ object Kana {
       kv
 
   val kanaVariants: List[KanaVariantBundle] =
-    Kana.allKana
+    Kana
+      .allKana
       .map(k => KanaVariantBundle(k, hasSmall = false, hasVoiced = false, hasHalf = false))
       .map(addVariant(_.copy(hasSmall = true)) { case KanaCv(EmptyConsonant | ConsonantY, _) => })
       .map(addVariant(_.copy(hasSmall = true)) { case KanaCv(ConsonantT, VowelU) => })

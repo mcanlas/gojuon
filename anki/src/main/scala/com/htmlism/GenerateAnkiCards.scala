@@ -46,10 +46,10 @@ object KanaCards {
       val cardId = List("hiragana", "katakana", Romaji.toKanaId(hiragana(n).variant)).mkString("-")
 
       val front = s"""<div id="japanese-kana-pair"><span class="hiragana">${hiragana(
-        n
-      ).codePoint.toChar.toString}</span> <span class="katakana">${katakana(
-        n
-      ).codePoint.toChar.toString}</span></div>"""
+          n
+        ).codePoint.toChar.toString}</span> <span class="katakana">${katakana(
+          n
+        ).codePoint.toChar.toString}</span></div>"""
 
       val back = s"""<div id="japanese-romaji-answer">$romaji</div>"""
 
