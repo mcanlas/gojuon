@@ -1,6 +1,6 @@
 package com.htmlism
 
-import cats.implicits._
+import cats.syntax.all._
 
 case class UnicodeKanaScript(name: String, codePoint: Int)
 

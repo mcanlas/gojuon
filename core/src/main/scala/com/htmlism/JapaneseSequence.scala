@@ -1,6 +1,6 @@
 package com.htmlism
 
-import cats.implicits._
+import cats.syntax.all._
 
 sealed trait JapaneseSequence {
   def s: String

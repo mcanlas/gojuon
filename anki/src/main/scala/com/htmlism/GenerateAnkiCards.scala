@@ -2,7 +2,7 @@ package com.htmlism
 
 import cats.Id
 import cats.effect._
-import cats.implicits._
+import cats.syntax.all._
 
 object GenerateAnkiCards extends GenerateAnkiCards[IO] with IOApp
 

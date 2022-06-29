@@ -1,7 +1,7 @@
 package com.htmlism
 
 import cats.effect._
-import cats.implicits._
+import cats.syntax.all._
 import io.circe._
 
 object DecoderImplicits {
