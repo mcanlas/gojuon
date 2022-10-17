@@ -2,7 +2,7 @@ package com.htmlism
 
 import cats.effect._
 
-object ShowVerbs extends IOApp.Simple {
+object ShowVerbs extends IOApp.Simple:
   def run: IO[Unit] =
     DataLoader
       .parseEntries[IO]("/verbs-ru.yaml")
@@ -18,21 +18,18 @@ object ShowVerbs extends IOApp.Simple {
             .foreach(println)
         }
       }
-}
 
-object ParseVerbs {
+object ParseVerbs:
   val ru = "\u308B"
   val imas = "ます"
   val imasen = "ません"
 
-  def toStem(s: String): String = {
+  def toStem(s: String): String =
     assert(s.substring(s.length - 1, s.length) == ru)
 
     s.substring(s.length - 1)
-  }
 
   def toVerbForms(s: String): List[String] =
     for {
       suf <- List(imas, imasen)
     } yield s + suf
-}

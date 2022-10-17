@@ -2,9 +2,8 @@ package com.htmlism
 
 import cats.syntax.all._
 
-sealed trait JapaneseSequence {
+sealed trait JapaneseSequence:
   def s: String
-}
 
 case class HiraganaSequence(s: String) extends JapaneseSequence
 
@@ -15,7 +14,7 @@ case object SequenceMustBeNonEmpty extends JapaneseParsingError
 case object MixedSequenceNotSupported extends JapaneseParsingError
 case class CharacterNotKana(c: Char) extends JapaneseParsingError
 
-object JapaneseSequence {
+object JapaneseSequence:
   val katakanaMidDot = 12539
   val longVowelSymbolCodePoint = 12540
 
@@ -61,8 +60,6 @@ object JapaneseSequence {
       MixedSequenceNotSupported.asLeft
 
   private def wrap(s: String)(script: KanaScript) =
-    script match {
+    script match
       case Katakana => KatakanaSequence(s)
       case Hiragana => HiraganaSequence(s)
-    }
-}

@@ -4,13 +4,12 @@ import java.io.PrintWriter
 
 import cats.effect._
 
-trait FilePrinterAlg[F[_]] {
+trait FilePrinterAlg[F[_]]:
   def print(dest: String)(s: String): F[Unit]
-}
 
-object FilePrinterAlg {
+object FilePrinterAlg:
   def apply[F[_]](implicit F: Async[F]): FilePrinterAlg[F] =
-    new FilePrinterAlg[F] {
+    new FilePrinterAlg[F]:
       def print(dest: String)(s: String): F[Unit] =
         Resource
           .fromAutoCloseable {
@@ -23,5 +22,3 @@ object FilePrinterAlg {
               pw.print(s)
             }
           }
-    }
-}

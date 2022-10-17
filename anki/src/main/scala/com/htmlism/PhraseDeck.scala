@@ -1,6 +1,6 @@
 package com.htmlism
 
-object PhraseDeck {
+object PhraseDeck:
   def entriesToAnkiCards(xs: List[JapaneseEntry]): List[AnkiCard] =
     xs
       .filter(_.tags.contains("phrase"))
@@ -13,4 +13,3 @@ object PhraseDeck {
       "<div>" + je.english + "</div>",
       Nil
     )
-}

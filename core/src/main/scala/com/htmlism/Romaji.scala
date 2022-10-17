@@ -1,6 +1,6 @@
 package com.htmlism
 
-object Romaji {
+object Romaji:
   val vowels: Map[Vowel, String] =
     Map(
       VowelA -> "a",
@@ -30,7 +30,7 @@ object Romaji {
   val halfVoicedH: String = "p"
 
   def toRomaji(variant: KanaVariant): String =
-    variant match {
+    variant match
       case VoicedKanaVariant(KanaCv(ConsonantS, VowelI)) =>
         "ji"
 
@@ -42,10 +42,9 @@ object Romaji {
 
       case _ =>
         toKanaId(variant)
-    }
 
   def toKanaId(variant: KanaVariant): String =
-    variant match {
+    variant match
       case HalfVoicedKanaVariant(KanaCv(ConsonantH, v)) =>
         halfVoicedH + vowels(v)
 
@@ -53,7 +52,7 @@ object Romaji {
         voicedConsonants(c) + vowels(v)
 
       case UnvoicedKanaVariant(kana) =>
-        kana match {
+        kana match
           case KanaCv(ConsonantS, VowelI) =>
             "shi"
           case KanaCv(ConsonantT, VowelI) =>
@@ -66,8 +65,5 @@ object Romaji {
             consonants(c) + vowels(v)
           case ConsonantN =>
             consonants(ConsonantN)
-        }
       case _ =>
         throw new UnsupportedOperationException("kana variation does not exist")
-    }
-}

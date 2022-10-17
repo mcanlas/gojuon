@@ -3,7 +3,7 @@ package com.htmlism
 import cats.effect._
 import cats.syntax.all._
 
-object Gojuon extends IOApp.Simple {
+object Gojuon extends IOApp.Simple:
   def run: IO[Unit] =
     Kana
       .scripts
@@ -16,4 +16,3 @@ object Gojuon extends IOApp.Simple {
         }
       }
       .void
-}

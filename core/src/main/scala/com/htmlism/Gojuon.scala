@@ -4,7 +4,7 @@ import cats.syntax.all._
 
 case class UnicodeKanaScript(name: String, codePoint: Int)
 
-object Kana {
+object Kana:
   val hiragana: UnicodeKanaScript =
     UnicodeKanaScript("hiragana", 0x3041)
 
@@ -37,14 +37,13 @@ object Kana {
       v <- vowels
     } yield (c, v)
 
-  private val availableKana: ((Consonant, Vowel)) => Option[Kana] = {
+  private val availableKana: ((Consonant, Vowel)) => Option[Kana] =
     case (ConsonantY, VowelI | VowelE) =>
       None
     case (ConsonantW, VowelU) =>
       None
     case (c, v) =>
       KanaCv(c, v).some
-  }
 
   val allKana: List[Kana] =
     cvCombinations
@@ -109,7 +108,7 @@ object Kana {
       .map(k => k.codePoint -> k.variant)
       .toMap
 
-  private def buildUnicodeKanaFold(accPair: (Int, List[UnicodeKana]), e: KanaVariantBundle) = {
+  private def buildUnicodeKanaFold(accPair: (Int, List[UnicodeKana]), e: KanaVariantBundle) =
     val (base, acc) = accPair
 
     val skipTinyVersion =
@@ -125,8 +124,6 @@ object Kana {
         .map { case (kv, n) => UnicodeKana(kv, n + base + skipTinyVersion) }
 
     (base + uses + 1) -> (acc ::: xs)
-  }
-}
 
 sealed trait Kana
 
@@ -159,15 +156,14 @@ case class KanaVariantBundle(kana: Kana, hasSmall: Boolean, hasVoiced: Boolean, 
 
 case class UnicodeKana(variant: KanaVariant, codePoint: Int)
 
-sealed trait KanaVariant {
+sealed trait KanaVariant:
   def kana: Kana
-}
 
 final case class UnvoicedKanaVariant(kana: Kana) extends KanaVariant
 final case class VoicedKanaVariant(kana: Kana) extends KanaVariant
 final case class HalfVoicedKanaVariant(kana: Kana) extends KanaVariant
 
-object KanaVariant {
+object KanaVariant:
   def listVoicings(kv: KanaVariantBundle): List[KanaVariant] =
     UnvoicedKanaVariant(kv.kana) ::
       (if (kv.hasVoiced)
@@ -178,4 +174,3 @@ object KanaVariant {
          List(HalfVoicedKanaVariant(kv.kana))
        else
          Nil)
-}

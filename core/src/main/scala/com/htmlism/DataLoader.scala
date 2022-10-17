@@ -4,7 +4,7 @@ import cats.effect._
 import cats.syntax.all._
 import io.circe._
 
-object DecoderImplicits {
+object DecoderImplicits:
   implicit val japaneseSequenceDecoder: Decoder[JapaneseSequence] =
     Decoder
       .decodeString
@@ -14,7 +14,7 @@ object DecoderImplicits {
     Nil.asRight: Decoder.Result[List[String]]
 
   implicit val entryDecoder: Decoder[JapaneseEntry] =
-    new Decoder[JapaneseEntry] {
+    new Decoder[JapaneseEntry]:
       final def apply(c: HCursor): Decoder.Result[JapaneseEntry] =
         for {
           id <- c.downField("id").as[Option[String]]
@@ -23,10 +23,8 @@ object DecoderImplicits {
           e <- c.downField("e").as[String]
           emoji <- c.downField("emoji").as[Option[String]]
           tags <- c.downField("tag").focus.fold(defaultTagDecoder)(decodeTagMulti)
-        } yield {
+        } yield
           new JapaneseEntry(id, j, k, e, emoji, tags)
-        }
-    }
 
   private def decodeTagMulti(j: Json) =
     if (j.isString)
@@ -36,9 +34,8 @@ object DecoderImplicits {
     else
       DecodingFailure("expected string or array", Nil).asLeft
 
-}
 
-object DataLoader {
+object DataLoader:
   import DecoderImplicits._
 
   private val yamlFiles =
@@ -109,17 +106,14 @@ object DataLoader {
 
   wordRegistryByCodePoint[IO]
     .map { reg =>
-      for (k <- (Kana.unicodeHiragana ++ Kana.unicodeKatakana)) {
+      for (k <- (Kana.unicodeHiragana ++ Kana.unicodeKatakana))
         println(k.codePoint.toChar.toString + " " + k.variant.toString)
 
-        for (e <- reg(k.codePoint)) {
+        for (e <- reg(k.codePoint))
           println("   - " + e)
-        }
 
-        for (s <- leftPad(k.codePoint, reg(k.codePoint).map(_.japanese.s))) {
+        for (s <- leftPad(k.codePoint, reg(k.codePoint).map(_.japanese.s)))
           println("  - " + s)
-        }
-      }
     }
     .unsafeRunSync()
 
@@ -134,7 +128,7 @@ object DataLoader {
   def leftPad(kana: Int, xs: List[String]) =
     if (xs.isEmpty)
       Nil
-    else {
+    else
       val maxIndex = xs.map(_.toList.map(_.toInt).indexOf(kana)).max
 
       xs.map { s =>
@@ -143,5 +137,3 @@ object DataLoader {
 
         pad + s
       }
-    }
-}

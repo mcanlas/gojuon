@@ -2,7 +2,7 @@ package com.htmlism
 
 import cats.effect._
 
-object PrintRtkOrder extends IOApp.Simple {
+object PrintRtkOrder extends IOApp.Simple:
   private val justCanonicalFormsHiragana =
     Kana
       .unicodeHiragana
@@ -68,4 +68,3 @@ object PrintRtkOrder extends IOApp.Simple {
 
         sixCols.toList.tail.filter(_.nonEmpty)
       })
-}

@@ -7,7 +7,6 @@ case class JapaneseEntry(
     english: String,
     emoji: Option[String],
     tags: List[String]
-) {
+):
   def withTag(s: String): JapaneseEntry =
     copy(tags = s :: tags)
-}

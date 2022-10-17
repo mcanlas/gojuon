@@ -6,8 +6,8 @@ import cats.syntax.all._
 
 object GenerateAnkiCards extends GenerateAnkiCards[IO] with IOApp
 
-object KanaCards {
-  private def kanaToCard(script: String, reg: Map[Int, List[JapaneseEntry]])(uk: UnicodeKana): AnkiCard = {
+object KanaCards:
+  private def kanaToCard(script: String, reg: Map[Int, List[JapaneseEntry]])(uk: UnicodeKana): AnkiCard =
     val romaji = Romaji.toRomaji(uk.variant)
 
     val cardId = script + "-" + Romaji.toKanaId(uk.variant)
@@ -26,7 +26,6 @@ object KanaCards {
         .map(s => s"""<div>$s</div>""")
 
     AnkiCard(cardId, front, back + exampleWords, List(script))
-  }
 
   private def scriptToCards(reg: Map[Int, List[JapaneseEntry]])(script: UnicodeKanaScript): List[AnkiCard] =
     Kana
@@ -36,11 +35,11 @@ object KanaCards {
   def generateDeck(scripts: List[UnicodeKanaScript], reg: Map[Int, List[JapaneseEntry]]): List[AnkiCard] =
     scripts.flatMap(scriptToCards(reg)) ::: generatePairCards
 
-  private def generatePairCards = {
+  private def generatePairCards =
     val hiragana = Kana.buildUnicodeKana(Kana.hiragana.codePoint)
     val katakana = Kana.buildUnicodeKana(Kana.katakana.codePoint)
 
-    for (n <- hiragana.indices.toList) yield {
+    for (n <- hiragana.indices.toList) yield
       val romaji = Romaji.toRomaji(hiragana(n).variant)
 
       val cardId = List("hiragana", "katakana", Romaji.toKanaId(hiragana(n).variant)).mkString("-")
@@ -54,11 +53,8 @@ object KanaCards {
       val back = s"""<div id="japanese-romaji-answer">$romaji</div>"""
 
       AnkiCard(cardId, front, back, List("pair"))
-    }
-  }
-}
 
-class GenerateAnkiCards[F[_]](implicit F: Async[F]) {
+class GenerateAnkiCards[F[_]](implicit F: Async[F]):
   def run(args: List[String]): F[ExitCode] =
     for {
       base <- getBaseDir(args)
@@ -79,10 +75,8 @@ class GenerateAnkiCards[F[_]](implicit F: Async[F]) {
       .compose(Deck.apply)
 
   private def getBaseDir(args: List[String]) =
-    args match {
+    args match
       case head :: _ =>
         F.pure(head)
       case Nil =>
         F.raiseError[String](new IllegalArgumentException("Need to specify where to write file"))
-    }
-}
