@@ -24,5 +24,3 @@ lazy val anki =
     .dependsOn(core)
 
 lazy val commonSettings = List(scalaVersion := "2.13.10")
-
-scalafmtOnCompile := true
