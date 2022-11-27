@@ -3,7 +3,7 @@ package com.htmlism
 import org.scalatest.funsuite.AnyFunSuite
 import org.scalatest.matchers.should.Matchers
 
-class GojuonSuite extends AnyFunSuite with Matchers {
+class GojuonSuite extends AnyFunSuite with Matchers:
   test("the number of canonical kana should be 48") {
     Kana.kanaVariants.length shouldBe 48
   }
@@ -34,4 +34,3 @@ class GojuonSuite extends AnyFunSuite with Matchers {
     KanaVariant
       .listVoicings(ha) should contain theSameElementsInOrderAs voicings
   }
-}
