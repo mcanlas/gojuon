@@ -20,8 +20,8 @@ object ShowVerbs extends IOApp.Simple:
       }
 
 object ParseVerbs:
-  val ru = "\u308B"
-  val imas = "ます"
+  val ru     = "\u308B"
+  val imas   = "ます"
   val imasen = "ません"
 
   def toStem(s: String): String =

@@ -9,7 +9,7 @@ object SettingsPlugin extends AutoPlugin {
     List(
       // scaladoc enhancements
       Compile / doc / scalacOptions ++= Seq(
-        "-groups", // enable support for grouped members
+        "-groups",  // enable support for grouped members
         "-diagrams" // generate type hierarchy diagrams
       )
     )

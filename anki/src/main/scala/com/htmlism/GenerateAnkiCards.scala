@@ -78,5 +78,5 @@ class GenerateAnkiCards[F[_]](implicit F: Async[F]):
     args match
       case head :: _ =>
         F.pure(head)
-      case Nil =>
+      case Nil       =>
         F.raiseError[String](new IllegalArgumentException("Need to specify where to write file"))
