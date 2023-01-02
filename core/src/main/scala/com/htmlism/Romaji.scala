@@ -61,9 +61,9 @@ object Romaji:
             "tsu"
           case KanaCv(ConsonantH, VowelU) =>
             "fu"
-          case KanaCv(c, v)               =>
+          case KanaCv(c, v) =>
             consonants(c) + vowels(v)
-          case ConsonantN                 =>
+          case ConsonantN =>
             consonants(ConsonantN)
-      case _                         =>
+      case _ =>
         throw new UnsupportedOperationException("kana variation does not exist")

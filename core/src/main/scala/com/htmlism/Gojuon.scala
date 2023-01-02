@@ -40,9 +40,9 @@ object Kana:
   private val availableKana: ((Consonant, Vowel)) => Option[Kana] =
     case (ConsonantY, VowelI | VowelE) =>
       None
-    case (ConsonantW, VowelU)          =>
+    case (ConsonantW, VowelU) =>
       None
-    case (c, v)                        =>
+    case (c, v) =>
       KanaCv(c, v).some
 
   val allKana: List[Kana] =
@@ -53,7 +53,7 @@ object Kana:
     allKana.filter {
       case KanaCv(ConsonantW, VowelE | VowelI) =>
         false
-      case _                                   =>
+      case _ =>
         true
     }
 

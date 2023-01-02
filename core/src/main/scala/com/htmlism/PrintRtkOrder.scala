@@ -9,9 +9,9 @@ object PrintRtkOrder extends IOApp.Simple:
       .filter {
         case UnicodeKana(UnvoicedKanaVariant(KanaCv(ConsonantW, VowelE | VowelI)), _) =>
           false
-        case UnicodeKana(UnvoicedKanaVariant(_), _)                                   =>
+        case UnicodeKana(UnvoicedKanaVariant(_), _) =>
           true
-        case _                                                                        =>
+        case _ =>
           false
       }
 
@@ -21,9 +21,9 @@ object PrintRtkOrder extends IOApp.Simple:
       .filter {
         case UnicodeKana(UnvoicedKanaVariant(KanaCv(ConsonantW, VowelE | VowelI)), _) =>
           false
-        case UnicodeKana(UnvoicedKanaVariant(_), _)                                   =>
+        case UnicodeKana(UnvoicedKanaVariant(_), _) =>
           true
-        case _                                                                        =>
+        case _ =>
           false
       }
 
@@ -34,24 +34,24 @@ object PrintRtkOrder extends IOApp.Simple:
       ys <- readFile("htk-katakana.tsv")
 
       _ <- IO.delay {
-             xs
-               .zip(justCanonicalFormsHiragana)
-               .sortBy(_._1)
-               .foreach { case (sort, u) =>
-                 println(s"${u.codePoint.toChar} $sort")
-               }
-           }
+        xs
+          .zip(justCanonicalFormsHiragana)
+          .sortBy(_._1)
+          .foreach { case (sort, u) =>
+            println(s"${u.codePoint.toChar} $sort")
+          }
+      }
 
       _ <- IO.delay { println(); println(); println() }
 
       _ <- IO.delay {
-             ys
-               .zip(justCanonicalFormsKatakana)
-               .sortBy(_._1)
-               .foreach { case (sort, u) =>
-                 println(s"${u.codePoint.toChar} $sort")
-               }
-           }
+        ys
+          .zip(justCanonicalFormsKatakana)
+          .sortBy(_._1)
+          .foreach { case (sort, u) =>
+            println(s"${u.codePoint.toChar} $sort")
+          }
+      }
     } yield ()
 
   def readFile(s: String) =
