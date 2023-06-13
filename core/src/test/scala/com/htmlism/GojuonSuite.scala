@@ -4,11 +4,10 @@ import org.scalatest.funsuite.AnyFunSuite
 import org.scalatest.matchers.should.Matchers
 
 class GojuonSuite extends AnyFunSuite with Matchers:
-  test("the number of canonical kana should be 48") {
+  test("the number of canonical kana should be 48"):
     Kana.kanaVariants.length shouldBe 48
-  }
 
-  test("hiragana ka should have two voicings") {
+  test("hiragana ka should have two voicings"):
     val ka = Kana.kanaVariants(5)
 
     val voicings =
@@ -19,9 +18,8 @@ class GojuonSuite extends AnyFunSuite with Matchers:
 
     KanaVariant
       .listVoicings(ka) should contain theSameElementsInOrderAs voicings
-  }
 
-  test("hiragana ha should have three voicings") {
+  test("hiragana ha should have three voicings"):
     val ha = Kana.kanaVariants(25)
 
     val voicings =
@@ -33,4 +31,3 @@ class GojuonSuite extends AnyFunSuite with Matchers:
 
     KanaVariant
       .listVoicings(ha) should contain theSameElementsInOrderAs voicings
-  }
