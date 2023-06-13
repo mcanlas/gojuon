@@ -50,12 +50,11 @@ object Kana:
       .flatMap(availableKana) :+ ConsonantN
 
   val allKanaMinusOld: List[Kana] =
-    allKana.filter {
+    allKana.filter:
       case KanaCv(ConsonantW, VowelE | VowelI) =>
         false
       case _ =>
         true
-    }
 
   private def addVariant(
       f: KanaVariantBundle => KanaVariantBundle

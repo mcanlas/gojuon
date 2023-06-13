@@ -6,26 +6,24 @@ object PrintRtkOrder extends IOApp.Simple:
   private val justCanonicalFormsHiragana =
     Kana
       .unicodeHiragana
-      .filter {
+      .filter:
         case UnicodeKana(UnvoicedKanaVariant(KanaCv(ConsonantW, VowelE | VowelI)), _) =>
           false
         case UnicodeKana(UnvoicedKanaVariant(_), _) =>
           true
         case _ =>
           false
-      }
 
   private val justCanonicalFormsKatakana =
     Kana
       .unicodeKatakana
-      .filter {
+      .filter:
         case UnicodeKana(UnvoicedKanaVariant(KanaCv(ConsonantW, VowelE | VowelI)), _) =>
           false
         case UnicodeKana(UnvoicedKanaVariant(_), _) =>
           true
         case _ =>
           false
-      }
 
   def run: IO[Unit] =
     for {
@@ -33,25 +31,23 @@ object PrintRtkOrder extends IOApp.Simple:
 
       ys <- readFile("htk-katakana.tsv")
 
-      _ <- IO.delay {
+      _ <- IO.delay:
         xs
           .zip(justCanonicalFormsHiragana)
           .sortBy(_._1)
           .foreach { case (sort, u) =>
             println(s"${u.codePoint.toChar} $sort")
           }
-      }
 
       _ <- IO.delay { println(); println(); println() }
 
-      _ <- IO.delay {
+      _ <- IO.delay:
         ys
           .zip(justCanonicalFormsKatakana)
           .sortBy(_._1)
           .foreach { case (sort, u) =>
             println(s"${u.codePoint.toChar} $sort")
           }
-      }
     } yield ()
 
   def readFile(s: String) =

@@ -12,13 +12,10 @@ object FilePrinterAlg:
     new FilePrinterAlg[F]:
       def print(dest: String)(s: String): F[Unit] =
         Resource
-          .fromAutoCloseable {
-            F.delay {
+          .fromAutoCloseable:
+            F.delay:
               new PrintWriter(dest)
-            }
-          }
           .use { pw =>
-            F.delay {
+            F.delay:
               pw.print(s)
-            }
           }

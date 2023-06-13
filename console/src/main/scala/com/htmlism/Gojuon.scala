@@ -9,10 +9,9 @@ object Gojuon extends IOApp.Simple:
       .scripts
       .map(_.codePoint)
       .traverse { cp =>
-        IO {
+        IO:
           Kana
             .buildUnicodeKana(cp)
             .foreach(u => println(u.codePoint.toChar.toString + " " + u.toString))
-        }
       }
       .void
