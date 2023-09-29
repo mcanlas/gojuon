@@ -4,17 +4,17 @@ lazy val gojuon =
 
 lazy val core =
   project
-    .settings(libraryDependencies += "org.typelevel" %% "cats-effect" % "3.5.1")
+    .settings(libraryDependencies += "org.typelevel" %% "cats-effect" % "3.5.2")
     .settings(libraryDependencies += "io.circe" %% "circe-yaml" % "0.14.2")
     .settings(libraryDependencies += "org.scalatest" %% "scalatest" % "3.2.16" % Test)
 
 lazy val console =
   project
-    .settings(libraryDependencies += "org.typelevel" %% "cats-effect" % "3.5.1")
+    .settings(libraryDependencies += "org.typelevel" %% "cats-effect" % "3.5.2")
     .dependsOn(core)
 
 lazy val anki =
   project
-    .settings(libraryDependencies += "org.typelevel" %% "cats-effect" % "3.5.1")
+    .settings(libraryDependencies += "org.typelevel" %% "cats-effect" % "3.5.2")
     .settings(libraryDependencies += "org.scalatest" %% "scalatest" % "3.2.16" % Test)
     .dependsOn(core)
