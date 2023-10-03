@@ -1,8 +1,8 @@
 package com.htmlism
 
 import cats.Id
-import cats.effect._
-import cats.syntax.all._
+import cats.effect.*
+import cats.syntax.all.*
 
 object GenerateAnkiCards extends GenerateAnkiCards[IO] with IOApp
 

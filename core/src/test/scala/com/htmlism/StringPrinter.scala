@@ -1,6 +1,6 @@
 package com.htmlism
 
-import cats.effect._
+import cats.effect.*
 
 object StringPrinter extends IOApp.Simple:
   def run: IO[Unit] =

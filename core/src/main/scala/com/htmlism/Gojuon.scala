@@ -1,6 +1,6 @@
 package com.htmlism
 
-import cats.syntax.all._
+import cats.syntax.all.*
 
 case class UnicodeKanaScript(name: String, codePoint: Int)
 
@@ -59,10 +59,8 @@ object Kana:
   private def addVariant(
       f: KanaVariantBundle => KanaVariantBundle
   )(pred: PartialFunction[Kana, Unit])(kv: KanaVariantBundle) =
-    if (pred.isDefinedAt(kv.kana))
-      f(kv)
-    else
-      kv
+    if pred.isDefinedAt(kv.kana) then f(kv)
+    else kv
 
   val kanaVariants: List[KanaVariantBundle] =
     Kana
@@ -78,7 +76,7 @@ object Kana:
   private def howMany[A](x: A)(fs: (A => Boolean)*) =
     fs
       .map(_.apply(x))
-      .map(if (_) 1 else 0)
+      .map(if _ then 1 else 0)
       .sum
 
   /**
@@ -165,11 +163,7 @@ final case class HalfVoicedKanaVariant(kana: Kana) extends KanaVariant
 object KanaVariant:
   def listVoicings(kv: KanaVariantBundle): List[KanaVariant] =
     UnvoicedKanaVariant(kv.kana) ::
-      (if (kv.hasVoiced)
-         List(VoicedKanaVariant(kv.kana))
-       else
-         Nil) :::
-      (if (kv.hasHalf)
-         List(HalfVoicedKanaVariant(kv.kana))
-       else
-         Nil)
+      (if kv.hasVoiced then List(VoicedKanaVariant(kv.kana))
+       else Nil) :::
+      (if kv.hasHalf then List(HalfVoicedKanaVariant(kv.kana))
+       else Nil)

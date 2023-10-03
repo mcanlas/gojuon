@@ -1,6 +1,6 @@
 package com.htmlism
 
-import cats.syntax.all._
+import cats.syntax.all.*
 
 sealed trait JapaneseSequence:
   def s: String
@@ -29,12 +29,9 @@ object JapaneseSequence:
     Either.cond(s.nonEmpty, s, SequenceMustBeNonEmpty)
 
   private def detectScriptOne(c: Char): Either[CharacterNotKana, KanaScript] =
-    if (isHiragana(c.toInt))
-      Hiragana.asRight
-    else if (isKatakana(c.toInt))
-      Katakana.asRight
-    else
-      CharacterNotKana(c).asLeft
+    if isHiragana(c.toInt) then Hiragana.asRight
+    else if isKatakana(c.toInt) then Katakana.asRight
+    else CharacterNotKana(c).asLeft
 
   // small ya yu yo
   private def isHiragana(n: Int) =
@@ -52,12 +49,9 @@ object JapaneseSequence:
       Set(12449, 12451, 12453, 12455, 12457)(n) // small vowels
 
   private def toScript(xs: List[KanaScript]) =
-    if (xs.forall(k => k == Hiragana))
-      Hiragana.asRight
-    else if (xs.forall(k => k == Katakana))
-      Katakana.asRight
-    else
-      MixedSequenceNotSupported.asLeft
+    if xs.forall(k => k == Hiragana) then Hiragana.asRight
+    else if xs.forall(k => k == Katakana) then Katakana.asRight
+    else MixedSequenceNotSupported.asLeft
 
   private def wrap(s: String)(script: KanaScript) =
     script match

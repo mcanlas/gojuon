@@ -1,8 +1,8 @@
 package com.htmlism
 
-import cats.effect._
-import cats.syntax.all._
-import io.circe._
+import cats.effect.*
+import cats.syntax.all.*
+import io.circe.*
 
 object DecoderImplicits:
   implicit val japaneseSequenceDecoder: Decoder[JapaneseSequence] =
@@ -26,15 +26,12 @@ object DecoderImplicits:
         } yield new JapaneseEntry(id, j, k, e, emoji, tags)
 
   private def decodeTagMulti(j: Json) =
-    if (j.isString)
-      j.as[String].map(List(_))
-    else if (j.isArray)
-      j.as[List[String]]
-    else
-      DecodingFailure("expected string or array", Nil).asLeft
+    if j.isString then j.as[String].map(List(_))
+    else if j.isArray then j.as[List[String]]
+    else DecodingFailure("expected string or array", Nil).asLeft
 
 object DataLoader:
-  import DecoderImplicits._
+  import DecoderImplicits.*
 
   private val yamlFiles =
     List(
@@ -104,27 +101,23 @@ object DataLoader:
 
   wordRegistryByCodePoint[IO]
     .map { reg =>
-      for (k <- (Kana.unicodeHiragana ++ Kana.unicodeKatakana))
+      for k <- (Kana.unicodeHiragana ++ Kana.unicodeKatakana) do
         println(k.codePoint.toChar.toString + " " + k.variant.toString)
 
-        for (e <- reg(k.codePoint))
-          println("   - " + e)
+        for e <- reg(k.codePoint) do println("   - " + e)
 
-        for (s <- leftPad(k.codePoint, reg(k.codePoint).map(_.japanese.s)))
-          println("  - " + s)
+        for s <- leftPad(k.codePoint, reg(k.codePoint).map(_.japanese.s)) do println("  - " + s)
     }
     .unsafeRunSync()
 
   def organizeByKana(acc: Map[Int, List[JapaneseEntry]], e: JapaneseEntry) =
     e.japanese.s.toList.toSet.foldLeft(acc) { (acc, k) =>
-      if (acc.contains(k.toInt))
-        acc.updated(k.toInt, e :: acc(k.toInt))
-      else
-        acc
+      if acc.contains(k.toInt) then acc.updated(k.toInt, e :: acc(k.toInt))
+      else acc
     }
 
   def leftPad(kana: Int, xs: List[String]) =
-    if (xs.isEmpty) Nil
+    if xs.isEmpty then Nil
     else
       val maxIndex = xs.map(_.toList.map(_.toInt).indexOf(kana)).max
 

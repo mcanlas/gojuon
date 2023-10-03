@@ -1,7 +1,7 @@
 package com.htmlism
 
-import cats.effect._
-import cats.syntax.all._
+import cats.effect.*
+import cats.syntax.all.*
 
 object Gojuon extends IOApp.Simple:
   def run: IO[Unit] =

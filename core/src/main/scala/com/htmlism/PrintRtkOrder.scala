@@ -1,6 +1,6 @@
 package com.htmlism
 
-import cats.effect._
+import cats.effect.*
 
 object PrintRtkOrder extends IOApp.Simple:
   private val justCanonicalFormsHiragana =
