@@ -32,10 +32,10 @@ object Kana:
     )
 
   private val cvCombinations =
-    for {
+    for
       c <- consonants
       v <- vowels
-    } yield (c, v)
+    yield (c, v)
 
   private val availableKana: ((Consonant, Vowel)) => Option[Kana] =
     case (ConsonantY, VowelI | VowelE) =>

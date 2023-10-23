@@ -26,7 +26,7 @@ object PrintRtkOrder extends IOApp.Simple:
           false
 
   def run: IO[Unit] =
-    for {
+    for
       xs <- readFile("htk-hiragana.tsv")
 
       ys <- readFile("htk-katakana.tsv")
@@ -48,7 +48,7 @@ object PrintRtkOrder extends IOApp.Simple:
           .foreach { case (sort, u) =>
             println(s"${u.codePoint.toChar} $sort")
           }
-    } yield ()
+    yield ()
 
   def readFile(s: String) =
     Resource

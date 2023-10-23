@@ -19,11 +19,11 @@ object JapaneseSequence:
   val longVowelSymbolCodePoint = 12540
 
   def parse(s: String): Either[JapaneseParsingError, JapaneseSequence] =
-    for {
+    for
       nes    <- nonEmpty(s)
       xs     <- nes.toList.traverse(detectScriptOne)
       script <- toScript(xs)
-    } yield wrap(s)(script)
+    yield wrap(s)(script)
 
   private def nonEmpty(s: String) =
     Either.cond(s.nonEmpty, s, SequenceMustBeNonEmpty)

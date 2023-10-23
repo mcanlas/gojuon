@@ -56,7 +56,7 @@ object KanaCards:
 
 class GenerateAnkiCards[F[_]](implicit F: Async[F]):
   def run(args: List[String]): F[ExitCode] =
-    for {
+    for
       base <- getBaseDir(args)
 
       reg <- DataLoader.wordRegistryByCodePoint[F]
@@ -66,7 +66,7 @@ class GenerateAnkiCards[F[_]](implicit F: Async[F]):
       words <- DataLoader.allWords[F].map(_.flatten)
 
       _ <- writeDeck(base + "/phrases.tsv")(PhraseDeck.entriesToAnkiCards(words))
-    } yield ExitCode.Success
+    yield ExitCode.Success
 
   private def writeDeck(dest: String) =
     (FilePrinterAlg[F]

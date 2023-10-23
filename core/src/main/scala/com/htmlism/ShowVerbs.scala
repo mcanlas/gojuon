@@ -30,6 +30,5 @@ object ParseVerbs:
     s.substring(s.length - 1)
 
   def toVerbForms(s: String): List[String] =
-    for {
-      suf <- List(imas, imasen)
-    } yield s + suf
+    for suf <- List(imas, imasen)
+    yield s + suf
