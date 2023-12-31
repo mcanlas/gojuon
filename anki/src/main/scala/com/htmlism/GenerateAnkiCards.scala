@@ -69,8 +69,8 @@ class GenerateAnkiCards[F[_]](implicit F: Async[F]):
     yield ExitCode.Success
 
   private def writeDeck(dest: String) =
-    (FilePrinterAlg[F]
-      .print(dest) _)
+    FilePrinterAlg[F]
+      .print(dest)
       .compose(Serialization.deckToString)
       .compose(Deck.apply)
 
