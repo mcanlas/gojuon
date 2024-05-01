@@ -5,7 +5,7 @@ lazy val gojuon =
 lazy val core =
   project
     .settings(libraryDependencies += "org.typelevel" %% "cats-effect" % "3.5.4")
-    .settings(libraryDependencies += "io.circe" %% "circe-yaml" % "0.14.2")
+    .settings(libraryDependencies += "io.circe" %% "circe-yaml" % "0.14.7")
     .settings(libraryDependencies += "org.scalatest" %% "scalatest" % "3.2.16" % Test)
 
 lazy val console =
