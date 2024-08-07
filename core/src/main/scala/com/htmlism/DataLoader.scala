@@ -67,7 +67,7 @@ object DataLoader:
     parseResourceFile[F](s)
       .map(_.as[List[JapaneseEntry]])
       .flatMap(_.fold(logAndRaise[F, List[JapaneseEntry]](s"parsing classes of $s"), F.pure))
-      .map { xs => enhancements.get(s).fold(xs)(f => xs.map(f)) }
+      .map(xs => enhancements.get(s).fold(xs)(f => xs.map(f)))
 
   private def logAndRaise[F[_], A](msg: String)(err: Throwable)(implicit F: Sync[F]) =
     F.delay(println(msg + ": " + err)) *> F.raiseError[A](err)
