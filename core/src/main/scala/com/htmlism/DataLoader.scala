@@ -70,7 +70,7 @@ object DataLoader:
       .map(xs => enhancements.get(s).fold(xs)(f => xs.map(f)))
 
   private def logAndRaise[F[_], A](msg: String)(err: Throwable)(implicit F: Sync[F]) =
-    F.delay(println(msg + ": " + err)) *> F.raiseError[A](err)
+    F.delay(println(msg + ": " + err.toString)) *> F.raiseError[A](err)
 
   def allWords[F[_]: Async] =
     yamlFiles
@@ -119,7 +119,11 @@ object DataLoader:
   def leftPad(kana: Int, xs: List[String]) =
     if xs.isEmpty then Nil
     else
-      val maxIndex = xs.map(_.toList.map(_.toInt).indexOf(kana)).max
+      val maxIndex =
+        xs
+          .map(_.toList.map(_.toInt).indexOf(kana))
+          .maxOption
+          .getOrElse(0)
 
       xs.map { s =>
         val idx = s.toList.map(_.toInt).indexOf(kana)

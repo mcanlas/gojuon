@@ -58,9 +58,9 @@ object PrintRtkOrder extends IOApp.Simple:
           scala.io.Source.fromInputStream(s).getLines().toList
         }
       )
-      .map(_.tail)
+      .map(_.drop(1))
       .map(_.flatMap { s =>
         val sixCols = s.split("\t")
 
-        sixCols.toList.tail.filter(_.nonEmpty)
+        sixCols.toList.drop(1).filter(_.nonEmpty)
       })

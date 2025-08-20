@@ -66,4 +66,4 @@ object Romaji:
           case ConsonantN =>
             consonants(ConsonantN)
       case _ =>
-        throw new UnsupportedOperationException("kana variation does not exist")
+        "kana variation does not exist"
