@@ -104,7 +104,7 @@ object DataLoader:
       for k <- (Kana.unicodeHiragana ++ Kana.unicodeKatakana) do
         println(k.codePoint.toChar.toString + " " + k.variant.toString)
 
-        for e <- reg(k.codePoint) do println("   - " + e)
+        for e <- reg(k.codePoint) do println("   - " + e.toString)
 
         for s <- leftPad(k.codePoint, reg(k.codePoint).map(_.japanese.s)) do println("  - " + s)
     }
