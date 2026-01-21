@@ -39,7 +39,7 @@ object KanaCards:
     val hiragana = Kana.buildUnicodeKana(Kana.hiragana.codePoint)
     val katakana = Kana.buildUnicodeKana(Kana.katakana.codePoint)
 
-    for (n <- hiragana.indices.toList) yield
+    for n <- hiragana.indices.toList yield
       val romaji = Romaji.toRomaji(hiragana(n).variant)
 
       val cardId = List("hiragana", "katakana", Romaji.toKanaId(hiragana(n).variant)).mkString("-")
